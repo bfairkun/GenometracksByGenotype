@@ -28,7 +28,6 @@ max_value = {{YMax_PerInd}}
 number_of_bins = 700
 nans_to_zeros = true
 show_data_range = true
-y_axis_values = original
 overlay_previous = share-y
 file_type = bigwig
 {% endfor %}
@@ -43,7 +42,6 @@ max_value = {{YMax_PerInd}}
 number_of_bins = 700
 nans_to_zeros = true
 show_data_range = true
-y_axis_values = original
 file_type = bigwig
 overlay_previous = share-y
 
@@ -51,7 +49,7 @@ overlay_previous = share-y
 
 [output_1_full_blank]
 file = {{OutputPrefix}}output_0_.bw
-title = {{HomoRefTitle}}
+title = {{HetTitle}}
 height = 2
 color = purple
 type = line
@@ -76,7 +74,6 @@ max_value = {{YMax_PerInd}}
 number_of_bins = 700
 nans_to_zeros = true
 show_data_range = true
-y_axis_values = original
 overlay_previous = share-y
 file_type = bigwig
 {% endfor %}
@@ -91,7 +88,6 @@ max_value = {{YMax_PerInd}}
 number_of_bins = 700
 nans_to_zeros = true
 show_data_range = true
-y_axis_values = original
 file_type = bigwig
 overlay_previous = share-y
 
@@ -99,7 +95,7 @@ overlay_previous = share-y
 
 [output_2_full_blank]
 file = {{OutputPrefix}}output_0_.bw
-title = {{HomoRefTitle}}
+title = {{HomoAltTitle}}
 height = 2
 color = blue
 type = line
@@ -124,7 +120,6 @@ max_value = {{YMax_PerInd}}
 number_of_bins = 700
 nans_to_zeros = true
 show_data_range = true
-y_axis_values = original
 overlay_previous = share-y
 file_type = bigwig
 {% endfor %}
@@ -139,7 +134,6 @@ max_value = {{YMax_PerInd}}
 number_of_bins = 700
 nans_to_zeros = true
 show_data_range = true
-y_axis_values = original
 file_type = bigwig
 overlay_previous = share-y
 
