@@ -12,7 +12,7 @@ Additionally, the intended use of the python script is to prepare bigwigs and tr
 All of the dependencies, and pyGenomeTracks, can be installed with the conda evnironment included:
 
 ```bash
-conda create
+conda env create -f GenometracksByGenotype.conda_env.yml
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ conda create
 Use the main script with the help flag for more info
 
 ```
-python
+python NormalizedBigwigsByGenotype.py -h
 ```
 
 Also, included in `test_data/` is data from Grubert et al. Specifically, it is H3K4me3 ChIP-Seq data on chr19, and we will use it to plot a H3K4me3 QTL.
