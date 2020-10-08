@@ -17,6 +17,8 @@ conda env create -f GenometracksByGenotype.conda_env.yml
 
 ## Usage
 
+Input requirements are a vcf, and bigwig files for each individual to plot. The bigwig files are matched to sample names either by a tab delimited input (TODO list), or by a glob pattern if the sample names are named similarly to the test example. To convert bam to bigwig, there is a helper script in this repository (`BamToBigwig.sh`).
+
 Use the main script with the help flag for more info
 
 ```
