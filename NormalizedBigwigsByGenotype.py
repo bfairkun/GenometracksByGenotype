@@ -53,7 +53,7 @@ def cmdline_args(Args=None):
     p.add_argument("VCF",
             help= "gzipped and tbi indexed vcf file with sample genotypes",
             metavar="<VCFFile>")
-    p.add_argument("SnpPos", 
+    p.add_argument("SnpPos",
             help= "Snp position. Position should be one-based, same as in vcf",
             metavar="<CHR>:<POS>")
     p.add_argument("Region",
@@ -62,13 +62,13 @@ def cmdline_args(Args=None):
     p.add_argument("BigwigList",
             help= """
             If using with the --BigwigListType KeyFile  option, a tab delimited text file with samples in the first column and a path to the input bigwig files in the second column. Alternatively, if using with the --BigwigListType GlobPattern option, use a  wildcard glob of bigwig files, and the samples will be inferred by searching the expanded filepaths for strings that match samples in the VCF. Note that using this wildcard method requires you to enclose the grob pattern in quotes, since this script needs to parse the grob pattern with python. Excluding quotes will immediately expand the grob pattern by the shell.
-            
+
             Example1:
             MySampleToBigwigKey.tsv --BigwigListType KeyFile
-            
+
             Example2:
             "./Bigwigs/*/Coverage.bw" --BigwigListType GlobPattern
-            
+
             where the * expansion may be sample names, which are automatically matched (with some wiggle room). Using a keyfile is obviously more robust, as the glob pattern requires some guessing to match files to samples. For convenient use with 1000Genomes project samples, this sripts will match samples by searching filenames for 5 digit patterns that match sample naming scheme used in 1000Genomes project. For example: a file named ./MyBigwigs/GM19137.bw will be matched to the sample HG19137 because of the 19137 substring match""",
             metavar='{"<GlobPattern>",<KEYFILE>}')
     p.add_argument('--BigwigListType',
@@ -196,7 +196,7 @@ for genotype, Array in DictOfArraysForEachGenotype.items():
         bwOut.addEntries(RegionChr, RegionStart, values=ArrayOut, span=1, step=1)
         bwOut.close()
         #Save the max signal in window for to set ylimits in tracks file
-        MaxValuesOut.append(max(ArrayOut)) 
+        MaxValuesOut.append(max(ArrayOut))
         MaxValuesPerInd.append(numpy.max(Array))
     else:
         print("Genotype not found")

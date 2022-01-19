@@ -115,7 +115,7 @@ file_type = bigwig
 {% endfor %}
 
 [output_2_full]
-file = {{OutputPrefix}}output_1_.bw
+file = {{OutputPrefix}}output_2_.bw
 height = 2
 color = blue
 type = line
@@ -134,20 +134,20 @@ height = 2
 color = red
 type = line
 min_value = 0
-max_value = {{YMax}}
+max_value = {{YMax_PerInd}}
 number_of_bins = 700
 nans_to_zeros = true
 show_data_range = true
 y_axis_values = original
 file_type = bigwig
-    
+
 [output_1_avg]
 file = {{OutputPrefix}}output_1_.bw
 height = 2
 color = purple
 type = line
 min_value = 0
-max_value = {{YMax}}
+max_value = {{YMax_PerInd}}
 number_of_bins = 700
 nans_to_zeros = true
 show_data_range = true
@@ -162,7 +162,7 @@ height = 2
 color = blue
 type = line
 min_value = 0
-max_value = {{YMax}}
+max_value = {{YMax_PerInd}}
 number_of_bins = 700
 nans_to_zeros = true
 show_data_range = true
