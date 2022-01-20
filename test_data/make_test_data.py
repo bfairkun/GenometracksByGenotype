@@ -23,19 +23,21 @@ import pyBigWig
 import numpy
 import os
 
-bw_list = os.listdir("/project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K4ME3/")
+bw_list = os.listdir("/project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/Expression.Splicing/")
 
-region = "chr19:1488527-1492832"
+DirOut = "test_bigwigs/"
+os.makedirs(DirOut, exist_ok=True)
+
+region = "chr4:39,031,787-39,110,467"
 chrom,coords = region.split(":")
 start, stop = [int(i) for i in coords.replace(",", "").split("-")]
-# basename = bw_list[0]
 
 basename = bw_list[0]
 
 for i, basename in enumerate(bw_list):
     # if i == 0:
-    bw = pyBigWig.open("/project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K4ME3/" + basename)
-    bw_out = pyBigWig.open("./test_bigiwgs/" + basename, "w")
+    bw_out = pyBigWig.open(DirOut + "/" +  basename, "w")
+    bw = pyBigWig.open("/project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/Expression.Splicing/" + basename)
     bw_out.addHeader(list(bw.chroms().items()))
     for x in bw.intervals(chrom, start, stop):
         bw_out.addEntries([chrom],[x[0]],ends=[x[1]],values=[x[2]])

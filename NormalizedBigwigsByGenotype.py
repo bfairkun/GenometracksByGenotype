@@ -13,6 +13,7 @@ Note that bigwigs must not contain NaN values. Use 0 to denote no coverage. This
 import sys
 import os
 import argparse
+import pandas as pd
 import vcf
 import pyBigWig
 import numpy
@@ -38,6 +39,24 @@ def GetNormalizationFactorBasedOnRegionList(bigwig_fn, regionlist):
         return(sum(TotalSignal)/1E3)
     except:
         return(None)
+
+def invert_dict(d): 
+    inverse = dict() 
+    for key in d: 
+        val = d[key] 
+        if val not in inverse: 
+            inverse[val] = [key] 
+        else: 
+            inverse[val].append(key) 
+    return inverse
+
+def WriteLinksFileByGenotypes(SampleToGenotypeDict, bed_df, f_out_prefix=""):
+    GenotypesToSamplesDict = invert_dict(SampleToGenotypeDict)
+    bed_df.rename(columns={ bed_df.columns[0]: "#Chr", bed_df.columns[1]:"start", bed_df.columns[2]: "end", bed_df.columns[3]: "pid" }, inplace = True)
+    for genotype in GenotypesToSamplesDict.keys():
+        df_out = bed_df[bed_df.columns.intersection(GenotypesToSamplesDict[genotype] + ['#Chr','start', 'end', 'pid'])]
+        df_out['psi'] = df_out.drop(['#Chr', 'start', 'end', 'pid'], axis=1).mean(axis=1).apply(lambda x:"{0:.2g}".format(x) )
+        df_out.loc[:, ['#Chr',  'start', 'end', '#Chr', 'start', 'end','psi']].to_csv(f_out_prefix + "output_" + str(genotype) + ".links", sep='\t', index=False, header=False)
 
 def GetNormalizationFactorWholeGenome(bigwig_fn):
     try:
@@ -80,6 +99,9 @@ def cmdline_args(Args=None):
     p.add_argument("--OutputPrefix",
             help="Prefix for all output files (default: %(default)s)",
             default="./")
+    p.add_argument("--BedfileForSashimiLinks",
+            help="QTLtools style bed or bed.gz file with header for samples (sample names must match vcf) and values to calculate average PSI per genotype. (default: %(default)s)",
+            default=None)
     p.add_argument("--OutputNormalizedBigwigsPerSample",
             help="Output normalized bigwigs for each sample.",
             action='store_true')
@@ -94,11 +116,12 @@ if __name__ == '__main__':
     # interactive interpreter, run script with the given Args hardcoded below.
     try:
         if(sys.ps1):
-            Args = ['../Genotypes/GEUVADIS_Lappalainnen.vcf.gz', "chr22:19962429", "chr22:19,961,396-19,962,471", '../Bigwigs/GEUVADIS_RNAseq/*.bw', "--Normalization", "WholeGenome", "--BigwigListType", "GlobPattern", "--TracksTemplate", "./tracks.ini.template3.txt"]
+            Args = 'test_data/1KG.Subset.vcf.gz chr4:173807 chr4:117320-138022 "test_data/bigwigs/*" --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ --TracksTemplate tracks_templates/tracks.ini.template3.txt --OutputNormalizedBigwigsPerSample'.split(' ')
             args = cmdline_args(Args=Args)
     except:
         args = cmdline_args()
     print(args)
+
 
 SnpChr, SnpCoord = args.SnpPos.split(":")
 vcf_reader = vcf.Reader(filename=args.VCF)
@@ -123,6 +146,12 @@ homo_alts = [call.sample for call in SnpList[0].get_hom_alts()]
 SampleToGenotypeDict = dict(zip(
     homo_refs + hets +  homo_alts,
     [0 for i in homo_refs] + [1 for i in hets] + [2 for i in homo_alts]))
+
+
+if args.BedfileForSashimiLinks:
+    bed = pd.read_csv(args.BedfileForSashimiLinks, sep='\t')
+    WriteLinksFileByGenotypes(SampleToGenotypeDict, bed, f_out_prefix=args.OutputPrefix)
+
 
 #If key file, make BigwigToSampleDict
 #Check that each file exists, warn if not
@@ -226,10 +255,84 @@ if args.TracksTemplate:
         template_file_contents = file_.read()
         template = Template(template_file_contents)
 else:
-    template = Template('\n[output_0_]\nfile = {{OutputPrefix}}output_0_.bw\ntitle = {{HomoRefTitle}}\nheight = 2\ncolor = #666666\nmin_value = 0\nmax_value = {{YMax}}\nnumber_of_bins = 700\nnans_to_zeros = true\nshow_data_range = true\ny_axis_values = original\nfile_type = bigwig\n    \n[output_1_]\nfile = {{OutputPrefix}}output_1_.bw\ntitle = {{HetTitle}}\nheight = 2\ncolor = #666666\nmin_value = 0\nmax_value = {{YMax}}\nnumber_of_bins = 700\nnans_to_zeros = true\nshow_data_range = true\ny_axis_values = original\nfile_type = bigwig\n\n[output_2_]\nfile = {{OutputPrefix}}output_2_.bw\ntitle = {{HomoAltTitle}}\nheight = 2\ncolor = #666666\nmin_value = 0\nmax_value = {{YMax}}\nnumber_of_bins = 700\nnans_to_zeros = true\nshow_data_range = true\ny_axis_values = original\nfile_type = bigwig\n\n[vlines]\ntype = vlines\nfile = {{OutputPrefix}}output_SNP.bed\n')
+    if args.BedfileForSashimiLinks:
+        template = Template(
+"""
+[output_0_]
+bw_file = {{OutputPrefix}}output_0_.bw
+link_file = {{OutputPrefix}}output_0.links
+title = {{HomoRefTitle}}
+height = 2
+bw_color = red
+min_value = 0
+max_value = {{YMax}}
+number_of_bins = 2000
+nans_to_zeros = true
+show_data_range = true
+y_axis_values = original
+link_color = black
+line_style = solid
+fontsize = 8
+# The link in Sashimi plot is a Bezier curve.
+# The height of the curve is calculated from the length of the intron.
+# When the y-axis in bigwig track is different, the height of curve needs to be scaled.
+scale_link_height = 1
+# The line width for links is proportion to the numbers at the last column in links file (PSI).
+# But the absolute width is calculated from the supplied numbers, which can look too thin or too wide sometimes.
+# Use scale_line_width to scale the absolute line widths.
+# You may need to try several values to get a satisfying result.
+scale_line_width = 0.05
+file_type = sashimiBigWig
+show_number = true
 
+[output_1_]
+bw_file = {{OutputPrefix}}output_1_.bw
+link_file = {{OutputPrefix}}output_1.links
+title = {{HetTitle}}
+height = 2
+bw_color = purple
+min_value = 0
+max_value = {{YMax}}
+number_of_bins = 700
+nans_to_zeros = true
+show_data_range = true
+y_axis_values = original
+link_color = black
+line_style = solid
+fontsize = 8
+scale_link_height = 1
+scale_line_width = 0.05
+file_type = sashimiBigWig
+show_number = true
+
+[output_2_]
+bw_file = {{OutputPrefix}}output_2_.bw
+link_file = {{OutputPrefix}}output_2.links
+title = {{HomoAltTitle}}
+height = 2
+bw_color = blue
+min_value = 0
+max_value = {{YMax}}
+number_of_bins = 700
+nans_to_zeros = true
+show_data_range = true
+y_axis_values = original
+link_color = black
+line_style = solid
+fontsize = 8
+scale_link_height = 1
+scale_line_width = 0.05
+file_type = sashimiBigWig
+show_number = true
+
+[vlines]
+type = vlines
+file = {{OutputPrefix}}output_SNP.bed
+"""
+)
 
 with open(args.OutputPrefix + "output_tracks.ini", 'w') as file_out:
+    print("writing ini file")
     _ = file_out.write(
         template.render(
                     #Jinja variables
