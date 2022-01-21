@@ -21,13 +21,103 @@ type of track for making sashimi-splicing plots. See below for an example.
 
 ## Usage
 
-Input requirements are a vcf, and bigwig files for each individual to plot. The bigwig files are matched to sample names either by a tab delimited input (TODO list), or by a glob pattern if the sample names are named similarly to the test example. To convert bam to bigwig, there is a helper script in this repository (`BamToBigwig.sh`).
+The main script in this repo is `NormalizedBigwigsByGenotype.py`. Input requirements are a vcf, and bigwig files for each individual to plot. The bigwig files are matched to sample names either by a tab delimited input (TODO list), or by a glob pattern if the sample names are named similarly to the test example. To convert bam to bigwig, there is a helper script in this repository (`BamToBigwig.sh`). The output of this script is normalized bigwig files and pyGenometracks ini configuration files that can be used with `pyGenomeTracks`.
 
-Use the main script with the help flag for more info.
+the main script with the help flag for more info... And also see the examples below:
 
 ```
 python NormalizedBigwigsByGenotype.py -h
 ```
+
+```
+usage: NormalizedBigwigsByGenotype.py [-h] --BigwigListType
+                                      {KeyFile,GlobPattern}
+                                      [--Normalization {<BEDFILE>,None,WholeGenome}]
+                                      [--OutputPrefix OUTPUTPREFIX]
+                                      [--BedfileForSashimiLinks BEDFILEFORSASHIMILINKS]
+                                      [--OutputNormalizedBigwigsPerSample]
+                                      [--TracksTemplate <FILE>] [-v {0,1,2}]
+                                      <VCFFile> <CHR>:<POS>
+                                      <CHR>:<START>-<STOP>
+                                      {"<GlobPattern>",<KEYFILE>}
+
+Outputs:
+    <OutputPrefix>_output_0.bw
+    <OutputPrefix>_output_1.bw
+    <OutputPrefix>_output_2.bw
+    <OutputPrefix>_output_tracks.ini
+    <OutputPrefix>_PerInd_<Genotype>_<Sample>.bw
+
+Note that bigwigs must not contain NaN values. Use 0 to denote no coverage. This can be accomplished with bedtools genomecov with -bga option then convert bedGraphToBigWig. See helper script in this repo.
+--File or autodetect for samples to files
+
+positional arguments:
+  <VCFFile>             gzipped and tbi indexed vcf file with sample genotypes
+  <CHR>:<POS>           Snp position. Position should be one-based, same as in
+                        vcf
+  <CHR>:<START>-<STOP>  Region to output
+  {"<GlobPattern>",<KEYFILE>}
+                        If using with the --BigwigListType KeyFile option, a
+                        tab delimited text file with samples in the first
+                        column and a path to the input bigwig files in the
+                        second column. Alternatively, if using with the
+                        --BigwigListType GlobPattern option, use a wildcard
+                        glob of bigwig files, and the samples will be inferred
+                        by searching the expanded filepaths for strings that
+                        match samples in the VCF. Note that using this
+                        wildcard method requires you to enclose the grob
+                        pattern in quotes, since this script needs to parse
+                        the grob pattern with python. Excluding quotes will
+                        immediately expand the grob pattern by the shell.
+                        Example1: MySampleToBigwigKey.tsv --BigwigListType
+                        KeyFile Example2: "./Bigwigs/*/Coverage.bw"
+                        --BigwigListType GlobPattern where the * expansion may
+                        be sample names, which are automatically matched (with
+                        some wiggle room). Using a keyfile is obviously more
+                        robust, as the glob pattern requires some guessing to
+                        match files to samples. For convenient use with
+                        1000Genomes project samples, this sripts will match
+                        samples by searching filenames for 5 digit patterns
+                        that match sample naming scheme used in 1000Genomes
+                        project. For example: a file named
+                        ./MyBigwigs/GM19137.bw will be matched to the sample
+                        HG19137 because of the 19137 substring match
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --BigwigListType {KeyFile,GlobPattern}
+                        Required. Define how the bigwig list positional
+                        argument is specified.
+  --Normalization {<BEDFILE>,None,WholeGenome}
+                        A bed file of regions to use for sample-depth
+                        normalization. The within-sample total coverage over
+                        the regions will be used to normalize each sample. If
+                        'None' is chosen, will not perform any normalization.
+                        If 'WholeGenome' is used, will use whole genome.
+                        (default: WholeGenome)
+  --OutputPrefix OUTPUTPREFIX
+                        Prefix for all output files (default: ./)
+  --BedfileForSashimiLinks BEDFILEFORSASHIMILINKS
+                        QTLtools style bed or bed.gz file with header for
+                        samples (sample names must match vcf) and values to
+                        calculate average PSI per genotype. (default: None)
+  --OutputNormalizedBigwigsPerSample
+                        Output normalized bigwigs for each sample.
+  --TracksTemplate <FILE>
+                        A jinja template for a tracks file for pyGenomeTracks
+                        customization. An example is included. Template
+                        variables allowed are 'OutputPrefix', 'HomoRefTitle',
+                        'HetTitle', 'HomoAltTitle', and 'YMax'. If this
+                        argument is provided, the template file will be
+                        populated with the template variables to create a
+                        tracks file that can be used for pyGenomeTracks. If
+                        this argument is not provided, will output a very
+                        basic tracks file that can be used for pyGenomeTracks
+  -v {0,1,2}, --verbosity {0,1,2}
+                        increase output verbosity (default: 0)
+```
+
+### Examples
 
 Also, included in `test_data/` is data that I realigned from Grubert et al. Specifically, it is H3K4me3 ChIP-Seq data from a small region on chr4, and we will use it to plot a H3K4me3 QTL. In this case, I also used the optional argument `--TracksTemplate` to specify a pyGenomeTracks `.ini` configuration file template. If you do not specify this, a reasonable default ini file will by output to `{OutputPrefix}output_tracks.ini`. There are a couple different templates included in `tracks_template/` for different plotting styles. The track template style used below will plot averaged signal by genotype, and also each individual signal, so the script also needs to output bigwigs for each genotype with the `--OutputNormalizedBigwigsPerSample` flag.
 
