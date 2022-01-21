@@ -65,7 +65,7 @@ def GetNormalizationFactorWholeGenome(bigwig_fn):
     except:
         return(None)
 
-def cmdline_args(Args=None):
+def parse_args(Args=None):
     p = argparse.ArgumentParser(
             description=__doc__,
             formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -111,243 +111,251 @@ def cmdline_args(Args=None):
     return(p.parse_args(Args))
 
 
+def main(args):
+    """
+    main function of script. args is a argparse.Namespace object created by the parse_args function defined above. example usages:
+    # run main with parameters defined from sys.argv
+    main(parse_args())
+    # run main with parameters defined in custom list:
+    main(parse_args(['test_data/1KG.Subset.vcf.gz', 'chr4:173807', 'chr4:117320-138022', '"test_data/bigwigs/*"', '--Normalization', 'None', '--BigwigListType', 'GlobPattern', '--OutputPrefix', 'test_results/', '--TracksTemplate', 'tracks_templates/tracks.ini.template3.txt', '--OutputNormalizedBigwigsPerSample']))
+    """
+    SnpChr, SnpCoord = args.SnpPos.split(":")
+    vcf_reader = vcf.Reader(filename=args.VCF)
+    SnpList = []
+    for record in vcf_reader.fetch(SnpChr, str_to_int(SnpCoord)-1, str_to_int(SnpCoord)):
+        SnpList.append(record)
+    if len(SnpList) <1:
+        print("No SNP found at SnpPos")
+    elif len(SnpList)>1:
+        print("More than one SNP found at SnpPos. Make sure vcf has one line per position")
+    else:
+        RefAllele = SnpList[0].REF
+        AltAllele = SnpList[0].ALT[0]
+        print("Found SNP")
+
+    # Save sample names, grouped by genotype, to lists
+    hets = [call.sample for call in SnpList[0].get_hets()]
+    homo_refs = [call.sample for call in SnpList[0].get_hom_refs()]
+    homo_alts = [call.sample for call in SnpList[0].get_hom_alts()]
+
+    # Dict to lookup genotype for each sample. Use 0,1,2 for shorthand coding for homoRef, het, homoAlt
+    SampleToGenotypeDict = dict(zip(
+        homo_refs + hets +  homo_alts,
+        [0 for i in homo_refs] + [1 for i in hets] + [2 for i in homo_alts]))
+    # print(SampleToGenotypeDict)
+
+    if args.BedfileForSashimiLinks:
+        bed = pd.read_csv(args.BedfileForSashimiLinks, sep='\t')
+        WriteLinksFileByGenotypes(SampleToGenotypeDict, bed, f_out_prefix=args.OutputPrefix)
+
+
+    #If key file, make BigwigToSampleDict
+    #Check that each file exists, warn if not
+
+    # Get bigwig grob pattern, try to match to samples
+    BigwigGlobmatchs = glob.glob(args.BigwigList)
+    AllGenotypedNumeric = [re.search("\d{5}", sample).group(0) for sample in SampleToGenotypeDict.keys()]
+    NumericToSamplenameDict = dict(zip(AllGenotypedNumeric, SampleToGenotypeDict.keys()))
+
+    BigwigToSampleDict = defaultdict(dict)
+    for fn in BigwigGlobmatchs:
+        Match = re.findall("\d{5}", fn)
+        if len(Match) == 1 and Match[0] in AllGenotypedNumeric:
+            # BigwigToNumericDict[fn] = Match[0]
+            # print(Match[0])
+            SampleName = NumericToSamplenameDict[Match[0]]
+            BigwigToSampleDict[fn]["SampleName"]= SampleName
+            BigwigToSampleDict[fn]["Genotype"]=SampleToGenotypeDict[SampleName]
+
+
+    #TODO: write out inferred sampleKeyFile
+
+    #Check if bedfile given for normalization, and read regions if so.
+    if args.Normalization not in ['None', 'WholeGenome']:
+        try:
+            NormalizationRegions = []
+            with open(args.Normalization, 'r') as fh:
+                for line in fh:
+                    l = line.strip('\n').split('\t')
+                    NormalizationRegions.append(l[0:3])
+        except:
+            print("Normalization bedfile non-existent or corrupted")
+
+    #Iterate through bigwigs, add normalized values row by row to 2D array (list of 1D arrays) for each genotype.
+    RegionChr, RegionCoords = args.Region.split(":")
+    RegionStart, RegionStop = [str_to_int(i) for i in RegionCoords.split("-")]
+    DictOfArraysForEachGenotype={0:[], 1:[], 2:[]}
+    # print(BigwigToSampleDict)
+    for i,bigwig in enumerate(BigwigToSampleDict.keys()):
+        # Get normalization factor for each bigwig
+        try:
+            if args.Normalization == 'WholeGenome':
+                NormFactor = GetNormalizationFactorWholeGenome(bigwig)
+            elif args.Normalization == 'None':
+                NormFactor = 1
+            else:
+                NormFactor = GetNormalizationFactorBasedOnRegionList(bigwig, NormalizationRegions)
+        except:
+            NormFactor = None
+        if NormFactor:
+            genotype = BigwigToSampleDict[bigwig]['Genotype']
+            bw = pyBigWig.open(bigwig)
+            NormalizedValues = bw.values(RegionChr, RegionStart, RegionStop, numpy=True)/NormFactor
+            DictOfArraysForEachGenotype[genotype].append(NormalizedValues)
+            bwOut_fn = "output_PerInd_{}_{}.bw".format(genotype, BigwigToSampleDict[bigwig]["SampleName"])
+            BigwigToSampleDict[bigwig]["bwOut_fn"] = bwOut_fn
+            if args.OutputNormalizedBigwigsPerSample:
+                bwOut = pyBigWig.open(args.OutputPrefix + bwOut_fn, "w")
+                bwOut.addHeader(list(bw.chroms().items()))
+                bwOut.addEntries(RegionChr, RegionStart, values=NormalizedValues, span=1, step=1)
+                bwOut.close()
+
+    # average the normalized signal across samples by genotype and write out bigwigs and tracks file
+    MaxValuesOut = []
+    MaxValuesPerInd = []
+    for genotype, Array in DictOfArraysForEachGenotype.items():
+        if len(Array) > 0:
+            ArrayOut = numpy.mean(numpy.array(Array), axis=0)
+            bwOut = pyBigWig.open(args.OutputPrefix + "output_" + str(genotype) + "_.bw", "w")
+            bwOut.addHeader(list(bw.chroms().items()))
+            bwOut.addEntries(RegionChr, RegionStart, values=ArrayOut, span=1, step=1)
+            bwOut.close()
+            #Save the max signal in window for to set ylimits in tracks file
+            MaxValuesOut.append(max(ArrayOut))
+            MaxValuesPerInd.append(numpy.max(Array))
+        else:
+            print("Genotype not found")
+    GenotypeCounts = {k:len(v) for (k, v) in DictOfArraysForEachGenotype.items()}
+    YMax = max(MaxValuesOut)
+    YMax_PerInd = max(MaxValuesPerInd)
+
+
+    #Get ind output bigwigs separated by genotype for access as jinja variable
+    HomoRefBwList = []
+    HetBwList = []
+    HomoAltBwList = []
+    for k,v in BigwigToSampleDict.items():
+        try:
+            bigwig = v['bwOut_fn']
+        except KeyError:
+            continue
+        if v['Genotype'] == 0:
+            HomoRefBwList.append(bigwig)
+        elif v['Genotype'] == 1:
+            HetBwList.append(bigwig)
+        elif v['Genotype'] == 2:
+            HomoAltBwList.append(bigwig)
+
+    if args.TracksTemplate:
+        with open(args.TracksTemplate) as file_:
+            template_file_contents = file_.read()
+            template = Template(template_file_contents)
+    else:
+        if args.BedfileForSashimiLinks:
+            template = Template(
+    """
+    [output_0_]
+    bw_file = {{OutputPrefix}}output_0_.bw
+    link_file = {{OutputPrefix}}output_0.links
+    title = {{HomoRefTitle}}
+    height = 2
+    bw_color = red
+    min_value = 0
+    max_value = {{YMax}}
+    number_of_bins = 2000
+    nans_to_zeros = true
+    show_data_range = true
+    y_axis_values = original
+    link_color = black
+    line_style = solid
+    fontsize = 8
+    # The link in Sashimi plot is a Bezier curve.
+    # The height of the curve is calculated from the length of the intron.
+    # When the y-axis in bigwig track is different, the height of curve needs to be scaled.
+    scale_link_height = 1
+    # The line width for links is proportion to the numbers at the last column in links file (PSI).
+    # But the absolute width is calculated from the supplied numbers, which can look too thin or too wide sometimes.
+    # Use scale_line_width to scale the absolute line widths.
+    # You may need to try several values to get a satisfying result.
+    scale_line_width = 0.05
+    file_type = sashimiBigWig
+    show_number = true
+
+    [output_1_]
+    bw_file = {{OutputPrefix}}output_1_.bw
+    link_file = {{OutputPrefix}}output_1.links
+    title = {{HetTitle}}
+    height = 2
+    bw_color = purple
+    min_value = 0
+    max_value = {{YMax}}
+    number_of_bins = 700
+    nans_to_zeros = true
+    show_data_range = true
+    y_axis_values = original
+    link_color = black
+    line_style = solid
+    fontsize = 8
+    scale_link_height = 1
+    scale_line_width = 0.05
+    file_type = sashimiBigWig
+    show_number = true
+
+    [output_2_]
+    bw_file = {{OutputPrefix}}output_2_.bw
+    link_file = {{OutputPrefix}}output_2.links
+    title = {{HomoAltTitle}}
+    height = 2
+    bw_color = blue
+    min_value = 0
+    max_value = {{YMax}}
+    number_of_bins = 700
+    nans_to_zeros = true
+    show_data_range = true
+    y_axis_values = original
+    link_color = black
+    line_style = solid
+    fontsize = 8
+    scale_link_height = 1
+    scale_line_width = 0.05
+    file_type = sashimiBigWig
+    show_number = true
+
+    [vlines]
+    type = vlines
+    file = {{OutputPrefix}}output_SNP.bed
+    """
+    )
+
+    with open(args.OutputPrefix + "output_tracks.ini", 'w') as file_out:
+        print("writing ini file")
+        _ = file_out.write(
+            template.render(
+                        #Jinja variables
+                        OutputPrefix=args.OutputPrefix,
+                        YMax = YMax, #Max after averaging by genotype
+                        YMax_PerInd = YMax_PerInd, #Max across all individuals
+                        RefAllele = RefAllele,
+                        AltAllele = AltAllele,
+                        GenotypeCounts = GenotypeCounts, #Dictionary, with keys of 0,1,2
+                        HomoRefBwList = HomoRefBwList, #List of bigwigs for each ind with homoRef genotype
+                        HetBwList = HetBwList,
+                        HomoAltBwList = HomoAltBwList,
+                        HomoRefTitle="0: {Ref}/{Ref} (n={count})".format(Ref=RefAllele, count=GenotypeCounts[0]),
+                        HetTitle="1: {Ref}/{Alt} (n={count})".format(Ref=RefAllele, Alt=AltAllele, count=GenotypeCounts[1]),
+                        HomoAltTitle="2: {Alt}/{Alt} (n={count})".format(Alt=AltAllele, count=GenotypeCounts[2])))
+
+    with open(args.OutputPrefix + "output_SNP.bed", "w") as file_snp_bed:
+        _ = file_snp_bed.write("{}\t{}\t{}\t{}".format(SnpChr, str_to_int(SnpCoord)-1, SnpCoord, SnpList[0].ID))
+
 if __name__ == '__main__':
     # I like to script and debug with an interactive interpreter. If using
-    # interactive interpreter, run script with the given Args hardcoded below.
+    # interactive interpreter, can step thru the script with args defined below
     try:
         if(sys.ps1):
             Args = 'test_data/1KG.Subset.vcf.gz chr4:173807 chr4:117320-138022 "test_data/bigwigs/*" --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ --TracksTemplate tracks_templates/tracks.ini.template3.txt --OutputNormalizedBigwigsPerSample'.split(' ')
-            args = cmdline_args(Args=Args)
+            args = parse_args(Args=Args)
     except:
-        args = cmdline_args()
-    print(args)
+        args = parse_args()
+    main(args)
 
-
-SnpChr, SnpCoord = args.SnpPos.split(":")
-vcf_reader = vcf.Reader(filename=args.VCF)
-SnpList = []
-for record in vcf_reader.fetch(SnpChr, str_to_int(SnpCoord)-1, str_to_int(SnpCoord)):
-    SnpList.append(record)
-if len(SnpList) <1:
-    print("No SNP found at SnpPos")
-elif len(SnpList)>1:
-    print("More than one SNP found at SnpPos. Make sure vcf has one line per position")
-else:
-    RefAllele = SnpList[0].REF
-    AltAllele = SnpList[0].ALT[0]
-    print("Found SNP")
-
-# Save sample names, grouped by genotype, to lists
-hets = [call.sample for call in SnpList[0].get_hets()]
-homo_refs = [call.sample for call in SnpList[0].get_hom_refs()]
-homo_alts = [call.sample for call in SnpList[0].get_hom_alts()]
-
-# Dict to lookup genotype for each sample. Use 0,1,2 for shorthand coding for homoRef, het, homoAlt
-SampleToGenotypeDict = dict(zip(
-    homo_refs + hets +  homo_alts,
-    [0 for i in homo_refs] + [1 for i in hets] + [2 for i in homo_alts]))
-
-
-if args.BedfileForSashimiLinks:
-    bed = pd.read_csv(args.BedfileForSashimiLinks, sep='\t')
-    WriteLinksFileByGenotypes(SampleToGenotypeDict, bed, f_out_prefix=args.OutputPrefix)
-
-
-#If key file, make BigwigToSampleDict
-#Check that each file exists, warn if not
-
-# Get bigwig grob pattern, try to match to samples
-BigwigGlobmatchs = glob.glob(args.BigwigList)
-AllGenotypedNumeric = [re.search("\d{5}", sample).group(0) for sample in SampleToGenotypeDict.keys()]
-NumericToSamplenameDict = dict(zip(AllGenotypedNumeric, SampleToGenotypeDict.keys()))
-
-BigwigToSampleDict = defaultdict(dict)
-for fn in BigwigGlobmatchs:
-    Match = re.findall("\d{5}", fn)
-    if len(Match) == 1 and Match[0] in AllGenotypedNumeric:
-        # BigwigToNumericDict[fn] = Match[0]
-        # print(Match[0])
-        SampleName = NumericToSamplenameDict[Match[0]]
-        BigwigToSampleDict[fn]["SampleName"]= SampleName
-        BigwigToSampleDict[fn]["Genotype"]=SampleToGenotypeDict[SampleName]
-
-
-#TODO: write out inferred sampleKeyFile
-
-#Check if bedfile given for normalization, and read regions if so.
-if args.Normalization not in ['None', 'WholeGenome']:
-    try:
-        NormalizationRegions = []
-        with open(args.Normalization, 'r') as fh:
-            for line in fh:
-                l = line.strip('\n').split('\t')
-                NormalizationRegions.append(l[0:3])
-    except:
-        print("Normalization bedfile non-existent or corrupted")
-
-#Iterate through bigwigs, add normalized values row by row to 2D array (list of 1D arrays) for each genotype.
-RegionChr, RegionCoords = args.Region.split(":")
-RegionStart, RegionStop = [str_to_int(i) for i in RegionCoords.split("-")]
-DictOfArraysForEachGenotype={0:[], 1:[], 2:[]}
-
-for i,bigwig in enumerate(BigwigToSampleDict.keys()):
-    # Get normalization factor for each bigwig
-    try:
-        if args.Normalization == 'WholeGenome':
-            NormFactor = GetNormalizationFactorWholeGenome(bigwig)
-        elif args.Normalization == 'None':
-            NormFactor = 1
-        else:
-            NormFactor = GetNormalizationFactorBasedOnRegionList(bigwig, NormalizationRegions)
-    except:
-        NormFactor = None
-    if NormFactor:
-        genotype = BigwigToSampleDict[bigwig]['Genotype']
-        bw = pyBigWig.open(bigwig)
-        NormalizedValues = bw.values(RegionChr, RegionStart, RegionStop, numpy=True)/NormFactor
-        DictOfArraysForEachGenotype[genotype].append(NormalizedValues)
-        bwOut_fn = "output_PerInd_{}_{}.bw".format(genotype, BigwigToSampleDict[bigwig]["SampleName"])
-        BigwigToSampleDict[bigwig]["bwOut_fn"] = bwOut_fn
-        if args.OutputNormalizedBigwigsPerSample:
-            bwOut = pyBigWig.open(args.OutputPrefix + bwOut_fn, "w")
-            bwOut.addHeader(list(bw.chroms().items()))
-            bwOut.addEntries(RegionChr, RegionStart, values=NormalizedValues, span=1, step=1)
-            bwOut.close()
-
-# average the normalized signal across samples by genotype and write out bigwigs and tracks file
-MaxValuesOut = []
-MaxValuesPerInd = []
-for genotype, Array in DictOfArraysForEachGenotype.items():
-    if len(Array) > 0:
-        ArrayOut = numpy.mean(numpy.array(Array), axis=0)
-        bwOut = pyBigWig.open(args.OutputPrefix + "output_" + str(genotype) + "_.bw", "w")
-        bwOut.addHeader(list(bw.chroms().items()))
-        bwOut.addEntries(RegionChr, RegionStart, values=ArrayOut, span=1, step=1)
-        bwOut.close()
-        #Save the max signal in window for to set ylimits in tracks file
-        MaxValuesOut.append(max(ArrayOut))
-        MaxValuesPerInd.append(numpy.max(Array))
-    else:
-        print("Genotype not found")
-GenotypeCounts = {k:len(v) for (k, v) in DictOfArraysForEachGenotype.items()}
-YMax = max(MaxValuesOut)
-YMax_PerInd = max(MaxValuesPerInd)
-
-
-#Get ind output bigwigs separated by genotype for access as jinja variable
-HomoRefBwList = []
-HetBwList = []
-HomoAltBwList = []
-for k,v in BigwigToSampleDict.items():
-    try:
-        bigwig = v['bwOut_fn']
-    except KeyError:
-        continue
-    if v['Genotype'] == 0:
-        HomoRefBwList.append(bigwig)
-    elif v['Genotype'] == 1:
-        HetBwList.append(bigwig)
-    elif v['Genotype'] == 2:
-        HomoAltBwList.append(bigwig)
-
-if args.TracksTemplate:
-    with open(args.TracksTemplate) as file_:
-        template_file_contents = file_.read()
-        template = Template(template_file_contents)
-else:
-    if args.BedfileForSashimiLinks:
-        template = Template(
-"""
-[output_0_]
-bw_file = {{OutputPrefix}}output_0_.bw
-link_file = {{OutputPrefix}}output_0.links
-title = {{HomoRefTitle}}
-height = 2
-bw_color = red
-min_value = 0
-max_value = {{YMax}}
-number_of_bins = 2000
-nans_to_zeros = true
-show_data_range = true
-y_axis_values = original
-link_color = black
-line_style = solid
-fontsize = 8
-# The link in Sashimi plot is a Bezier curve.
-# The height of the curve is calculated from the length of the intron.
-# When the y-axis in bigwig track is different, the height of curve needs to be scaled.
-scale_link_height = 1
-# The line width for links is proportion to the numbers at the last column in links file (PSI).
-# But the absolute width is calculated from the supplied numbers, which can look too thin or too wide sometimes.
-# Use scale_line_width to scale the absolute line widths.
-# You may need to try several values to get a satisfying result.
-scale_line_width = 0.05
-file_type = sashimiBigWig
-show_number = true
-
-[output_1_]
-bw_file = {{OutputPrefix}}output_1_.bw
-link_file = {{OutputPrefix}}output_1.links
-title = {{HetTitle}}
-height = 2
-bw_color = purple
-min_value = 0
-max_value = {{YMax}}
-number_of_bins = 700
-nans_to_zeros = true
-show_data_range = true
-y_axis_values = original
-link_color = black
-line_style = solid
-fontsize = 8
-scale_link_height = 1
-scale_line_width = 0.05
-file_type = sashimiBigWig
-show_number = true
-
-[output_2_]
-bw_file = {{OutputPrefix}}output_2_.bw
-link_file = {{OutputPrefix}}output_2.links
-title = {{HomoAltTitle}}
-height = 2
-bw_color = blue
-min_value = 0
-max_value = {{YMax}}
-number_of_bins = 700
-nans_to_zeros = true
-show_data_range = true
-y_axis_values = original
-link_color = black
-line_style = solid
-fontsize = 8
-scale_link_height = 1
-scale_line_width = 0.05
-file_type = sashimiBigWig
-show_number = true
-
-[vlines]
-type = vlines
-file = {{OutputPrefix}}output_SNP.bed
-"""
-)
-
-with open(args.OutputPrefix + "output_tracks.ini", 'w') as file_out:
-    print("writing ini file")
-    _ = file_out.write(
-        template.render(
-                    #Jinja variables
-                    OutputPrefix=args.OutputPrefix,
-                    YMax = YMax, #Max after averaging by genotype
-                    YMax_PerInd = YMax_PerInd, #Max across all individuals
-                    RefAllele = RefAllele,
-                    AltAllele = AltAllele,
-                    GenotypeCounts = GenotypeCounts, #Dictionary, with keys of 0,1,2
-                    HomoRefBwList = HomoRefBwList, #List of bigwigs for each ind with homoRef genotype
-                    HetBwList = HetBwList,
-                    HomoAltBwList = HomoAltBwList,
-                    HomoRefTitle="0: {Ref}/{Ref} (n={count})".format(Ref=RefAllele, count=GenotypeCounts[0]),
-                    HetTitle="1: {Ref}/{Alt} (n={count})".format(Ref=RefAllele, Alt=AltAllele, count=GenotypeCounts[1]),
-                    HomoAltTitle="2: {Alt}/{Alt} (n={count})".format(Alt=AltAllele, count=GenotypeCounts[2])))
-
-with open(args.OutputPrefix + "output_SNP.bed", "w") as file_snp_bed:
-    _ = file_snp_bed.write("{}\t{}\t{}\t{}".format(SnpChr, str_to_int(SnpCoord)-1, SnpCoord, SnpList[0].ID))

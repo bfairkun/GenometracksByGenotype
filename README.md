@@ -72,3 +72,14 @@ pyGenomeTracks --tracks <(cat test_results/output_tracks.ini PremadeTracks/trans
 The following image is produced...
 
 ![Sashimi_example](images/test_splicing.png)
+
+## Usage as module
+the `NormalizedBigwigsByGenotype.py` can also be used as a module, which could be useful for plotting lots of things from within python. But I don't think we can use the bash process subtitution tricks when using the script this way, so there might be better ways to use this script effectively... In any case, here is an example python script to that uses the script as an imported module:
+
+```python
+import NormalizedBigwigsByGenotype
+
+MyArgs = 'test_data/1KG.Subset.vcf.gz chr4:173807 chr4:117320-138022 test_data/bigwigs/*.bw --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ --TracksTemplate tracks_templates/tracks.ini.template3.txt --OutputNormalizedBigwigsPerSample'.split(' ')
+parsed_args = NormalizedBigwigsByGenotype.parse_args(MyArgs)
+NormalizedBigwigsByGenotype.main(parsed_args)
+```
