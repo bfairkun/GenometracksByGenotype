@@ -326,6 +326,58 @@ def main(args):
     file = {{OutputPrefix}}output_SNP.bed
     """
     )
+        else:
+            template = Template(
+    """
+    [output_0_avg]
+    file = {{OutputPrefix}}output_0_.bw
+    height = 2
+    color = red
+    type = line
+    min_value = 0
+    max_value = {{YMax}}
+    number_of_bins = 2000
+    nans_to_zeros = true
+    show_data_range = true
+    y_axis_values = original
+    file_type = bigwig
+
+    [output_1_avg]
+    file = {{OutputPrefix}}output_1_.bw
+    height = 2
+    color = purple
+    type = line
+    min_value = 0
+    max_value = {{YMax}}
+    number_of_bins = 2000
+    nans_to_zeros = true
+    show_data_range = true
+    y_axis_values = original
+    file_type = bigwig
+    overlay_previous = share-y
+
+
+    [output_2_avg]
+    file = {{OutputPrefix}}output_2_.bw
+    height = 2
+    color = blue
+    type = line
+    min_value = 0
+    max_value = {{YMax}}
+    number_of_bins = 2000
+    nans_to_zeros = true
+    show_data_range = true
+    y_axis_values = original
+    file_type = bigwig
+    overlay_previous = share-y
+
+
+    [vlines]
+    type = vlines
+    file = {{OutputPrefix}}output_SNP.bed
+    labels = true
+    """
+    )
 
     with open(args.OutputPrefix + "output_tracks.ini", 'w') as file_out:
         print("writing ini file")
