@@ -164,7 +164,7 @@ The following image is produced...
 ![Sashimi_example](images/test_splicing.png)
 
 ## Usage as module
-the `NormalizedBigwigsByGenotype.py` can also be used as a module, which could be useful for plotting lots of things from within python. But I don't think we can use the bash process subtitution tricks when using the script this way, so there might be better ways to use this script effectively... In any case, here is an example python script to that uses the script as an imported module:
+the `NormalizedBigwigsByGenotype.py` can also be used as a module, which might be useful for plotting lots of things from within python. Here is an example python script to that uses the script as an imported module:
 
 ```python
 import NormalizedBigwigsByGenotype
@@ -173,3 +173,5 @@ MyArgs = 'test_data/1KG.Subset.vcf.gz chr4:173807 chr4:117320-138022 test_data/b
 parsed_args = NormalizedBigwigsByGenotype.parse_args(MyArgs)
 NormalizedBigwigsByGenotype.main(parsed_args)
 ```
+
+But one caveat of using the script as a module like this is that don't think we can use the bash process subtitution tricks when using the script this way, so the input files might have to be already written to disk before using that command. Therefore, in the past when I want to systematically plot QTLs, I used python or R to create a bash script of calls to this script and pygenometracks (using process substitution as necessary), then run the bash script.
