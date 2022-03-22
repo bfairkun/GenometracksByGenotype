@@ -22,6 +22,16 @@ import re
 from jinja2 import Template
 from collections import defaultdict
 
+def ReadSamplesTsv(fn):
+    """
+    read tab delimited file of sample ID (must match vcf sample if attempting
+    to average by genotype), bigwig filepath, group_label (optional), and 0/1
+    for non-inverted/inverted (optional, default is non-inverted) which can be
+    useful for plotting stranded coverage
+    """
+    return()
+
+
 def str_to_int(MyStr):
     return(int(MyStr.replace(",", "")))
 

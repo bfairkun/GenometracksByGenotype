@@ -65,13 +65,13 @@ def ReadSamplesTsv(fn):
     df.fillna({'Group_label':'', 'Strand':""}, inplace=True)
     return(df)
 
-def AddExtraColumnsPerGroup(df, GroupToBedTsv=None, BedfileForAll=None):
+def AddExtraColumnsPerGroup(df, GroupToBedTsv=None, BedfileForAll=None, MergeStyle='inner'):
     """
     GroupToBed tsv file needed, otherwise, utilize
     """
     if GroupToBedTsv:
         GroupToBed_df = pd.read_csv(GroupToBedTsv, names=["Group_label", "Group_color","BedgzFilepath"])
-        df = df.merge(GroupToBed_df, how='left', on='Group_label')
+        df = df.merge(GroupToBed_df, how=MergeStyle, on='Group_label')
         # Write new column
     elif BedfileForAll:
         df["BedgzFilepath"] = BedfileForAll
@@ -156,17 +156,22 @@ def AppendGenotypeColumnToDf(df, vcf_fn=None, SnpPos=None):
         homo_refs = [call.sample for call in SnpList[0].get_hom_refs()]
         homo_alts = [call.sample for call in SnpList[0].get_hom_alts()]
     df['genotype'] = df.apply (lambda row: label_genotype(row, homo_alts, hets, homo_refs), axis=1)
-    df.fillna({'genotype':'NA'}, inplace=True)
+    df.fillna({'genotype':3}, inplace=True)
     df['Ref'] = Ref
     df['Alt'] = Alt
     df['ID'] = snpID
     return(df)
 
-def AssignColorsFromFactorColumn(df, FactorColumnName, OutputColumnName='color', ColorPallette="RdPrBlu"):
-    Classes = pd.factorize(df[FactorColumnName])[0]
-    ColorbrewerNumClasses = max([len(set(Classes)), 3])
-    ColorPallette = getattr(colorbrewer, ColorPallette)[ColorbrewerNumClasses]
-    df[OutputColumnName] = [rgb_to_hex(ColorPallette[i]) for i in Classes]
+def AssignColorsFromFactorColumn(df, FactorColumnName, OutputColumnName='color', ColorPallette="RdPrBlu", SpecialGenotypeCase=False):
+    #Special case for genotype column which is encoded as 0,1,2,3
+    if SpecialGenotypeCase:
+        ColorPallette = getattr(colorbrewer, ColorPallette)[4]
+        df[OutputColumnName] = [rgb_to_hex(ColorPallette[int(i)]) for i in df[FactorColumnName]]
+    else:
+        Classes = pd.factorize(df[FactorColumnName])[0]
+        ColorbrewerNumClasses = max([len(set(Classes)), 3])
+        ColorPallette = getattr(colorbrewer, ColorPallette)[ColorbrewerNumClasses]
+        df[OutputColumnName] = [rgb_to_hex(ColorPallette[i]) for i in Classes]
     return(df)
 
 
@@ -358,6 +363,17 @@ def GetDefaultTemplate(DF, ColumnFactors='genotype'):
     else:
         return DefaultTemplateDir + "GeneralPurposeColoredByGenotype.ini"
 
+def GetGenotypeLabel(RefString, AltString, GenotypeInt, LimitLength=5):
+    GenotypeInt = int(GenotypeInt)
+    if GenotypeInt == 0:
+        return f"{RefString[:LimitLength]}/{RefString[:LimitLength]}"
+    elif GenotypeInt == 1:
+        return f"{RefString[:LimitLength]}/{AltString[:LimitLength]}"
+    elif GenotypeInt == 2:
+        return f"{AltString[:LimitLength]}/{AltString[:LimitLength]}"
+    else:
+        return ""
+
 def parse_args(Args=None):
     p = argparse.ArgumentParser(
             conflict_handler='resolve',
@@ -379,7 +395,7 @@ def parse_args(Args=None):
     p.add_argument("--Normalization", help="A bed file of regions to use for sample-depth normalization. The within-sample total coverage over the regions will be used to normalize each sample. If 'None' is chosen, will not perform any normalization. If 'WholeGenome' is used, will use whole genome. I haven't ever tested the <BEDFILE> option. (default: %(default)s)", default='None', metavar="{<BEDFILE>,None,WholeGenome}")
     p.add_argument("--OutputPrefix", help="Prefix for all output files (default: %(default)s)", default="./")
     p.add_argument("--BedfileForSashimiLinks", help="QTLtools style bed or bed.gz file with header for samples (sample names must match vcf) and values to calculate average PSI per genotype. (default: %(default)s)", default=None)
-    p.add_argument("--GroupSettingsFile", help=""" Requires use of --BigwigListType KeyFile. This option specifies tab delimited file with one row per Group_label to add extra plotting settings for each group. Columns are as follows: 1: Group_label (must match a Group_label in the KeyFile) 2: Group_color (optional). Hex or rgb colors to plot potentially plot each group as defined in the output ini 3: BedgzFile (optional). Apply the --BedfileForSashimiLinks option for each group. This will take precedent over anything provided to the --BedfileForSashimiLinks option """, default=None)
+    p.add_argument("--GroupSettingsFile", help=""" Requires use of --BigwigListType KeyFile. This option specifies tab delimited file with one row per Group_label to add extra plotting settings for each group. Columns are as follows: 1: Group_label (must match a Group_label in the KeyFile) 2: Group_color (optional). Hex or rgb colors to plot potentially plot each group as defined in the output ini 3: BedgzFile (optional). Any bedgz file provided in this column will take precedent over bedgz files provided to the --BedfileForSashimiLinks option. If a group settings file is provided only groups described in that file will be plotted. Additionally, tracks will be plotted in the order they are listed in this file""", default=None)
     p.add_argument("-v", "--verbose", action="count", dest="verbosity", default=0, help="verbose output (repeat for increased verbosity)")
     p.add_argument("-q", "--quiet", action="store_const", const=-1, default=0, dest="verbosity", help="quiet output (show errors only)")
     p.add_argument("--OutputNormalizedBigwigsPerSample", help="Output normalized bigwigs for each sample. This will be required if the ini template chosen plots coverage of individual samples.", action='store_true')
@@ -414,7 +430,7 @@ def main(**kwargs):
     # Add column for group mean bigwig filepaths
     DF['bw_out'] = kwargs['OutputPrefix'] + DF[['Group_label', 'genotype', 'Strand']].agg('-'.join, axis=1) + '.bw'
     # Add column for genotype colors
-    DF = AssignColorsFromFactorColumn(DF, 'genotype', 'genotype_color')
+    DF = AssignColorsFromFactorColumn(DF, 'genotype', 'genotype_color', SpecialGenotypeCase=True)
     # Add column for group color, taking from existing column if not empty
     DF = FillColorsIfNoneProvided(DF, 'Group_label', GroupColorColumnName='Group_color', OutputColumnName='Group_color_final')
     # write out mean bw files, and normalized individual bws if in necessary
@@ -431,6 +447,12 @@ def main(**kwargs):
     # Add some more columns that could be useful for ini template
     DF['PerGroupMaxMean'] = DF.groupby(['Group_label'])['MaxAveragedValue'].transform(max)
     DF['PerGroupMaxPerInd'] = DF.groupby(['Group_label'])['MaxPerIndValue'].transform(max)
+    if len(set(DF['genotype'])) == 1:
+        DF['color'] = DF['Group_color_final']
+    else:
+        DF['color'] = DF['genotype_color']
+    DF['genotype_label'] = DF.apply (lambda row: GetGenotypeLabel(row['Ref'], row['Alt'], row['genotype']), axis=1)
+    DF['FullLabel'] = [f"{a} {b} ({c}) {d}" for a, b, c, d in zip(DF['Group_label'], DF['genotype_label'], DF['NumberSamplesAggregated'], DF['Strand'])]
     WriteOutSNPBed(kwargs['SnpPos'], kwargs['OutputPrefix'] + 'SNP.bed')
     # Get jinja2 template
     if kwargs['TracksTemplate']:
