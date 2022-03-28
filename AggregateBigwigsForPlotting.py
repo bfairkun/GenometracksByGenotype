@@ -313,6 +313,7 @@ def NormalizeAverageAndWriteOutLinks(df, Region, FilterForJuncsBed=None, dryrun=
     """
     df["MaxAveragedPSI"] = float(0)
     df["ContainsBedgzFile"] = "0"
+    df["ContainsNonEmptyBedgzFile"] = "0"
     RegionChr, RegionCoords = Region.split(":")
     RegionStart, RegionStop = [str_to_int(i) for i in RegionCoords.split("-")]
     if SwapStrandFilters:
@@ -323,8 +324,12 @@ def NormalizeAverageAndWriteOutLinks(df, Region, FilterForJuncsBed=None, dryrun=
         try:
             JuncsToFilter_set = set([tuple(x) for x in PysamTabixToPandas_df(FilterForJuncsBed, RegionChr, RegionStart, RegionStop, usecols=[0,1,2]).values])
         except OSError:
-            print(f"Consider creating converting {FilterForJuncsBed} to a sorted bgziped file with tabix index for efficient access to juncs in region")
-            JuncsToFilter_set = set([tuple(x) for x in pd.read_csv(FilterForJuncsBed, sep='\t', usecols=[0,1,2]).values])
+            try:
+                print(f"Consider creating converting {FilterForJuncsBed} to a sorted bgziped file with tabix index for efficient access to juncs in region")
+                JuncsToFilter_set = set([tuple(x) for x in pd.read_csv(FilterForJuncsBed, sep='\t', usecols=[0,1,2]).values])
+            except pd.errors.EmptyDataError:
+                print("Warning, empty junc filter file... No juncs included for sashimi plot")
+                JuncsToFilter_set = set()
     for i, row in df.iterrows():
         if row['BedgzFilepath']:
             df.loc[i, 'ContainsBedgzFile'] = "1"
@@ -342,8 +347,10 @@ def NormalizeAverageAndWriteOutLinks(df, Region, FilterForJuncsBed=None, dryrun=
             df_out = bed_df[bed_df.columns.intersection(row[SampleIDColumnName] + ['#Chr','start', 'end', 'pid'])]
             df_out['psi'] = df_out.drop(['#Chr', 'start', 'end', 'pid'], axis=1).mean(axis=1)
             df_out = df_out[df_out['psi'] >= MinPSI]
-            df["MaxAveragedPSI"] = max(df_out['psi'])
             df_out['psi'] = df_out['psi'].apply(lambda x: OutputStringFormat.format(x))
+            if len(df_out) > 0:
+                df.loc[i, 'ContainsNonEmptyBedgzFile'] = "1"
+                df.loc[i, "MaxAveragedPSI"] = max(df_out['psi'])
             if not dryrun:
                 df_out.loc[:, ['#Chr',  'start', 'end', '#Chr', 'start', 'end','psi']].to_csv(row[LinksFilesOutColumnName], sep='\t', index=False, header=False)
     return df
@@ -400,6 +407,7 @@ def parse_args(Args=None):
     p.add_argument("-q", "--quiet", action="store_const", const=-1, default=0, dest="verbosity", help="quiet output (show errors only)")
     p.add_argument("--OutputNormalizedBigwigsPerSample", help="Output normalized bigwigs for each sample. This will be required if the ini template chosen plots coverage of individual samples.", action='store_true')
     p.add_argument("--TracksTemplate", metavar="<FILE>", help="A jinja template for a tracks file for pyGenomeTracks customization. An example is included. Template variables allowed are 'OutputPrefix', 'HomoRefTitle', 'HetTitle', 'HomoAltTitle', and 'YMax'. If this argument is provided, the template file will be populated with the template variables to create a tracks file that can be used for pyGenomeTracks. If this argument is not provided, will output a very basic tracks file that can be used for pyGenomeTracks", default=None)
+    p.add_argument("--FilterJuncsByBed", metavar="<FILE>", help="An optional bedfile of junctions to filter for inclusion. If none is provided, all juncs will be included", default=None)
     return(p.parse_args(Args))
 
 
@@ -443,7 +451,7 @@ def main(**kwargs):
     # Add column for links files output and write out links files
     DF['links_out'] = kwargs['OutputPrefix'] + 'MeanPSI.' + DF[['Group_label', 'genotype', 'Strand']].agg('-'.join, axis=1) + '.links'
     logging.debug("Writing and averaged links")
-    DF = NormalizeAverageAndWriteOutLinks(DF, kwargs['Region'], dryrun=False, FilterForJuncsBed="test_data/JuncsToFilter.bed", MinPSI=1)
+    DF = NormalizeAverageAndWriteOutLinks(DF, kwargs['Region'], dryrun=False, FilterForJuncsBed=kwargs['FilterJuncsByBed'], MinPSI=1)
     # Add some more columns that could be useful for ini template
     DF['PerGroupMaxMean'] = DF.groupby(['Group_label'])['MaxAveragedValue'].transform(max)
     DF['PerGroupMaxPerInd'] = DF.groupby(['Group_label'])['MaxPerIndValue'].transform(max)
@@ -466,25 +474,19 @@ def main(**kwargs):
         _ = f.write(template.render(DF=DF, OutputPrefix = kwargs['OutputPrefix']))
     return(DF)
 
-#test two groups, by genotype, with strandedness
-Args = '--VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38_SubsetYRI/2.vcf.gz --SnpPos chr2:74482972 --Normalization None --BigwigListType KeyFile --OutputPrefix test_results/ -vvvv --BigwigList test_data/sample_list.tsv --Region chr2:74,480,713-74,505,757'.split(' ')
-#Test splicing by genotype
-### NOTE that glob pattern should be quoted to prevent bash expansion when args parsed from command line. When args parsed from python, do not quote
-# Args = '--VCF test_data/sQTL.vcf.gz --SnpPos chr4:39054234 --BedfileForSashimiLinks test_data/Splicing_test.PSI.bed.gz --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ -vvvv --BigwigList test_data/RNASeqSubset_bigwigs/*.bw --Region chr4:39,058,957-39,083,297'.split(' ')
-args = parse_args(Args=Args)
-setup_logging(args.verbosity)
-A = main(**vars(args))
-
 if __name__ == '__main__':
     # I like to script and debug with an interactive interpreter in the same
     # working dir as this script.. If using interactive interpreter, can step
     # thru the script with args defined below
     try:
         if(sys.ps1):
-            Args = '--VCF test_data/1KG.Subset.vcf.gz --SnpPos chr4:173807 chr4:117320-138022 "test_data/bigwigs/*" --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ --TracksTemplate tracks_templates/tracks.ini.template3.txt --OutputNormalizedBigwigsPerSample'.split(' ')
+            #test two groups, by genotype, with strandedness
+            # Args = '--VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38_SubsetYRI/2.vcf.gz --SnpPos chr2:74482972  --Normalization None --BigwigListType KeyFile --OutputPrefix test_results/ -vvvv --BigwigList test_data/sample_list.tsv --Region chr2:74,480,713-74,505,757'.split(' ')
+            #Test splicing by genotype
+            ### NOTE that glob pattern should be quoted to prevent bash expansion when args parsed from command line. When args parsed from python, do not quote
+            Args = '--VCF test_data/sQTL.vcf.gz --SnpPos chr4:39054234 --FilterJuncsByBed test_data/JuncsToFilter.empty.bed --BedfileForSashimiLinks test_data/Splicing_test.PSI.bed.gz --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ -vvvv --BigwigList test_data/RNASeqSubset_bigwigs/*.bw --Region chr4:39,058,957-39,083,297'.split(' ')
             args = parse_args(Args=Args)
     except:
         args = parse_args()
     setup_logging(args.verbosity)
-    main(**vars(args))
-
+    DF = main(**vars(args))

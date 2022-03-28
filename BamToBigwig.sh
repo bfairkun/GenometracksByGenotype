@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 ######################################################################
 # @author      : bjf79 (bjf79@midway2-login2.rcc.local)
@@ -9,17 +9,17 @@
 ######################################################################
 
 if [ "$1" == "-h" ]; then
-  echo "Usage: `basename $0`  <in.fa.fai> <in.bam> <out.bw> <Other bedtools genomcov parameters>"
+  echo "Usage: `basename $0`  <in.fa.fai> <in.bam> <out.bw> [KEY=VALUE]"
   echo "Parameters:"
   echo "<in.fa.fai> Required. Fasta index file containing chrome sizes. See samtools faidx"
   echo "<in.bam> Required. position sorted bam file"
   echo "<out.bw> Required. output bigwig file"
-  echo "[KEY=VALUE] Optional. Other named args. Possible keys include SORT_ARGS, SAMTOOLSVIEW_ARGS, GENOMECOV_ARGS, MKTEMP_ARGS, REGION, and bw_minus."
+  echo "[KEY=VALUE] Optional. Other named args. Possible KEYs include SORT_ARGS, SAMTOOLSVIEW_ARGS, GENOMECOV_ARGS, MKTEMP_ARGS, REGION, and bw_minus. VALUES that contain spaces or other weird symbols should be quoted to avoid bash expanding things"
   echo "If bw_minus is supplied, then the <out.bw> will be for + strand coverage and bw_minus VALUE output file will be for - strand coverage"
   echo "REGION can be particularly useful for outputing just region; example: REGION=chr11:65,495,143-65,509,111"
   echo "GENOMECOV_ARGS can be particularly useful for adding parameters like -split to the bedtools genomecov command for RNA-seq spliced read coverage (GENOMECOV_ARGS=-split)"
   echo ""
-  echo "This program will create bigwig file from sorted indexed bam alignments. Makes use of bedtools genomecov (https://bedtools.readthedocs.io/en/latest/content/tools/genomecov.html) to create an temporary intermediate bedgraph file. This bedtools genomecov step has some useful parameters, which can be specified in this script with the  <Other bedtools genomecov parameters>argument. For example, use -split for RNA-seq to ignore intron alignment gaps, and use -pc to fill in paired-end read gaps from ChIP-seq data"
+  echo "This program will create bigwig file from sorted indexed bam alignments. Makes use of bedtools genomecov (https://bedtools.readthedocs.io/en/latest/content/tools/genomecov.html) to create an temporary intermediate bedgraph file. This bedtools genomecov step has some useful parameters, which can be specified in this script with the optional [GENOMECOV_ARGS=VALUE] argument. For example, set VALUE to '-split' for RNA-seq to ignore intron alignment gaps, and use '-pc' to fill in paired-end read gaps from ChIP-seq data"
   exit 0
 fi
 
