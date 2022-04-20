@@ -61,7 +61,7 @@ def ReadSamplesTsv(fn):
     4: ""|"+"|"-" for strand. (Do not actually enter quotes.. optional, default is "" for unstranded. this is useful for plotting stranded coverage.
     Columns past these 4 will be ignored
     """
-    df = pd.read_csv("test_data/sample_list.tsv", names=["SampleID", "BigwigFilepath", "Group_label", "Strand"], sep='\t', dtype={'Strand':str})
+    df = pd.read_csv(fn, header=0, names=["SampleID", "BigwigFilepath", "Group_label", "Strand"], sep='\t', dtype={'Strand':str})
     df.fillna({'Group_label':'', 'Strand':""}, inplace=True)
     return(df)
 
@@ -70,14 +70,16 @@ def AddExtraColumnsPerGroup(df, GroupToBedTsv=None, BedfileForAll=None, MergeSty
     GroupToBed tsv file needed, otherwise, utilize
     """
     if GroupToBedTsv:
-        GroupToBed_df = pd.read_csv(GroupToBedTsv, names=["Group_label", "Group_color","BedgzFilepath"])
+        GroupToBed_df = pd.read_csv(GroupToBedTsv, header=0, names=["Group_label", "Group_color","BedgzFilepath"], sep='\t')
+        GroupToBed_df.fillna('', inplace=True)
+        print(GroupToBed_df)
         df = df.merge(GroupToBed_df, how=MergeStyle, on='Group_label')
         # Write new column
     elif BedfileForAll:
         df["BedgzFilepath"] = BedfileForAll
         df["Group_color"] = ''
     else:
-        df["BedgzFilepath"] = None
+        df["BedgzFilepath"] = ''
         df["Group_color"] = ''
         # write new column that should be empty
     return df
@@ -128,7 +130,7 @@ def AppendGenotypeColumnToDf(df, vcf_fn=None, SnpPos=None):
     found)
     """
     if (not vcf_fn) or (not SnpPos):
-        df['genotype'] = 3
+        df['genotype'] = "3"
         df['Ref'] = ''
         df['Alt'] = ''
         df['ID'] = ''
@@ -156,7 +158,7 @@ def AppendGenotypeColumnToDf(df, vcf_fn=None, SnpPos=None):
         homo_refs = [call.sample for call in SnpList[0].get_hom_refs()]
         homo_alts = [call.sample for call in SnpList[0].get_hom_alts()]
     df['genotype'] = df.apply (lambda row: label_genotype(row, homo_alts, hets, homo_refs), axis=1)
-    df.fillna({'genotype':3}, inplace=True)
+    df.fillna({'genotype':"3"}, inplace=True)
     df['Ref'] = Ref
     df['Alt'] = Alt
     df['ID'] = snpID
@@ -199,7 +201,7 @@ def GetNormalizationFactorBasedOnRegionList(bigwig_fn, regionlist):
     except:
         return(None)
 
-def NormalizeAverageAndWriteOutBigwigs(df, Region, dryrun=False, Normalization='None', BigwigFilesInColumnName='BigwigFilepath', BigwigFilesOutColumnName='bw_out', BigwigFilesOutPerSampleColumnName=None, NormalizationRegions=None):
+def NormalizeAverageAndWriteOutBigwigs(df, Region, dryrun=False, Normalization='None', BigwigFilesInColumnName='BigwigFilepath', BigwigFilesOutColumnName='bw_out', BigwigFilesOutPerSampleColumnName=None, NormalizationRegions=None, method='mean'):
     """
     Given input df with column BigwigFilesInColumnName (each entry being a
     *list* of bigwig filepaths), for each row this function will write out a
@@ -218,12 +220,13 @@ def NormalizeAverageAndWriteOutBigwigs(df, Region, dryrun=False, Normalization='
     the list specifies the filepath to write out a normalized bigwig for each
     bigwig that is read in. This is required for plotting normalized coverage
     for each individual sample in addition to the default output which is just
-    the group mean normalized coverage.
+    the group mean normalized coverage. Method can be either 'mean' or 'median'.
     """
     RegionChr, RegionCoords = Region.split(":")
     RegionStart, RegionStop = [str_to_int(i) for i in RegionCoords.split("-")]
     df["MaxAveragedValue"] = float(0)
     df["NumberSamplesAggregated"] = 0
+    df["MaxPerIndValue"] = float(0)
     for i, row in df.iterrows():
         Array = []
         for j, bigwig in enumerate(row[BigwigFilesInColumnName]):
@@ -247,7 +250,10 @@ def NormalizeAverageAndWriteOutBigwigs(df, Region, dryrun=False, Normalization='
                     bwOut.close()
                 except:
                     pass
-        ArrayAveraged = numpy.mean(numpy.array(Array), axis=0)
+        if method == 'mean':
+            ArrayAveraged = numpy.mean(numpy.array(Array), axis=0)
+        elif method =='median':
+            ArrayAveraged = numpy.median(numpy.array(Array), axis=0)
         if not dryrun:
             # write out averaged bigwig
             bwOut = pyBigWig.open(row[BigwigFilesOutColumnName], "w")
@@ -269,8 +275,9 @@ def GetNormalizationFactorWholeGenome(bigwig_fn):
 
 def WriteOutSNPBed(SnpPos, fout):
     with open(fout, 'w') as f:
-        SnpChr, SnpCoord = SnpPos.split(":")
-        _ = f.write("{}\t{}\t{}".format(SnpChr, str_to_int(SnpCoord)-1, SnpCoord))
+        if SnpPos:
+            SnpChr, SnpCoord = SnpPos.split(":")
+            _ = f.write("{}\t{}\t{}".format(SnpChr, str_to_int(SnpCoord)-1, SnpCoord))
 
 def PysamTabixToPandas_df(fn_in, Chrom=None, start=None, end=None, **kwargs):
     """
@@ -334,13 +341,13 @@ def NormalizeAverageAndWriteOutLinks(df, Region, FilterForJuncsBed=None, dryrun=
         if row['BedgzFilepath']:
             df.loc[i, 'ContainsBedgzFile'] = "1"
             bed_df = PysamTabixToPandas_df(row[BedgzFilesInColumnName], RegionChr, RegionStart, RegionStop)
-            bed_df = bed_df.rename(columns={ bed_df.columns[0]: "#Chr", bed_df.columns[1]:"start", bed_df.columns[2]: "end", bed_df.columns[3]: "pid", bed_df.columns[6]: "Strand" }, inplace = False)
+            bed_df = bed_df.rename(columns={ bed_df.columns[0]: "#Chr", bed_df.columns[1]:"start", bed_df.columns[2]: "end", bed_df.columns[3]: "pid", bed_df.columns[5]: "Strand" }, inplace = False)
             bed_df['junc'] = [tuple(x) for x in bed_df.iloc[:,0:3].values ]
             # First filter by strand:
             if row['Strand'] == PlusStrand:
-                bed_df = bed_df.loc[df['Strand'] == "+"]
+                bed_df = bed_df.loc[bed_df['Strand'] == "+"]
             elif row['Strand'] == MinusStrand:
-                bed_df = bed_df.loc[df['Strand'] == "-"]
+                bed_df = bed_df.loc[bed_df['Strand'] == "-"]
             # Filter for juncs in FilterForJuncsBed if provided
             if FilterForJuncsBed:
                 bed_df = bed_df[bed_df['junc'].isin(JuncsToFilter_set)]
@@ -348,6 +355,7 @@ def NormalizeAverageAndWriteOutLinks(df, Region, FilterForJuncsBed=None, dryrun=
             df_out['psi'] = df_out.drop(['#Chr', 'start', 'end', 'pid'], axis=1).mean(axis=1)
             df_out = df_out[df_out['psi'] >= MinPSI]
             df_out['psi'] = df_out['psi'].apply(lambda x: OutputStringFormat.format(x))
+            # if row['Strand'] == PlusStrand: import pdb; pdb.set_trace()
             if len(df_out) > 0:
                 df.loc[i, 'ContainsNonEmptyBedgzFile'] = "1"
                 df.loc[i, "MaxAveragedPSI"] = max(df_out['psi'])
@@ -484,7 +492,9 @@ if __name__ == '__main__':
             # Args = '--VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38_SubsetYRI/2.vcf.gz --SnpPos chr2:74482972  --Normalization None --BigwigListType KeyFile --OutputPrefix test_results/ -vvvv --BigwigList test_data/sample_list.tsv --Region chr2:74,480,713-74,505,757'.split(' ')
             #Test splicing by genotype
             ### NOTE that glob pattern should be quoted to prevent bash expansion when args parsed from command line. When args parsed from python, do not quote
-            Args = '--VCF test_data/sQTL.vcf.gz --SnpPos chr4:39054234 --FilterJuncsByBed test_data/JuncsToFilter.empty.bed --BedfileForSashimiLinks test_data/Splicing_test.PSI.bed.gz --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ -vvvv --BigwigList test_data/RNASeqSubset_bigwigs/*.bw --Region chr4:39,058,957-39,083,297'.split(' ')
+            # Args = '--VCF test_data/sQTL.vcf.gz --SnpPos chr4:39054234 --FilterJuncsByBed test_data/JuncsToFilter.empty.bed --BedfileForSashimiLinks test_data/Splicing_test.PSI.bed.gz --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ -vvvv --BigwigList test_data/RNASeqSubset_bigwigs/*.bw --Region chr4:39,058,957-39,083,297'.split(' ')
+            # Args = '--Normalization None --BigwigListType KeyFile --OutputPrefix test_results/ -vvvv --BigwigList test_data/sample_list.tsv --Region chr2:74,480,713-74,505,757'.split(' ')
+            Args = '--Region chr11:65,495,738-65,508,516 --BigwigListType KeyFile --GroupSettingsFile /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/PlotQTLs/bwList.Groups.tsv --BigwigList /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/PlotQTLs/bwList.tsv --OutputPrefix /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/testplot.'.split(' ')
             args = parse_args(Args=Args)
     except:
         args = parse_args()
