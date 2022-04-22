@@ -416,6 +416,7 @@ def parse_args(Args=None):
     p.add_argument("--OutputNormalizedBigwigsPerSample", help="Output normalized bigwigs for each sample. This will be required if the ini template chosen plots coverage of individual samples.", action='store_true')
     p.add_argument("--TracksTemplate", metavar="<FILE>", help="A jinja template for a tracks file for pyGenomeTracks customization. An example is included. Template variables allowed are 'OutputPrefix', 'HomoRefTitle', 'HetTitle', 'HomoAltTitle', and 'YMax'. If this argument is provided, the template file will be populated with the template variables to create a tracks file that can be used for pyGenomeTracks. If this argument is not provided, will output a very basic tracks file that can be used for pyGenomeTracks", default=None)
     p.add_argument("--FilterJuncsByBed", metavar="<FILE>", help="An optional bedfile of junctions to filter for inclusion. If none is provided, all juncs will be included", default=None)
+    p.add_argument("--Workdir", metavar="<path>", help="An optional path to set as workdir before executing main script function. Could be useful, for example, if bigwig file list uses relative file paths from a different directory", default="./")
     return(p.parse_args(Args))
 
 
@@ -426,6 +427,7 @@ def main(**kwargs):
     """
     logging.debug(kwargs)
     print(kwargs)
+    os.chdir(kwargs['Workdir'])
     #Read in bigwiglist
     if kwargs['BigwigListType'] == 'KeyFile':
         logging.debug("readKeyFile")
@@ -467,9 +469,15 @@ def main(**kwargs):
         DF['color'] = DF['Group_color_final']
     else:
         DF['color'] = DF['genotype_color']
+    # Add some extra columns that could be useful labels in jinja ini template
     DF['genotype_label'] = DF.apply (lambda row: GetGenotypeLabel(row['Ref'], row['Alt'], row['genotype']), axis=1)
+    DF['ShortLabel'] = [f"{a} ({b}) {c}" for a, b, c in zip(DF['Group_label'], DF['NumberSamplesAggregated'], DF['Strand'])]
     DF['FullLabel'] = [f"{a} {b} ({c}) {d}" for a, b, c, d in zip(DF['Group_label'], DF['genotype_label'], DF['NumberSamplesAggregated'], DF['Strand'])]
+    MockAxisLabels_DF = DF.groupby(['Group_label', 'Strand'], as_index=False)[['genotype', 'NumberSamplesAggregated']].agg(lambda x: tuple(x))
+    DF = DF.merge(MockAxisLabels_DF, how='left',  on=['Group_label', 'Strand'], suffixes=['', '_LabelForMockAxes'])
+    DF['MockAxesFullLabel'] = [f"{a} {b} {c}" for a, b, c in zip(DF['Group_label'], DF['NumberSamplesAggregated_LabelForMockAxes'], DF['Strand'])]
     WriteOutSNPBed(kwargs['SnpPos'], kwargs['OutputPrefix'] + 'SNP.bed')
+    DF = DF.sort_values(by=['Group_label', 'Strand', 'genotype'], ascending=[True, True, False])
     # Get jinja2 template
     if kwargs['TracksTemplate']:
         with open(kwargs['TracksTemplate'], 'r') as fh:
@@ -494,7 +502,7 @@ if __name__ == '__main__':
             ### NOTE that glob pattern should be quoted to prevent bash expansion when args parsed from command line. When args parsed from python, do not quote
             # Args = '--VCF test_data/sQTL.vcf.gz --SnpPos chr4:39054234 --FilterJuncsByBed test_data/JuncsToFilter.empty.bed --BedfileForSashimiLinks test_data/Splicing_test.PSI.bed.gz --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ -vvvv --BigwigList test_data/RNASeqSubset_bigwigs/*.bw --Region chr4:39,058,957-39,083,297'.split(' ')
             # Args = '--Normalization None --BigwigListType KeyFile --OutputPrefix test_results/ -vvvv --BigwigList test_data/sample_list.tsv --Region chr2:74,480,713-74,505,757'.split(' ')
-            Args = '--Region chr11:65,495,738-65,508,516 --BigwigListType KeyFile --GroupSettingsFile /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/PlotQTLs/bwList.Groups.tsv --BigwigList /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/PlotQTLs/bwList.tsv --OutputPrefix /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/testplot.'.split(' ')
+            Args = '--Workdir /project2/yangili1/bjf79/ChromatinSplicingQTLs/code --Region chr1:209745471-209812326 --SnpPos chr1:209806682 --VCF Genotypes/1KG_GRCh38/1.vcf.gz --BigwigListType KeyFile --GroupSettingsFile PlotQTLs/bwList.Groups.tsv --BigwigList PlotQTLs/bwList.tsv --OutputPrefix scratch/testplot.chunk1. --TracksTemplate /project2/yangili1/bjf79/GenometracksByGenotype/tracks_templates/GeneralPurposeColoredByGenotype.ini'.split(' ')
             args = parse_args(Args=Args)
     except:
         args = parse_args()
