@@ -477,7 +477,7 @@ def main(**kwargs):
     DF = DF.merge(MockAxisLabels_DF, how='left',  on=['Group_label', 'Strand'], suffixes=['', '_LabelForMockAxes'])
     DF['MockAxesFullLabel'] = [f"{a} {b} {c}" for a, b, c in zip(DF['Group_label'], DF['NumberSamplesAggregated_LabelForMockAxes'], DF['Strand'])]
     WriteOutSNPBed(kwargs['SnpPos'], kwargs['OutputPrefix'] + 'SNP.bed')
-    DF = DF.sort_values(by=['Group_label', 'genotype', 'Strand'], ascending=[True, False, True])
+    DF = DF.sort_values(by=['Group_label', 'Strand', 'genotype', ], ascending=[True, True, False])
     # Get jinja2 template
     if kwargs['TracksTemplate']:
         with open(kwargs['TracksTemplate'], 'r') as fh:
