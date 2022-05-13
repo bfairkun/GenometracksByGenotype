@@ -372,7 +372,7 @@ def GetDefaultTemplate(DF, ColumnFactors='genotype'):
             DefaultTemplateDir = "./tracks_templates/"
     except:
         DefaultTemplateDir = os.path.abspath(os.path.join(os.path.dirname(__file__))) + '/' + 'tracks_templates/'
-    # if DF contains only single genotype value, then plot as 
+    # if DF contains only single genotype value, then plot as
     if len(pd.factorize(DF[ColumnFactors])[1]) > 1:
         return DefaultTemplateDir + "GeneralPurposeColoredByGenotype.ini"
     else:
@@ -477,7 +477,7 @@ def main(**kwargs):
     DF = DF.merge(MockAxisLabels_DF, how='left',  on=['Group_label', 'Strand'], suffixes=['', '_LabelForMockAxes'])
     DF['MockAxesFullLabel'] = [f"{a} {b} {c}" for a, b, c in zip(DF['Group_label'], DF['NumberSamplesAggregated_LabelForMockAxes'], DF['Strand'])]
     WriteOutSNPBed(kwargs['SnpPos'], kwargs['OutputPrefix'] + 'SNP.bed')
-    DF = DF.sort_values(by=['Group_label', 'Strand', 'genotype'], ascending=[True, True, False])
+    DF = DF.sort_values(by=['Group_label', 'genotype', 'Strand'], ascending=[True, False, True])
     # Get jinja2 template
     if kwargs['TracksTemplate']:
         with open(kwargs['TracksTemplate'], 'r') as fh:
