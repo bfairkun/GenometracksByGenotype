@@ -411,12 +411,13 @@ def parse_args(Args=None):
     p.add_argument("--OutputPrefix", help="Prefix for all output files (default: %(default)s)", default="./")
     p.add_argument("--BedfileForSashimiLinks", help="QTLtools style bed or bed.gz file with header for samples (sample names must match vcf) and values to calculate average PSI per genotype. (default: %(default)s)", default=None)
     p.add_argument("--GroupSettingsFile", help=""" Requires use of --BigwigListType KeyFile. This option specifies tab delimited file with one row per Group_label to add extra plotting settings for each group. Columns are as follows: 1: Group_label (must match a Group_label in the KeyFile) 2: Group_color (optional). Hex or rgb colors to plot potentially plot each group as defined in the output ini 3: BedgzFile (optional). Any bedgz file provided in this column will take precedent over bedgz files provided to the --BedfileForSashimiLinks option. If a group settings file is provided only groups described in that file will be plotted. Additionally, tracks will be plotted in the order they are listed in this file""", default=None)
-    p.add_argument("-v", "--verbose", action="count", dest="verbosity", default=0, help="verbose output (repeat for increased verbosity)")
-    p.add_argument("-q", "--quiet", action="store_const", const=-1, default=0, dest="verbosity", help="quiet output (show errors only)")
     p.add_argument("--OutputNormalizedBigwigsPerSample", help="Output normalized bigwigs for each sample. This will be required if the ini template chosen plots coverage of individual samples.", action='store_true')
     p.add_argument("--TracksTemplate", metavar="<FILE>", help="A jinja template for a tracks file for pyGenomeTracks customization. An example is included. Template variables allowed are 'OutputPrefix', 'HomoRefTitle', 'HetTitle', 'HomoAltTitle', and 'YMax'. If this argument is provided, the template file will be populated with the template variables to create a tracks file that can be used for pyGenomeTracks. If this argument is not provided, will output a very basic tracks file that can be used for pyGenomeTracks", default=None)
     p.add_argument("--FilterJuncsByBed", metavar="<FILE>", help="An optional bedfile of junctions to filter for inclusion. If none is provided, all juncs will be included", default=None)
+    p.add_argument("--NoSashimi", help="Flag to disable sashimi plots. Default is to include sashimi plot if junction file(s) are provided (as a column in a KeyFile, or with the --BedfileForSashimiLinks argument) and there are juncs in the plotting region. This flag disables sashimi plots regardless", action='store_true', default=False)
     p.add_argument("--Workdir", metavar="<path>", help="An optional path to set as workdir before executing main script function. Could be useful, for example, if bigwig file list uses relative file paths from a different directory", default="./")
+    p.add_argument("-v", "--verbose", action="count", dest="verbosity", default=0, help="verbose output (repeat for increased verbosity)")
+    p.add_argument("-q", "--quiet", action="store_const", const=-1, default=0, dest="verbosity", help="quiet output (show errors only)")
     return(p.parse_args(Args))
 
 
@@ -460,8 +461,11 @@ def main(**kwargs):
     DF = NormalizeAverageAndWriteOutBigwigs(DF, kwargs['Region'], dryrun=False, Normalization=kwargs['Normalization'], BigwigFilesOutPerSampleColumnName=BigwigFilesOutPerSampleColumnName)
     # Add column for links files output and write out links files
     DF['links_out'] = kwargs['OutputPrefix'] + 'MeanPSI.' + DF[['Group_label', 'genotype', 'Strand']].agg('-'.join, axis=1) + '.links'
-    logging.debug("Writing and averaged links")
-    DF = NormalizeAverageAndWriteOutLinks(DF, kwargs['Region'], dryrun=False, FilterForJuncsBed=kwargs['FilterJuncsByBed'], MinPSI=1)
+    DF["ContainsBedgzFile"] = "0"
+    DF["ContainsNonEmptyBedgzFile"] = "0"
+    if not kwargs['NoSashimi']:
+        logging.debug("Writing and averaged links")
+        DF = NormalizeAverageAndWriteOutLinks(DF, kwargs['Region'], dryrun=False, FilterForJuncsBed=kwargs['FilterJuncsByBed'], MinPSI=1)
     # Add some more columns that could be useful for ini template
     DF['PerGroupMaxMean'] = DF.groupby(['Group_label'])['MaxAveragedValue'].transform(max)
     DF['PerGroupMaxPerInd'] = DF.groupby(['Group_label'])['MaxPerIndValue'].transform(max)
