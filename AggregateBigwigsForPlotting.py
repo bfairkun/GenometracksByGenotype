@@ -597,23 +597,6 @@ def parse_args(Args=None):
         default=None,
     )
     p.add_argument(
-        "-v",
-        "--verbose",
-        action="count",
-        dest="verbosity",
-        default=0,
-        help="verbose output (repeat for increased verbosity)",
-    )
-    p.add_argument(
-        "-q",
-        "--quiet",
-        action="store_const",
-        const=-1,
-        default=0,
-        dest="verbosity",
-        help="quiet output (show errors only)",
-    )
-    p.add_argument(
         "--OutputNormalizedBigwigsPerSample",
         help="Output normalized bigwigs for each sample. This will be required if the ini template chosen plots coverage of individual samples.",
         action="store_true",
@@ -631,10 +614,33 @@ def parse_args(Args=None):
         default=None,
     )
     p.add_argument(
+        "--NoSashimi",
+        help="Flag to disable sashimi plots. Default is to include sashimi plot if junction file(s) are provided (as a column in a KeyFile, or with the --BedfileForSashimiLinks argument) and there are juncs in the plotting region. This flag disables sashimi plots regardless",
+        action="store_true",
+        default=False,
+    )
+    p.add_argument(
         "--Workdir",
         metavar="<path>",
         help="An optional path to set as workdir before executing main script function. Could be useful, for example, if bigwig file list uses relative file paths from a different directory",
         default="./",
+    )
+    p.add_argument(
+        "-v",
+        "--verbose",
+        action="count",
+        dest="verbosity",
+        default=0,
+        help="verbose output (repeat for increased verbosity)",
+    )
+    p.add_argument(
+        "-q",
+        "--quiet",
+        action="store_const",
+        const=-1,
+        default=0,
+        dest="verbosity",
+        help="quiet output (show errors only)",
     )
     return p.parse_args(Args)
 
@@ -715,14 +721,17 @@ def main(**kwargs):
         + DF[["Group_label", "genotype", "Strand"]].agg("-".join, axis=1)
         + ".links"
     )
-    logging.info("Writing averaged links files")
-    DF = NormalizeAverageAndWriteOutLinks(
-        DF,
-        kwargs["Region"],
-        dryrun=False,
-        FilterForJuncsBed=kwargs["FilterJuncsByBed"],
-        MinPSI=1,
-    )
+    DF["ContainsBedgzFile"] = "0"
+    DF["ContainsNonEmptyBedgzFile"] = "0"
+    if not kwargs["NoSashimi"]:
+        logging.info("Writing and averaged links")
+        DF = NormalizeAverageAndWriteOutLinks(
+            DF,
+            kwargs["Region"],
+            dryrun=False,
+            FilterForJuncsBed=kwargs["FilterJuncsByBed"],
+            MinPSI=1,
+        )
     # Add some more columns that could be useful for ini template
     DF["PerGroupMaxMean"] = DF.groupby(["Group_label"])["MaxAveragedValue"].transform(
         max
@@ -772,7 +781,7 @@ def main(**kwargs):
     ]
     WriteOutSNPBed(kwargs["SnpPos"], kwargs["OutputPrefix"] + "SNP.bed")
     DF = DF.sort_values(
-        by=["Group_label", "genotype", "Strand"], ascending=[True, False, True]
+        by=["Group_label", "Strand", "genotype",], ascending=[True, True, False]
     )
     # Get jinja2 template
     if kwargs["TracksTemplate"]:
