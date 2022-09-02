@@ -99,9 +99,10 @@ def AddExtraColumnsPerGroup(
         GroupToBed_df = pd.read_csv(
             GroupToBedTsv,
             header=0,
-            names=["Group_label", "Group_color", "BedgzFilepath"],
+            names=["Group_label", "Group_color", "BedgzFilepath", "Supergroup"],
             sep="\t",
         )
+        GroupToBed_df['Supergroup'].fillna(df['Group_label'], inplace=True)
         GroupToBed_df.fillna("", inplace=True)
         logging.debug(GroupToBed_df)
         df = df.merge(GroupToBed_df, how=MergeStyle, on="Group_label")
@@ -109,9 +110,11 @@ def AddExtraColumnsPerGroup(
     elif BedfileForAll:
         df["BedgzFilepath"] = BedfileForAll
         df["Group_color"] = ""
+        # df["Supergroup"] = df["Group_label"]
     else:
         df["BedgzFilepath"] = ""
         df["Group_color"] = ""
+        # df["Supergroup"] = df["Group_label"]
         # write new column that should be empty
     return df
 
@@ -620,6 +623,12 @@ def parse_args(Args=None):
         default=False,
     )
     p.add_argument(
+        "--Bed12GenesToIni",
+        metavar="<FILE>",
+        help="An optional bed12 genes files. If provided, will add a track for these genes at the end of the ini output file",
+        default=None,
+    )
+    p.add_argument(
         "--Workdir",
         metavar="<path>",
         help="An optional path to set as workdir before executing main script function. Could be useful, for example, if bigwig file list uses relative file paths from a different directory",
@@ -739,6 +748,13 @@ def main(**kwargs):
     DF["PerGroupMaxPerInd"] = DF.groupby(["Group_label"])["MaxPerIndValue"].transform(
         max
     )
+    DF["PerSupergroupMaxMean"] = DF.groupby(["Supergroup"])["MaxAveragedValue"].transform(
+        max
+    )
+    DF["PerSupergroupMaxPerInd"] = DF.groupby(["Supergroup"])["MaxPerIndValue"].transform(
+        max
+    )
+    DF['NumGroupsInSupergroup'] = DF.groupby('Supergroup')['Supergroup'].transform('count')
     if len(set(DF["genotype"])) == 1:
         DF["color"] = DF["Group_color_final"]
     else:
@@ -759,6 +775,14 @@ def main(**kwargs):
             DF["Group_label"],
             DF["genotype_label"],
             DF["NumberSamplesAggregated"],
+            DF["Strand"],
+        )
+    ]
+    DF["SupergroupLabel"] = [
+        f"{a} ({b}) {c}"
+        for a, b, c in zip(
+            DF["Supergroup"],
+            DF["NumGroupsInSupergroup"],
             DF["Strand"],
         )
     ]
@@ -783,6 +807,7 @@ def main(**kwargs):
     DF = DF.sort_values(
         by=["Group_label", "Strand", "genotype",], ascending=[True, True, False]
     )
+    # import pdb; pdb.set_trace()
     # Get jinja2 template
     if kwargs["TracksTemplate"]:
         with open(kwargs["TracksTemplate"], "r") as fh:
@@ -796,7 +821,7 @@ def main(**kwargs):
         )
     )
     with open(kwargs["OutputPrefix"] + "tracks.ini", "w") as f:
-        _ = f.write(template.render(DF=DF, OutputPrefix=kwargs["OutputPrefix"]))
+        _ = f.write(template.render(DF=DF, OutputPrefix=kwargs["OutputPrefix"], Bed12GenesFile=kwargs["Bed12GenesToIni"]))
     return DF
 
 
