@@ -104,17 +104,20 @@ def AddExtraColumnsPerGroup(
         )
         GroupToBed_df['Supergroup'].fillna(df['Group_label'], inplace=True)
         GroupToBed_df.fillna("", inplace=True)
+        GroupToBed_df['PlotOrder'] = numpy.arange(len(GroupToBed_df))
         logging.debug(GroupToBed_df)
         df = df.merge(GroupToBed_df, how=MergeStyle, on="Group_label")
         # Write new column
     elif BedfileForAll:
         df["BedgzFilepath"] = BedfileForAll
         df["Group_color"] = ""
-        # df["Supergroup"] = df["Group_label"]
+        df['PlotOrder'] = 0
+        df["Supergroup"] = df["Group_label"]
     else:
         df["BedgzFilepath"] = ""
         df["Group_color"] = ""
-        # df["Supergroup"] = df["Group_label"]
+        df['PlotOrder'] = 0
+        df["Supergroup"] = df["Group_label"]
         # write new column that should be empty
     return df
 
@@ -805,7 +808,7 @@ def main(**kwargs):
     ]
     WriteOutSNPBed(kwargs["SnpPos"], kwargs["OutputPrefix"] + "SNP.bed")
     DF = DF.sort_values(
-        by=["Group_label", "Strand", "genotype",], ascending=[True, True, False]
+        by=["PlotOrder", "Supergroup", "Group_label", "Strand", "genotype"], ascending=[True, True, True, True, False]
     )
     # import pdb; pdb.set_trace()
     # Get jinja2 template
