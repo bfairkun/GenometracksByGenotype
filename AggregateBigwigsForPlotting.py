@@ -311,6 +311,7 @@ def NormalizeAverageAndWriteOutBigwigs(
     df["MaxAveragedValue"] = float(0)
     df["NumberSamplesAggregated"] = 0
     df["MaxPerIndValue"] = float(0)
+    df["GroupsSummarisedBigwigOut"] = ""
     for i, row in df.iterrows():
         Array = []
         for j, bigwig in enumerate(row[BigwigFilesInColumnName]):
@@ -358,6 +359,7 @@ def NormalizeAverageAndWriteOutBigwigs(
         df.at[i, "MaxAveragedValue"] = max(ArrayAveraged)
         df.at[i, "NumberSamplesAggregated"] = len(Array)
         df.at[i, "MaxPerIndValue"] = numpy.max(numpy.array(Array))
+        df.at[i, "GroupsSummarisedBigwigOut"] = row[BigwigFilesOutColumnName]
     return df
 
 
