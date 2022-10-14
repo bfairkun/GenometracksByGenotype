@@ -326,6 +326,7 @@ def NormalizeAverageAndWriteOutBigwigs(
                     )
             except:
                 NormFactor = 1
+            logging.debug(f"opening {bigwig}")
             bw = pyBigWig.open(bigwig)
             NormalizedValues = (
                 bw.values(RegionChr, RegionStart, RegionStop, numpy=True) / NormFactor
