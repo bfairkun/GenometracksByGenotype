@@ -1,3 +1,13 @@
+"""
+Outputs:
+    <OutputPrefix>_output_0.bw
+    <OutputPrefix>_output_1.bw
+    <OutputPrefix>_output_2.bw
+    <OutputPrefix>_output_tracks.ini
+    <OutputPrefix>_PerInd_<Genotype>_<Sample>.bw
+Note that bigwigs must not contain NaN values. Use 0 to denote no coverage. This can be accomplished with bedtools genomecov with -bga option then convert bedGraphToBigWig. See helper script in this repo.
+--File or autodetect for samples to files
+"""
 
 import sys
 import os
