@@ -86,6 +86,13 @@ def parse_args(Args=None):
         metavar="{<BEDFILE>,None,WholeGenome}",
     )
     p.add_argument(
+        "--FlankingRegionLengthBp",
+        help="Number of base pairs to add to each side of region to include in output bigwigs. (default: %(default)s)",
+        default="0",
+        type=int,
+        metavar="<Integer>",
+    )
+    p.add_argument(
         "--OutputPrefix",
         help="Prefix for all output files (default: %(default)s)",
         default="./",
@@ -131,9 +138,9 @@ def main(args):
     logging.debug(temp_dir.name)
     # execute AggregateBigwigsForPlotting to write bigwigs
     # And append to lists of bigwig files that will need to be merged to create a PosPos.bw, PosNeg.bw, and NegNeg.bw 
-    for index, row in DF_QTLs.head(10).iterrows():
+    for index, row in DF_QTLs.iterrows():
         print(row)
-        MyArgs = f"--Workdir {args.Workdir} --Region {row['chrom']}:{row['start']}-{row['stop']} --SnpPos {row['SNPPos']} --VCF {args.VCF} --BigwigListType KeyFile --GroupSettingsFile {args.GroupSettingsFile} --BigwigList {args.BigwigList} --OutputPrefix {temp_dir.name}/{row['chrom']}-{row['start']}-{row['stop']}.  --NoSashimi -vv --TracksTemplate /project2/yangili1/bjf79/GenometracksByGenotype/tracks_templates/GeneralPurposeColoredByGenotype.ini"
+        MyArgs = f"--Workdir {args.Workdir} --Region {row['chrom']}:{row['start']-args.FlankingRegionLengthBp}-{row['stop']+args.FlankingRegionLengthBp} --SnpPos {row['SNPPos']} --VCF {args.VCF} --BigwigListType KeyFile --GroupSettingsFile {args.GroupSettingsFile} --BigwigList {args.BigwigList} --OutputPrefix {temp_dir.name}/{row['chrom']}-{row['start']}-{row['stop']}.  --NoSashimi -vv --TracksTemplate /project2/yangili1/bjf79/GenometracksByGenotype/tracks_templates/GeneralPurposeColoredByGenotype.ini"
         print(MyArgs)
         parsed_args = AggregateBigwigsForPlotting.parse_args(filter(None, MyArgs.split(' ')))
         DF_temp = AggregateBigwigsForPlotting.main(**vars(parsed_args))
@@ -161,7 +168,7 @@ if __name__ == "__main__":
     # thru the script with args defined below
     try:
         if sys.ps1:
-            Args = "--QTLsBed /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/TestMetaplot.bed --Workdir /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/ --VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38/Autosomes.vcf.gz --OutputPrefix /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/TestMetaplotDir/ --BigwigList /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/bwList.tsv --GroupSettingsFile /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/TestMetaplotDir/Groups.tsv".split(" ")
+            Args = "--QTLsBed /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/TestMetaplot.bed --FlankingRegionLengthBp 10000 --Workdir /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/ --VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38/Autosomes.vcf.gz --OutputPrefix /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/TestMetaplotDir/ --BigwigList /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/bwList.tsv --GroupSettingsFile /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/scratch/TestMetaplotDir/Groups.tsv".split(" ")
             args = parse_args(Args=Args)
     except:
         args = parse_args()
