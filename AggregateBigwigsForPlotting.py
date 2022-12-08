@@ -166,8 +166,31 @@ def label_genotype(row, homo_alts, hets, homo_refs):
     else:
         return "3"
 
+def get_vcf_record(vcf_reader, SnpPos, SnpName=None):    
+    SnpChr, SnpCoord = SnpPos.split(":")
+    SnpList = []
+    
+    # Ugly solution to incomplete ref in some SNPs. Unsure what causes the problem.
+    len_records = 0
+    for record in vcf_reader.fetch(
+        chrom=SnpChr, start=(str_to_int(SnpCoord) - 1), end=str_to_int(SnpCoord)
+    ):
+        len_records += 1
+    
+    for record in vcf_reader.fetch(
+        chrom=SnpChr, start=(str_to_int(SnpCoord) - 1), end=str_to_int(SnpCoord)
+    ):
+        if SnpName and (len_records > 1):
+            SnpChr, SnpCoord, SnpRef, SnpAlt = SnpName.split(':')
+            if (record.REF == SnpRef) and (record.ALT[0] == SnpAlt):
+                SnpList.append(record)
+            else:
+                continue
+        else:
+            SnpList.append(record)
+    return SnpList
 
-def AppendGenotypeColumnToDf(df, vcf_fn=None, SnpPos=None):
+def AppendGenotypeColumnToDf(df, vcf_fn=None, SnpPos=None, SnpName=None):
     """
     Append a column of 0, 1, or 2 for homozygous ref, het, or homozygous alt
     genotype for for each entry in df, based on the SampleID column, the
@@ -187,16 +210,17 @@ def AppendGenotypeColumnToDf(df, vcf_fn=None, SnpPos=None):
     homo_refs = []
     homo_alts = []
     hets = []
-    for record in vcf_reader.fetch(
-        chrom=SnpChr, start=(str_to_int(SnpCoord) - 1), end=str_to_int(SnpCoord)
-    ):
-        SnpList.append(record)
+    SnpList = get_vcf_record(vcf_reader, SnpPos, SnpName)
+#     for record in vcf_reader.fetch(
+#         chrom=SnpChr, start=(str_to_int(SnpCoord) - 1), end=str_to_int(SnpCoord)
+#     ):
+#         SnpList.append(record)
     if len(SnpList) < 1:
         logging.warning("No SNP found at SnpPos")
         Ref, Alt, snpID = ["NA", "NA", "NA"]
     elif len(SnpList) > 1:
         logging.warning(
-            "More than one SNP found at SnpPos. Make sure vcf has one line per position"
+            "More than one SNP found at SnpPos. You should try to pass the argument --SnpName"
         )
         Ref, Alt, snpID = ["NA", "Ambiguous", "NA"]
     else:
@@ -579,6 +603,13 @@ def parse_args(Args=None):
         default=None,
     )
     p.add_argument(
+        "--SnpName",
+        help="Snp name. Name should have the following format: chr:position:Ref:Alt",
+        metavar="<CHR>:<POS>:<REF>:<ALT>",
+        default=None,
+        required=False,
+    )
+    p.add_argument(
         "--BigwigListType",
         choices=["KeyFile", "GlobPattern"],
         help="Required. Define how the bigwig list positional argument is specified. The GlobBattern option requires use of --VCF option",
@@ -677,7 +708,7 @@ def main(**kwargs):
         else:
             raise Exception("Files bigwig files as a glob pattern, must supply a VCF")
     logging.info("Adding genotype to DF")
-    DF = AppendGenotypeColumnToDf(DF, vcf_fn=kwargs["VCF"], SnpPos=kwargs["SnpPos"])
+    DF = AppendGenotypeColumnToDf(DF, vcf_fn=kwargs["VCF"], SnpPos=kwargs["SnpPos"], SnpName=kwargs["SnpName"])
     logging.info("Adding column for individual output bigwigs filepaths to DF")
     DF["bw_out_PerInd"] = (
         kwargs["OutputPrefix"]

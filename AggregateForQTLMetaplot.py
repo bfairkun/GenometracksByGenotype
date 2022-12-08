@@ -150,7 +150,15 @@ def main(args):
     # And append to lists of bigwig files that will need to be merged to create a PosPos.bw, PosNeg.bw, and NegNeg.bw 
     for index, row in DF_QTLs.iterrows():
         print(row)
-        MyArgs = f"--Workdir {args.Workdir} --Region {row['chrom']}:{row['start']-args.FlankingRegionLengthBp}-{row['stop']+args.FlankingRegionLengthBp} --SnpPos {row['SNPPos']} --VCF {args.VCF} --BigwigListType KeyFile --GroupSettingsFile {args.GroupSettingsFile} --BigwigList {args.BigwigList} --OutputPrefix {temp_dir.name}/{row['chrom']}-{row['start']}-{row['stop']}.  --NoSashimi -vv --TracksTemplate /project2/yangili1/bjf79/GenometracksByGenotype/tracks_templates/GeneralPurposeColoredByGenotype.ini"
+        SnpRegions = row['SNPPos'].split(':')
+        if len(SnpRegions) == 4:
+            SNPPos = ':'.join(SnpRegions[:2])
+            SNPName_arg = ' --SnpName ' +  row['SNPPos']
+        else:
+            SNPPos = row['SNPPos']
+            SNPName_arg = ''
+            
+        MyArgs = f"--Workdir {args.Workdir} --Region {row['chrom']}:{row['start']-args.FlankingRegionLengthBp}-{row['stop']+args.FlankingRegionLengthBp} --SnpPos {SNPPos} --VCF {args.VCF} --BigwigListType KeyFile --GroupSettingsFile {args.GroupSettingsFile} --BigwigList {args.BigwigList} --OutputPrefix {temp_dir.name}/{row['chrom']}-{row['start']}-{row['stop']}.  --NoSashimi -vv --TracksTemplate /project2/yangili1/bjf79/GenometracksByGenotype/tracks_templates/GeneralPurposeColoredByGenotype.ini" + SNPName_arg
         print(MyArgs)
         parsed_args = AggregateBigwigsForPlotting.parse_args(filter(None, MyArgs.split(' ')))
         DF_temp = AggregateBigwigsForPlotting.main(**vars(parsed_args))
