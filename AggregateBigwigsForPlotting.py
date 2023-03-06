@@ -648,6 +648,18 @@ def parse_args(Args=None):
         default=None,
     )
     p.add_argument(
+        "--IGVSessionOutput",
+        action="store_true",
+        help="Flag to create a tracks.xml IGV session file (see https://software.broadinstitute.org/software/igv/Sessions) output to easily browse aggregated bigwigs with IGV.",
+        default=False,
+    )
+    p.add_argument(
+        "--IGVSessionTemplate",
+        metavar="<FILE>",
+        help="A jinja template for a IGV session xml file. The template file will be populated with the DF variables to create the optional output file specified by IGVSessionOutput. If this argument is not provided, will basic template will be chosen",
+        default=None,
+    )
+    p.add_argument(
         "--FilterJuncsByBed",
         metavar="<FILE>",
         help="An optional bedfile of junctions to filter for inclusion. If none is provided, all juncs will be included",
@@ -844,7 +856,6 @@ def main(**kwargs):
     DF = DF.sort_values(
         by=["PlotOrder", "Supergroup", "Group_label", "Strand", "genotype"], ascending=[True, True, True, True, False]
     )
-    # import pdb; pdb.set_trace()
     # Get jinja2 template
     if kwargs["TracksTemplate"]:
         with open(kwargs["TracksTemplate"], "r") as fh:
@@ -859,6 +870,22 @@ def main(**kwargs):
     )
     with open(kwargs["OutputPrefix"] + "tracks.ini", "w") as f:
         _ = f.write(template.render(DF=DF, OutputPrefix=kwargs["OutputPrefix"], Bed12GenesFile=kwargs["Bed12GenesToIni"]))
+    # write IGV xml
+    # import pdb; pdb.set_trace()
+    if kwargs["IGVSessionOutput"]:
+        if kwargs["IGVSessionTemplate"]:
+            with open(kwargs["IGVSessionTemplate"], "r") as fh:
+                template = Template(fh.read())
+        else:
+            with open("/project2/yangili1/bjf79/20211209_JingxinRNAseq/code/scripts/GenometracksByGenotype/tracks_templates/GeneralPurpose.xml", "r") as fh:
+                template = Template(fh.read())
+        logging.info(
+            "Writing xml template with dataframe with the following df.columns accessible in jinja2 template: {}".format(
+                DF.columns
+            )
+        )
+        with open(kwargs["OutputPrefix"] + "tracks.xml", "w") as f:
+            _ = f.write(template.render(DF=DF, Region=args.Region, OutputPrefix=kwargs["OutputPrefix"], Bed12GenesFile=kwargs["Bed12GenesToIni"]))
     return DF
 
 

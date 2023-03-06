@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Session genome="hg38" locus="{{ Region }}" nextAutoscaleGroup="7" version="8">
+    <Resources>
+{% for i,row in DF.iterrows() %}
+        <Resource path="../{{ row['GroupsSummarisedBigwigOut'] }}" type="bw"/>
+{% endfor %}
+    </Resources>
+    <Panel height="490" name="DataPanel" width="1349">
+        <Track attributeKey="Refseq Genes" clazz="org.broad.igv.track.FeatureTrack" fontSize="10" groupByStrand="false" id="https://s3.amazonaws.com/igv.org.genomes/hg38/ncbiRefSeq.txt.gz" name="Refseq Genes" visible="true"/>
+        <Track attributeKey="Reference sequence" clazz="org.broad.igv.track.SequenceTrack" fontSize="10" id="Reference sequence" name="Reference sequence" sequenceTranslationStrandValue="POSITIVE" shouldShowTranslation="false" visible="true"/>
+
+{% for i,row in DF.iterrows() %}
+        <Track attributeKey="" autoScale="true" clazz="org.broad.igv.track.DataSourceTrack" fontSize="10" height="18" id="../{{ row['GroupsSummarisedBigwigOut'] }}" name="{{ row['FullLabel'] }} {{j}}" renderer="BAR_CHART" visible="true" windowFunction="mean" color="{{ row['color'] }}">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false"  minimum="0.0" type="LINEAR"/>
+        </Track>
+{% endfor %}
+    </Panel>
+    <PanelLayout dividerFractions="0.9371428571428572"/>
+    <HiddenAttributes>
+        <Attribute name="DATA FILE"/>
+        <Attribute name="DATA TYPE"/>
+        <Attribute name="NAME"/>
+    </HiddenAttributes>
+</Session>
