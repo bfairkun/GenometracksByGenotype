@@ -34,6 +34,7 @@ colorbrewer.RdPrBlu = {
     4: [(240, 59, 32), (122, 1, 119), (8, 81, 156), (189, 189, 189)],
 }
 
+colorbrewer_palletes = [i for i in colorbrewer.__dict__.keys() if type(getattr(colorbrewer, i)) is dict and i != '__builtins__']
 
 def str_to_int(MyStr):
     return int(MyStr.replace(",", ""))
@@ -41,6 +42,10 @@ def str_to_int(MyStr):
 
 def rgb_to_hex(rgb):
     return "#%02x%02x%02x" % rgb
+
+def hex_to_rgb(hexcolor):
+    h = hexcolor.lstrip('#')
+    return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
 
 
 def setup_logging(verbosity):
@@ -427,9 +432,9 @@ def NormalizeAverageAndWriteOutLinks(
     SampleIDColumnName="SampleID",
     StrandColumnName="Strand",
     LinksFilesOutColumnName="links_out",
-    OutputStringFormat="{0:.2g}",
+    OutputStringFormat="{0:.3g}",
     SwapStrandFilters=False,
-    MinPSI=0,
+    MinPSI=0.0,
 ):
     """
     Given input df with column BedgzFilesInColumn,for each row this function
@@ -525,9 +530,9 @@ def NormalizeAverageAndWriteOutLinks(
                 )
             ]
             df_out["psi"] = df_out.drop(["#Chr", "start", "end", "pid"], axis=1).mean(
-                axis=1
+                axis=1, skipna=True
             )
-            df_out = df_out[df_out["psi"] >= MinPSI]
+            # df_out = df_out[df_out["psi"] >= float(MinPSI)]
             df_out["psi"] = df_out["psi"].apply(lambda x: OutputStringFormat.format(x))
             if len(df_out) > 0:
                 df.loc[i, "ContainsNonEmptyBedgzFile"] = "1"
@@ -678,6 +683,18 @@ def parse_args(Args=None):
         default=None,
     )
     p.add_argument(
+        "--GenotypeBrewerPalettes",
+        metavar="<string>",
+        help=f'A colorbrewer palette to use for genotypes. Options: {colorbrewer_palletes}',
+        default='RdPrBlu',
+    )
+    p.add_argument(
+        "--GenotypeCustomPalette",
+        metavar="<#NNNNNN,#NNNNNN,#NNNNNN,#NNNNNN>",
+        help='string of 4 commad delimited HEX color codes to use for genotypes: (1) ref/ref, (2) ref/alt, (3) alt/alt, and (4) ungenotyped. If provided, this argument takes precedence over --GenotypeBrewerPalette',
+        default=None,
+    )
+    p.add_argument(
         "--Workdir",
         metavar="<path>",
         help="An optional path to set as workdir before executing main script function. Could be useful, for example, if bigwig file list uses relative file paths from a different directory",
@@ -749,8 +766,13 @@ def main(**kwargs):
         + ".bw"
     )
     # Add column for genotype colors
+    if kwargs['GenotypeCustomPalette']:
+        colorbrewer.Custom = {
+            4: [hex_to_rgb(c) for c in kwargs['GenotypeCustomPalette'].split(',')],
+        }
+        kwargs['GenotypeBrewerPalettes'] = 'Custom'
     DF = AssignColorsFromFactorColumn(
-        DF, "genotype", "genotype_color", SpecialGenotypeCase=True
+        DF, "genotype", "genotype_color", SpecialGenotypeCase=True, ColorPallette=kwargs['GenotypeBrewerPalettes']
     )
     # Add column for group color, taking from existing column if not empty
     DF = FillColorsIfNoneProvided(

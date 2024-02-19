@@ -70,6 +70,24 @@ def parse_args(Args=None):
         required=False,
     )
     p.add_argument(
+        "--Long",
+        action="store_true",
+        default=False,
+        help="Output long format (useful if outputting multiple phenotypes)",
+    )
+    p.add_argument(
+        "--ReportBedAsColumn",
+        action="store_true",
+        default=False,
+        help="Add a column for the name of the Bed input file. Useful for concatenating long format output of repeated script calls with different Bed inputs files",
+    )
+    p.add_argument(
+        "--NoHeader",
+        action="store_true",
+        default=False,
+        help="Do not output header in output",
+    )
+    p.add_argument(
         "-v",
         "--verbose",
         action="count",
@@ -110,9 +128,13 @@ def main(args):
     DF = DF.set_index("Feature").transpose()
     DF.insert(loc = 0,column = 'SampleID',value = DF.index)
     DF = AggregateBigwigsForPlotting.AppendGenotypeColumnToDf(DF, vcf_fn=args.VCF, SnpPos=args.SnpPos, SnpName=args.SnpName)
+    if args.Long:
+        DF = pd.melt(DF, id_vars=['SampleID','genotype', 'Ref', 'Alt', 'ID'])
+    if args.ReportBedAsColumn:
+        DF["Bed"] = args.Bed
     if not args.Out:
         args.Out = sys.stdout
-    DF.to_csv(args.Out, sep='\t', index=False)
+    DF.to_csv(args.Out, sep='\t', index=False, header=not args.NoHeader)
     return DF
 # DF = main(args)
 
