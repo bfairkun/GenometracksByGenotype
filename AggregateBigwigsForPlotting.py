@@ -93,7 +93,8 @@ def AddExtraColumnsPerGroup(
     df, GroupToBedTsv=None, BedfileForAll=None, MergeStyle="inner"
 ):
     """
-    GroupToBed tsv file needed, otherwise, utilize
+    GroupToBed tsv file needed, otherwise, utilize make one on the fly with
+    blank/default values
     """
     if GroupToBedTsv:
         GroupToBed_df = pd.read_csv(
@@ -102,23 +103,14 @@ def AddExtraColumnsPerGroup(
             names=["Group_label", "Group_color", "BedgzFilepath", "Supergroup"],
             sep="\t",
         )
-        GroupToBed_df['Supergroup'].fillna(df['Group_label'], inplace=True)
-        GroupToBed_df.fillna("", inplace=True)
-        GroupToBed_df['PlotOrder'] = numpy.arange(len(GroupToBed_df))
-        logging.debug(GroupToBed_df)
-        df = df.merge(GroupToBed_df, how=MergeStyle, on="Group_label")
-        # Write new column
-    elif BedfileForAll:
-        df["BedgzFilepath"] = BedfileForAll
-        df["Group_color"] = ""
-        df['PlotOrder'] = 0
-        df["Supergroup"] = df["Group_label"]
     else:
-        df["BedgzFilepath"] = ""
-        df["Group_color"] = ""
-        df['PlotOrder'] = 0
-        df["Supergroup"] = df["Group_label"]
-        # write new column that should be empty
+        GroupToBed_df = pd.DataFrame({'Group_label': df['Group_label'].unique(), {'Group_color'}:'', 'BedgzFilepath':'', 'Supergroup':''})
+    GroupToBed_df['Supergroup'].fillna(df['Group_label'], inplace=True)
+    GroupToBed_df['PlotOrder'] = numpy.arange(len(GroupToBed_df))
+    if BedfileForAll:
+        GroupToBed_df.fillna(BedfileForAll, inplace=True)
+    logging.debug(GroupToBed_df)
+    df = df.merge(GroupToBed_df, how=MergeStyle, on="Group_label")
     return df
 
 
@@ -344,6 +336,8 @@ def NormalizeAverageAndWriteOutBigwigs(
                     NormFactor = GetNormalizationFactorWholeGenome(bigwig)
                 elif args.Normalization == "None":
                     NormFactor = 1
+                elif args.Normalization == "PlotWindowCoverage":
+                    NormFactor = GetNormalizationFactorBasedOnRegionList(bigwig, [[RegionChr, RegionStart, RegionStop]])
                 else:
                     NormFactor = GetNormalizationFactorBasedOnRegionList(
                         bigwig, NormalizationRegions
@@ -617,9 +611,9 @@ def parse_args(Args=None):
     )
     p.add_argument(
         "--Normalization",
-        help="A bed file of regions to use for sample-depth normalization. The within-sample total coverage over the regions will be used to normalize each sample. If 'None' is chosen, will not perform any normalization. If 'WholeGenome' is used, will use whole genome. I haven't ever tested the <BEDFILE> option. (default: %(default)s)",
+        help="A bed file of regions to use for sample-depth normalization. The within-sample total coverage over the regions will be used to normalize each sample. If 'None' is chosen, will not perform any normalization. If 'WholeGenome' is used, will use whole genome. 'PlotWindowCoverage' normalizes tracks to total coverage specified in --Region. I haven't ever tested the <BEDFILE> option. (default: %(default)s)",
         default="None",
-        metavar="{<BEDFILE>,None,WholeGenome}",
+        metavar="{<BEDFILE>,None,WholeGenome,PlotWindowCoverage}",
     )
     p.add_argument(
         "--OutputPrefix",
@@ -843,7 +837,7 @@ def main(**kwargs):
     WriteOutSNPBed(kwargs["SnpPos"], kwargs["OutputPrefix"] + "SNP.bed")
     DF = DF.sort_values(
         by=["PlotOrder", "Supergroup", "Group_label", "Strand", "genotype"], ascending=[True, True, True, True, False]
-    )
+    ).reset_index(drop=True)
     # import pdb; pdb.set_trace()
     # Get jinja2 template
     if kwargs["TracksTemplate"]:
