@@ -34,6 +34,7 @@ colorbrewer.RdPrBlu = {
     4: [(240, 59, 32), (122, 1, 119), (8, 81, 156), (189, 189, 189)],
 }
 
+colorbrewer_palletes = [i for i in colorbrewer.__dict__.keys() if type(getattr(colorbrewer, i)) is dict and i != '__builtins__']
 
 def str_to_int(MyStr):
     return int(MyStr.replace(",", ""))
@@ -41,6 +42,10 @@ def str_to_int(MyStr):
 
 def rgb_to_hex(rgb):
     return "#%02x%02x%02x" % rgb
+
+def hex_to_rgb(hexcolor):
+    h = hexcolor.lstrip('#')
+    return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
 
 
 def setup_logging(verbosity):
@@ -421,9 +426,9 @@ def NormalizeAverageAndWriteOutLinks(
     SampleIDColumnName="SampleID",
     StrandColumnName="Strand",
     LinksFilesOutColumnName="links_out",
-    OutputStringFormat="{0:.2g}",
+    OutputStringFormat="{0:.3g}",
     SwapStrandFilters=False,
-    MinPSI=0,
+    MinPSI=0.0,
 ):
     """
     Given input df with column BedgzFilesInColumn,for each row this function
@@ -519,9 +524,9 @@ def NormalizeAverageAndWriteOutLinks(
                 )
             ]
             df_out["psi"] = df_out.drop(["#Chr", "start", "end", "pid"], axis=1).mean(
-                axis=1
+                axis=1, skipna=True
             )
-            df_out = df_out[df_out["psi"] >= MinPSI]
+            # df_out = df_out[df_out["psi"] >= float(MinPSI)]
             df_out["psi"] = df_out["psi"].apply(lambda x: OutputStringFormat.format(x))
             if len(df_out) > 0:
                 df.loc[i, "ContainsNonEmptyBedgzFile"] = "1"
@@ -642,6 +647,18 @@ def parse_args(Args=None):
         default=None,
     )
     p.add_argument(
+        "--IGVSessionOutput",
+        action="store_true",
+        help="Flag to create a tracks.xml IGV session file (see https://software.broadinstitute.org/software/igv/Sessions) output to easily browse aggregated bigwigs with IGV.",
+        default=False,
+    )
+    p.add_argument(
+        "--IGVSessionTemplate",
+        metavar="<FILE>",
+        help="A jinja template for a IGV session xml file. The template file will be populated with the DF variables to create the optional output file specified by IGVSessionOutput. If this argument is not provided, will basic template will be chosen",
+        default=None,
+    )
+    p.add_argument(
         "--FilterJuncsByBed",
         metavar="<FILE>",
         help="An optional bedfile of junctions to filter for inclusion. If none is provided, all juncs will be included",
@@ -657,6 +674,18 @@ def parse_args(Args=None):
         "--Bed12GenesToIni",
         metavar="<FILE>",
         help="An optional bed12 genes files. If provided, will add a track for these genes at the end of the ini output file",
+        default=None,
+    )
+    p.add_argument(
+        "--GenotypeBrewerPalettes",
+        metavar="<string>",
+        help=f'A colorbrewer palette to use for genotypes. Options: {colorbrewer_palletes}',
+        default='RdPrBlu',
+    )
+    p.add_argument(
+        "--GenotypeCustomPalette",
+        metavar="<#NNNNNN,#NNNNNN,#NNNNNN,#NNNNNN>",
+        help='string of 4 commad delimited HEX color codes to use for genotypes: (1) ref/ref, (2) ref/alt, (3) alt/alt, and (4) ungenotyped. If provided, this argument takes precedence over --GenotypeBrewerPalette',
         default=None,
     )
     p.add_argument(
@@ -731,8 +760,13 @@ def main(**kwargs):
         + ".bw"
     )
     # Add column for genotype colors
+    if kwargs['GenotypeCustomPalette']:
+        colorbrewer.Custom = {
+            4: [hex_to_rgb(c) for c in kwargs['GenotypeCustomPalette'].split(',')],
+        }
+        kwargs['GenotypeBrewerPalettes'] = 'Custom'
     DF = AssignColorsFromFactorColumn(
-        DF, "genotype", "genotype_color", SpecialGenotypeCase=True
+        DF, "genotype", "genotype_color", SpecialGenotypeCase=True, ColorPallette=kwargs['GenotypeBrewerPalettes']
     )
     # Add column for group color, taking from existing column if not empty
     DF = FillColorsIfNoneProvided(
@@ -853,6 +887,22 @@ def main(**kwargs):
     )
     with open(kwargs["OutputPrefix"] + "tracks.ini", "w") as f:
         _ = f.write(template.render(DF=DF, OutputPrefix=kwargs["OutputPrefix"], Bed12GenesFile=kwargs["Bed12GenesToIni"]))
+    # write IGV xml
+    # import pdb; pdb.set_trace()
+    if kwargs["IGVSessionOutput"]:
+        if kwargs["IGVSessionTemplate"]:
+            with open(kwargs["IGVSessionTemplate"], "r") as fh:
+                template = Template(fh.read())
+        else:
+            with open("/project2/yangili1/bjf79/20211209_JingxinRNAseq/code/scripts/GenometracksByGenotype/tracks_templates/GeneralPurpose.xml", "r") as fh:
+                template = Template(fh.read())
+        logging.info(
+            "Writing xml template with dataframe with the following df.columns accessible in jinja2 template: {}".format(
+                DF.columns
+            )
+        )
+        with open(kwargs["OutputPrefix"] + "tracks.xml", "w") as f:
+            _ = f.write(template.render(DF=DF, Region=args.Region, OutputPrefix=kwargs["OutputPrefix"], Bed12GenesFile=kwargs["Bed12GenesToIni"]))
     return DF
 
 

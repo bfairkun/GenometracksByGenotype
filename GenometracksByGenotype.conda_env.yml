@@ -104,7 +104,7 @@ dependencies:
     - pandas==1.0.5
     - pybedtools==0.8.2
     - pyfaidx==0.5.9
-    - pygenometracks==3.6
+    - git+https://github.com/Zepeng-Mu/pyGenomeTracks.git
     - pypairix==0.3.7
     - pytz==2020.1
     - pyyaml==5.3.1
