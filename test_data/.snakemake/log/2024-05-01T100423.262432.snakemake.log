@@ -1,0 +1,2595 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 5
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	184	SubsetBigwig
+	1	all
+	185
+
+[Wed May  1 10:04:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19146.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19146.1.plus.bw
+    jobid: 294
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19146.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19146.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19146.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18853.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw
+    jobid: 210
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18853.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18924.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw
+    jobid: 256
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18924.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18853.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18853.1.minus.bw
+    jobid: 302
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18853.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18853.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18853.1.minus.bw chr22:46,289,343-46,294,094
+        
+
+[Wed May  1 10:04:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18924.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18924.1.minus.bw
+    jobid: 348
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18924.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18924.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18924.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:32 2024]
+Finished job 302.
+1 of 185 steps (0.54%) done
+[Wed May  1 10:04:32 2024]
+Finished job 210.
+2 of 185 steps (1%) done
+[Wed May  1 10:04:32 2024]
+Finished job 294.
+3 of 185 steps (2%) done
+[Wed May  1 10:04:32 2024]
+Finished job 348.
+4 of 185 steps (2%) done
+
+[Wed May  1 10:04:32 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19238.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw
+    jobid: 235
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19238.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:32 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19146.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19146.1.minus.bw
+    jobid: 386
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19146.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19146.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19146.1.minus.bw chr22:46,289,343-46,294,094
+        
+
+[Wed May  1 10:04:32 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19096.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19096.1.plus.bw
+    jobid: 280
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19096.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19096.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19096.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:32 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19143.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw
+    jobid: 288
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19143.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:32 2024]
+Finished job 256.
+5 of 185 steps (3%) done
+
+[Wed May  1 10:04:32 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19137.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19137.1.plus.bw
+    jobid: 239
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19137.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19137.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19137.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:33 2024]
+Finished job 280.
+6 of 185 steps (3%) done
+
+[Wed May  1 10:04:33 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19238.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19238.1.minus.bw
+    jobid: 327
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19238.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19238.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19238.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:33 2024]
+Finished job 386.
+7 of 185 steps (4%) done
+
+[Wed May  1 10:04:33 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19143.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19143.1.minus.bw
+    jobid: 380
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19143.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19143.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19143.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:33 2024]
+Finished job 235.
+8 of 185 steps (4%) done
+
+[Wed May  1 10:04:33 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19128.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19128.1.plus.bw
+    jobid: 301
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19128.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19128.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19128.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:33 2024]
+Finished job 239.
+9 of 185 steps (5%) done
+
+[Wed May  1 10:04:33 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18516.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18516.1.plus.bw
+    jobid: 262
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18516.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18516.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18516.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:33 2024]
+Finished job 288.
+10 of 185 steps (5%) done
+
+[Wed May  1 10:04:33 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19147.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19147.1.plus.bw
+    jobid: 227
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19147.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19147.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19147.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:33 2024]
+Finished job 380.
+11 of 185 steps (6%) done
+
+[Wed May  1 10:04:33 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19131.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19131.1.plus.bw
+    jobid: 228
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19131.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19131.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19131.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:33 2024]
+Finished job 327.
+12 of 185 steps (6%) done
+[Wed May  1 10:04:33 2024]
+Finished job 301.
+13 of 185 steps (7%) done
+
+[Wed May  1 10:04:33 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19114.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19114.1.plus.bw
+    jobid: 224
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19114.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19114.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19114.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:33 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19096.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19096.1.minus.bw
+    jobid: 372
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19096.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19096.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19096.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:34 2024]
+Finished job 262.
+14 of 185 steps (8%) done
+
+[Wed May  1 10:04:34 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19203.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19203.1.plus.bw
+    jobid: 300
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19203.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19203.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19203.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:34 2024]
+Finished job 227.
+15 of 185 steps (8%) done
+
+[Wed May  1 10:04:34 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19118.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19118.1.plus.bw
+    jobid: 289
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19118.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19118.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19118.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:34 2024]
+Finished job 224.
+16 of 185 steps (9%) done
+
+[Wed May  1 10:04:34 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18909.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18909.1.plus.bw
+    jobid: 296
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18909.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18909.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18909.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:34 2024]
+Finished job 228.
+17 of 185 steps (9%) done
+[Wed May  1 10:04:34 2024]
+Finished job 372.
+18 of 185 steps (10%) done
+
+[Wed May  1 10:04:34 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19137.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19137.1.minus.bw
+    jobid: 331
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19137.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19137.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19137.1.minus.bw chr22:46,289,343-46,294,094
+        
+
+[Wed May  1 10:04:34 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19127.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19127.1.plus.bw
+    jobid: 248
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19127.1.plus.bw
+[Wed May  1 10:04:34 2024]
+
+Finished job 289.
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19127.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19127.1.plus.bw chr2:74,491,012-74,494,552
+        
+19 of 185 steps (10%) done
+
+[Wed May  1 10:04:34 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19257.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19257.1.plus.bw
+    jobid: 237
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19257.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19257.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19257.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:34 2024]
+Finished job 300.
+20 of 185 steps (11%) done
+
+[Wed May  1 10:04:34 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19198.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19198.1.plus.bw
+    jobid: 277
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19198.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19198.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19198.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:35 2024]
+Finished job 331.
+21 of 185 steps (11%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18879.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18879.1.plus.bw
+    jobid: 240
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18879.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18879.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18879.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:35 2024]
+Finished job 296.
+22 of 185 steps (12%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19141.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19141.1.plus.bw
+    jobid: 217
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19141.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19141.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19141.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:35 2024]
+Finished job 237.
+23 of 185 steps (12%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19190.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19190.1.plus.bw
+    jobid: 226
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19190.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19190.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19190.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:35 2024]
+Finished job 248.
+24 of 185 steps (13%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19147.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19147.1.minus.bw
+    jobid: 319
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19147.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19147.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19147.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:35 2024]
+Finished job 277.
+25 of 185 steps (14%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18516.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18516.1.minus.bw
+    jobid: 354
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18516.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18516.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18516.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:35 2024]
+Finished job 240.
+26 of 185 steps (14%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18862.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18862.1.plus.bw
+    jobid: 276
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18862.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18862.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18862.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:35 2024]
+Finished job 217.
+27 of 185 steps (15%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19108.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19108.1.plus.bw
+    jobid: 297
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19108.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19108.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19108.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:35 2024]
+Finished job 319.
+28 of 185 steps (15%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19131.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19131.1.minus.bw
+    jobid: 320
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19131.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19131.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19131.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:35 2024]
+Finished job 354.
+29 of 185 steps (16%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19102.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19102.1.plus.bw
+    jobid: 223
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19102.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19102.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19102.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:35 2024]
+Finished job 226.
+30 of 185 steps (16%) done
+
+[Wed May  1 10:04:35 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19214.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19214.1.plus.bw
+    jobid: 245
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19214.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19214.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19214.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:36 2024]
+Finished job 297.
+31 of 185 steps (17%) done
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18502.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18502.1.plus.bw
+    jobid: 299
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18502.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18502.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18502.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:36 2024]
+Finished job 320.
+32 of 185 steps (17%) done
+[Wed May  1 10:04:36 2024]
+Finished job 276.
+33 of 185 steps (18%) done
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19128.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19128.1.minus.bw
+    jobid: 393
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19128.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19128.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19128.1.minus.bw chr22:46,289,343-46,294,094
+        
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18909.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18909.1.minus.bw
+    jobid: 388
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18909.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18909.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18909.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:36 2024]
+Finished job 245.
+34 of 185 steps (18%) done
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19118.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19118.1.minus.bw
+    jobid: 381
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19118.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19118.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19118.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:36 2024]
+Finished job 223.
+35 of 185 steps (19%) done
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18523.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18523.1.plus.bw
+    jobid: 212
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18523.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18523.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18523.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:36 2024]
+Finished job 299.
+36 of 185 steps (19%) done
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18867.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18867.1.plus.bw
+    jobid: 251
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18867.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18867.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18867.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:36 2024]
+Finished job 388.
+37 of 185 steps (20%) done
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19203.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19203.1.minus.bw
+    jobid: 392
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19203.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19203.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19203.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:36 2024]
+Finished job 381.
+38 of 185 steps (21%) done
+[Wed May  1 10:04:36 2024]
+Finished job 212.
+39 of 185 steps (21%) done
+[Wed May  1 10:04:36 2024]
+Finished job 393.
+40 of 185 steps (22%) done
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19127.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19127.1.minus.bw
+    jobid: 340
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19127.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19127.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19127.1.minus.bw chr22:46,289,343-46,294,094
+        
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18498.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18498.1.plus.bw
+    jobid: 292
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18498.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18498.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18498.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19114.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19114.1.minus.bw
+    jobid: 316
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19114.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19114.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19114.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:37 2024]
+Finished job 251.
+41 of 185 steps (22%) done
+
+[Wed May  1 10:04:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18522.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18522.1.plus.bw
+    jobid: 274
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18522.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18522.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18522.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:37 2024]
+Finished job 292.
+42 of 185 steps (23%) done
+
+[Wed May  1 10:04:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19257.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19257.1.minus.bw
+    jobid: 329
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19257.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19257.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19257.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:37 2024]
+Finished job 392.
+43 of 185 steps (23%) done
+
+[Wed May  1 10:04:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19101.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19101.1.plus.bw
+    jobid: 220
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19101.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19101.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19101.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:37 2024]
+Finished job 340.
+44 of 185 steps (24%) done
+
+[Wed May  1 10:04:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19239.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19239.1.plus.bw
+    jobid: 232
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19239.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19239.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19239.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:37 2024]
+Finished job 316.
+45 of 185 steps (24%) done
+
+[Wed May  1 10:04:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19107.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19107.1.plus.bw
+    jobid: 260
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19107.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19107.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19107.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:37 2024]
+Finished job 329.
+46 of 185 steps (25%) done
+[Wed May  1 10:04:37 2024]
+Finished job 220.
+47 of 185 steps (25%) done
+
+[Wed May  1 10:04:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18910.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18910.1.plus.bw
+    jobid: 287
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18910.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18910.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18910.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18934.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18934.1.plus.bw
+    jobid: 290
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18934.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18934.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18934.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:37 2024]
+Finished job 232.
+48 of 185 steps (26%) done
+
+[Wed May  1 10:04:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19198.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19198.1.minus.bw
+    jobid: 369
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19198.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19198.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19198.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:37 2024]
+Finished job 274.
+49 of 185 steps (26%) done
+
+[Wed May  1 10:04:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19119.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19119.1.plus.bw
+    jobid: 252
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19119.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19119.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19119.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:38 2024]
+Finished job 260.
+50 of 185 steps (27%) done
+
+[Wed May  1 10:04:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18879.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18879.1.minus.bw
+    jobid: 332
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18879.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18879.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18879.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:38 2024]
+Finished job 287.
+51 of 185 steps (28%) done
+
+[Wed May  1 10:04:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19190.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19190.1.minus.bw
+    jobid: 318
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19190.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19190.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19190.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:38 2024]
+Finished job 290.
+52 of 185 steps (28%) done
+
+[Wed May  1 10:04:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19203.2.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19203.2.plus.bw
+    jobid: 270
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19203.2.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19203.2.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19203.2.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:38 2024]
+Finished job 252.
+53 of 185 steps (29%) done
+
+[Wed May  1 10:04:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19122.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19122.1.plus.bw
+    jobid: 211
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19122.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19122.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19122.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:38 2024]
+Finished job 369.
+54 of 185 steps (29%) done
+
+[Wed May  1 10:04:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19108.2.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19108.2.plus.bw
+    jobid: 284
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19108.2.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19108.2.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19108.2.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:38 2024]
+Finished job 332.
+55 of 185 steps (30%) done
+
+[Wed May  1 10:04:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19213.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19213.1.plus.bw
+    jobid: 259
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19213.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19213.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19213.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:38 2024]
+Finished job 270.
+56 of 185 steps (30%) done
+
+[Wed May  1 10:04:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19141.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19141.1.minus.bw
+    jobid: 309
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19141.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19141.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19141.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:39 2024]
+Finished job 318.
+57 of 185 steps (31%) done
+
+[Wed May  1 10:04:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19160.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19160.1.plus.bw
+    jobid: 266
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19160.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19160.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19160.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:39 2024]
+Finished job 284.
+58 of 185 steps (31%) done
+
+[Wed May  1 10:04:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19093.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19093.1.plus.bw
+    jobid: 271
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19093.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19093.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19093.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:39 2024]
+Finished job 259.
+59 of 185 steps (32%) done
+
+[Wed May  1 10:04:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19098.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19098.1.plus.bw
+    jobid: 216
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19098.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19098.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19098.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:39 2024]
+Finished job 211.
+60 of 185 steps (32%) done
+
+[Wed May  1 10:04:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18923.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18923.1.plus.bw
+    jobid: 242
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18923.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18923.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18923.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:39 2024]
+Finished job 266.
+61 of 185 steps (33%) done
+
+[Wed May  1 10:04:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18508.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18508.1.plus.bw
+    jobid: 283
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18508.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18508.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18508.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:39 2024]
+Finished job 309.
+62 of 185 steps (34%) done
+[Wed May  1 10:04:39 2024]
+Finished job 242.
+63 of 185 steps (34%) done
+[Wed May  1 10:04:39 2024]
+Finished job 271.
+64 of 185 steps (35%) done
+
+[Wed May  1 10:04:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18502.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18502.1.minus.bw
+    jobid: 391
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18502.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18502.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18502.1.minus.bw chr22:46,289,343-46,294,094
+        
+
+[Wed May  1 10:04:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19117.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19117.1.plus.bw
+    jobid: 244
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19117.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19117.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19117.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19214.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19214.1.minus.bw
+    jobid: 337
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19214.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19214.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19214.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:39 2024]
+Finished job 216.
+65 of 185 steps (35%) done
+
+[Wed May  1 10:04:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19207.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19207.1.plus.bw
+    jobid: 293
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19207.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19207.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19207.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:40 2024]
+Finished job 391.
+66 of 185 steps (36%) done
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19108.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19108.1.minus.bw
+    jobid: 389
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19108.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19108.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19108.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:40 2024]
+Finished job 283.
+67 of 185 steps (36%) done
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18862.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18862.1.minus.bw
+    jobid: 368
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18862.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18862.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18862.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:40 2024]
+Finished job 244.
+68 of 185 steps (37%) done
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19092.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19092.1.plus.bw
+    jobid: 273
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19092.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19092.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19092.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:40 2024]
+Finished job 337.
+69 of 185 steps (37%) done
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19102.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19102.1.minus.bw
+    jobid: 315
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19102.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19102.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19102.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:40 2024]
+Finished job 293.
+70 of 185 steps (38%) done
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18504.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18504.1.plus.bw
+    jobid: 225
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18504.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18504.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18504.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:40 2024]
+Finished job 389.
+71 of 185 steps (38%) done
+[Wed May  1 10:04:40 2024]
+Finished job 368.
+72 of 185 steps (39%) done
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19095.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19095.1.plus.bw
+    jobid: 269
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19095.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19095.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19095.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18867.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18867.1.minus.bw
+    jobid: 343
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18867.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18867.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18867.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:40 2024]
+Finished job 273.
+73 of 185 steps (39%) done
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19093.2.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19093.2.plus.bw
+    jobid: 221
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19093.2.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19093.2.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19093.2.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:40 2024]
+Finished job 315.
+74 of 185 steps (40%) done
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18917.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18917.1.plus.bw
+    jobid: 275
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18917.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18917.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18917.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:40 2024]
+Finished job 225.
+75 of 185 steps (41%) done
+
+[Wed May  1 10:04:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18522.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18522.1.minus.bw
+    jobid: 366
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18522.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18522.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18522.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:41 2024]
+Finished job 269.
+76 of 185 steps (41%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18523.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18523.1.minus.bw
+    jobid: 304
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18523.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18523.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18523.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:41 2024]
+Finished job 343.
+77 of 185 steps (42%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19236.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19236.1.plus.bw
+    jobid: 257
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19236.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19236.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19236.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:41 2024]
+Finished job 221.
+78 of 185 steps (42%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18498.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18498.1.minus.bw
+    jobid: 384
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18498.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18498.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18498.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:41 2024]
+Finished job 275.
+79 of 185 steps (43%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19239.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19239.1.minus.bw
+    jobid: 324
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19239.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19239.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19239.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:41 2024]
+Finished job 366.
+80 of 185 steps (43%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18862.2.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18862.2.plus.bw
+    jobid: 234
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18862.2.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18862.2.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18862.2.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:41 2024]
+Finished job 384.
+81 of 185 steps (44%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19153.2.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19153.2.plus.bw
+    jobid: 243
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19153.2.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19153.2.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19153.2.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:41 2024]
+Finished job 304.
+82 of 185 steps (44%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18934.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18934.1.minus.bw
+    jobid: 382
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18934.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18934.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18934.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:41 2024]
+Finished job 257.
+83 of 185 steps (45%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19107.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19107.1.minus.bw
+    jobid: 352
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19107.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19107.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19107.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:41 2024]
+Finished job 324.
+84 of 185 steps (45%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19213.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19213.1.minus.bw
+    jobid: 351
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19213.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19213.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19213.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:41 2024]
+Finished job 234.
+85 of 185 steps (46%) done
+
+[Wed May  1 10:04:41 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18910.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18910.1.minus.bw
+    jobid: 379
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18910.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18910.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18910.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:42 2024]
+Finished job 243.
+86 of 185 steps (46%) done
+[Wed May  1 10:04:42 2024]
+Finished job 382.
+87 of 185 steps (47%) done
+[Wed May  1 10:04:42 2024]
+Finished job 352.
+88 of 185 steps (48%) done
+
+[Wed May  1 10:04:42 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19101.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19101.1.minus.bw
+    jobid: 312
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19101.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19101.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19101.1.minus.bw chr22:46,289,343-46,294,094
+        
+
+[Wed May  1 10:04:42 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18486.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18486.1.plus.bw
+    jobid: 238
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18486.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18486.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18486.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:42 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18507.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18507.1.plus.bw
+    jobid: 247
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18507.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18507.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18507.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:42 2024]
+Finished job 351.
+89 of 185 steps (48%) done
+
+[Wed May  1 10:04:42 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19098.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19098.1.minus.bw
+    jobid: 308
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19098.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19098.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19098.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:42 2024]
+Finished job 379.
+90 of 185 steps (49%) done
+
+[Wed May  1 10:04:42 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19203.2.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19203.2.minus.bw
+    jobid: 362
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19203.2.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19203.2.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19203.2.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:42 2024]
+Finished job 238.
+91 of 185 steps (49%) done
+
+[Wed May  1 10:04:42 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19160.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19160.1.minus.bw
+    jobid: 358
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19160.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19160.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19160.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:42 2024]
+Finished job 247.
+92 of 185 steps (50%) done
+
+[Wed May  1 10:04:42 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19108.2.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19108.2.minus.bw
+    jobid: 376
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19108.2.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19108.2.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19108.2.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:42 2024]
+Finished job 312.
+93 of 185 steps (50%) done
+
+[Wed May  1 10:04:42 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19093.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19093.1.minus.bw
+    jobid: 363
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19093.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19093.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19093.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:42 2024]
+Finished job 308.
+94 of 185 steps (51%) done
+
+[Wed May  1 10:04:42 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19201.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19201.1.plus.bw
+    jobid: 279
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19201.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19201.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19201.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:43 2024]
+Finished job 362.
+95 of 185 steps (51%) done
+
+[Wed May  1 10:04:43 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18520.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18520.1.plus.bw
+    jobid: 246
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18520.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18520.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18520.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:43 2024]
+Finished job 358.
+96 of 185 steps (52%) done
+
+[Wed May  1 10:04:43 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19122.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19122.1.minus.bw
+    jobid: 303
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19122.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19122.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19122.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:43 2024]
+Finished job 363.
+97 of 185 steps (52%) done
+[Wed May  1 10:04:43 2024]
+Finished job 376.
+98 of 185 steps (53%) done
+
+[Wed May  1 10:04:43 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18881.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18881.1.plus.bw
+    jobid: 236
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18881.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18881.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18881.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:43 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19119.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19119.1.minus.bw
+    jobid: 344
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19119.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19119.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19119.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:43 2024]
+Finished job 279.
+99 of 185 steps (54%) done
+
+[Wed May  1 10:04:43 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19207.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19207.1.minus.bw
+    jobid: 385
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19207.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19207.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19207.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:43 2024]
+Finished job 246.
+100 of 185 steps (54%) done
+
+[Wed May  1 10:04:43 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18508.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18508.1.minus.bw
+    jobid: 375
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18508.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18508.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18508.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:43 2024]
+Finished job 303.
+101 of 185 steps (55%) done
+
+[Wed May  1 10:04:43 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18915.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18915.1.plus.bw
+    jobid: 222
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18915.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18915.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18915.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:43 2024]
+Finished job 385.
+102 of 185 steps (55%) done
+
+[Wed May  1 10:04:43 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19117.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19117.1.minus.bw
+    jobid: 336
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19117.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19117.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19117.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:43 2024]
+Finished job 236.
+103 of 185 steps (56%) done
+
+[Wed May  1 10:04:44 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18868.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18868.1.plus.bw
+    jobid: 258
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18868.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18868.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18868.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:44 2024]
+Finished job 344.
+104 of 185 steps (56%) done
+[Wed May  1 10:04:44 2024]
+Finished job 375.
+105 of 185 steps (57%) done
+
+[Wed May  1 10:04:44 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19171.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19171.1.plus.bw
+    jobid: 278
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19171.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19171.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19171.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:44 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19092.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19092.1.minus.bw
+    jobid: 365
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19092.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19092.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19092.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:44 2024]
+Finished job 336.
+106 of 185 steps (57%) done
+
+[Wed May  1 10:04:44 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19095.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19095.1.minus.bw
+    jobid: 361
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19095.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19095.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19095.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:44 2024]
+Finished job 222.
+107 of 185 steps (58%) done
+
+[Wed May  1 10:04:44 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18917.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18917.1.minus.bw
+    jobid: 367
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18917.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18917.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18917.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:44 2024]
+Finished job 258.
+108 of 185 steps (58%) done
+
+[Wed May  1 10:04:44 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18877.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18877.1.plus.bw
+    jobid: 261
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18877.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18877.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18877.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:44 2024]
+Finished job 278.
+109 of 185 steps (59%) done
+
+[Wed May  1 10:04:44 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18923.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18923.1.minus.bw
+    jobid: 334
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18923.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18923.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18923.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:44 2024]
+Finished job 365.
+110 of 185 steps (59%) done
+
+[Wed May  1 10:04:44 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18504.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18504.1.minus.bw
+    jobid: 317
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18504.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18504.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18504.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:45 2024]
+Finished job 361.
+111 of 185 steps (60%) done
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18499.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18499.1.plus.bw
+    jobid: 213
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18499.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18499.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18499.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:45 2024]
+Finished job 367.
+112 of 185 steps (61%) done
+[Wed May  1 10:04:45 2024]
+Finished job 261.
+113 of 185 steps (61%) done
+[Wed May  1 10:04:45 2024]
+Finished job 317.
+114 of 185 steps (62%) done
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19209.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19209.1.plus.bw
+    jobid: 291
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19209.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19209.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19209.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19093.2.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19093.2.minus.bw
+    jobid: 313
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19093.2.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19093.2.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19093.2.minus.bw chr22:46,289,343-46,294,094
+        
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19236.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19236.1.minus.bw
+    jobid: 349
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19236.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19236.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19236.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:45 2024]
+Finished job 334.
+115 of 185 steps (62%) done
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18511.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18511.1.plus.bw
+    jobid: 214
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18511.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18511.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18511.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:45 2024]
+Finished job 349.
+116 of 185 steps (63%) done
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19138.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19138.1.plus.bw
+    jobid: 229
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19138.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19138.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19138.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:45 2024]
+Finished job 213.
+117 of 185 steps (63%) done
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19200.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19200.1.plus.bw
+    jobid: 233
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19200.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19200.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19200.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:45 2024]
+Finished job 291.
+118 of 185 steps (64%) done
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19206.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19206.1.plus.bw
+    jobid: 265
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19206.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19206.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19206.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:45 2024]
+Finished job 313.
+119 of 185 steps (64%) done
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18486.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18486.1.minus.bw
+    jobid: 330
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18486.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18486.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18486.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:45 2024]
+Finished job 214.
+120 of 185 steps (65%) done
+
+[Wed May  1 10:04:45 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18507.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18507.1.minus.bw
+    jobid: 339
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18507.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18507.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18507.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:46 2024]
+Finished job 229.
+121 of 185 steps (65%) done
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18876.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18876.1.plus.bw
+    jobid: 295
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18876.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18876.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18876.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:46 2024]
+Finished job 330.
+122 of 185 steps (66%) done
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18915.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18915.1.minus.bw
+    jobid: 314
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18915.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18915.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18915.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:46 2024]
+Finished job 339.
+123 of 185 steps (66%) done
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19153.2.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19153.2.minus.bw
+    jobid: 335
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19153.2.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19153.2.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19153.2.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:46 2024]
+Finished job 233.
+124 of 185 steps (67%) done
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18862.2.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18862.2.minus.bw
+    jobid: 326
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18862.2.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18862.2.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18862.2.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:46 2024]
+Finished job 265.
+125 of 185 steps (68%) done
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19152.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19152.1.plus.bw
+    jobid: 249
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19152.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19152.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19152.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:46 2024]
+Finished job 314.
+126 of 185 steps (68%) done
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18913.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18913.1.plus.bw
+    jobid: 267
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18913.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18913.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18913.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:46 2024]
+Finished job 295.
+127 of 185 steps (69%) done
+[Wed May  1 10:04:46 2024]
+Finished job 335.
+128 of 185 steps (69%) done
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18510.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18510.1.plus.bw
+    jobid: 253
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18510.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18510.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18510.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18520.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18520.1.minus.bw
+    jobid: 338
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18520.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18520.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18520.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:46 2024]
+Finished job 249.
+129 of 185 steps (70%) done
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19150.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19150.1.plus.bw
+    jobid: 215
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19150.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19150.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19150.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:46 2024]
+Finished job 326.
+130 of 185 steps (70%) done
+
+[Wed May  1 10:04:46 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19210.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19210.1.plus.bw
+    jobid: 219
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19210.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19210.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19210.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:47 2024]
+Finished job 253.
+131 of 185 steps (71%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19201.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19201.1.minus.bw
+    jobid: 371
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19201.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19201.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19201.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:47 2024]
+Finished job 338.
+132 of 185 steps (71%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19121.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19121.1.plus.bw
+    jobid: 282
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19121.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19121.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19121.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:47 2024]
+Finished job 267.
+133 of 185 steps (72%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18511.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18511.1.minus.bw
+    jobid: 306
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18511.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18511.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18511.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:47 2024]
+Finished job 215.
+134 of 185 steps (72%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18499.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18499.1.minus.bw
+    jobid: 305
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18499.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18499.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18499.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:47 2024]
+Finished job 219.
+135 of 185 steps (73%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19099.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19099.1.plus.bw
+    jobid: 231
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19099.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19099.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19099.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:47 2024]
+Finished job 282.
+136 of 185 steps (74%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19209.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19209.1.minus.bw
+    jobid: 383
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19209.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19209.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19209.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:47 2024]
+Finished job 371.
+137 of 185 steps (74%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18881.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18881.1.minus.bw
+    jobid: 328
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18881.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18881.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18881.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:47 2024]
+Finished job 231.
+138 of 185 steps (75%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18858.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18858.1.plus.bw
+    jobid: 272
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18858.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18858.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18858.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:47 2024]
+Finished job 306.
+139 of 185 steps (75%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19171.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19171.1.minus.bw
+    jobid: 370
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19171.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19171.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19171.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:47 2024]
+Finished job 305.
+140 of 185 steps (76%) done
+
+[Wed May  1 10:04:47 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18864.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18864.1.plus.bw
+    jobid: 250
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18864.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18864.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18864.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:48 2024]
+Finished job 272.
+141 of 185 steps (76%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18868.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18868.1.minus.bw
+    jobid: 350
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18868.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18868.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18868.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:48 2024]
+Finished job 328.
+142 of 185 steps (77%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18877.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18877.1.minus.bw
+    jobid: 353
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18877.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18877.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18877.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:48 2024]
+Finished job 370.
+143 of 185 steps (77%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19200.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19200.1.minus.bw
+    jobid: 325
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19200.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19200.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19200.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:48 2024]
+Finished job 250.
+144 of 185 steps (78%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19152.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19152.1.minus.bw
+    jobid: 341
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19152.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19152.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19152.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:48 2024]
+Finished job 383.
+145 of 185 steps (78%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19138.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19138.1.minus.bw
+    jobid: 321
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19138.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19138.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19138.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:48 2024]
+Finished job 325.
+146 of 185 steps (79%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18876.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18876.1.minus.bw
+    jobid: 387
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18876.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18876.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18876.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:48 2024]
+Finished job 350.
+147 of 185 steps (79%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19206.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19206.1.minus.bw
+    jobid: 357
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19206.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19206.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19206.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:48 2024]
+Finished job 353.
+148 of 185 steps (80%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19121.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19121.1.minus.bw
+    jobid: 374
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19121.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19121.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19121.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:48 2024]
+Finished job 341.
+149 of 185 steps (81%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18505.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18505.1.plus.bw
+    jobid: 298
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18505.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18505.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18505.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:48 2024]
+Finished job 321.
+150 of 185 steps (81%) done
+
+[Wed May  1 10:04:48 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18870.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18870.1.plus.bw
+    jobid: 268
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18870.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18870.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18870.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:49 2024]
+Finished job 298.
+151 of 185 steps (82%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18913.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18913.1.minus.bw
+    jobid: 359
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18913.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18913.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18913.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:49 2024]
+Finished job 387.
+152 of 185 steps (82%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19140.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19140.1.plus.bw
+    jobid: 281
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19140.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19140.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19140.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:49 2024]
+Finished job 357.
+153 of 185 steps (83%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19099.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19099.1.minus.bw
+    jobid: 323
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19099.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19099.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19099.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:49 2024]
+Finished job 268.
+154 of 185 steps (83%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18497.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18497.1.plus.bw
+    jobid: 241
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18497.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18497.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18497.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:49 2024]
+Finished job 374.
+155 of 185 steps (84%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19150.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19150.1.minus.bw
+    jobid: 307
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19150.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19150.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19150.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:49 2024]
+Finished job 241.
+156 of 185 steps (84%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19210.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19210.1.minus.bw
+    jobid: 311
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19210.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19210.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19210.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:49 2024]
+Finished job 359.
+157 of 185 steps (85%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18510.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18510.1.minus.bw
+    jobid: 345
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18510.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18510.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18510.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:49 2024]
+Finished job 323.
+158 of 185 steps (85%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18858.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18858.1.minus.bw
+    jobid: 364
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18858.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18858.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18858.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:49 2024]
+Finished job 281.
+159 of 185 steps (86%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18519.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18519.1.plus.bw
+    jobid: 285
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18519.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18519.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18519.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:49 2024]
+Finished job 307.
+160 of 185 steps (86%) done
+
+[Wed May  1 10:04:49 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18855.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18855.1.plus.bw
+    jobid: 264
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18855.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18855.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18855.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:50 2024]
+Finished job 311.
+161 of 185 steps (87%) done
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18864.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18864.1.minus.bw
+    jobid: 342
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18864.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18864.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18864.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:50 2024]
+Finished job 285.
+162 of 185 steps (88%) done
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19225.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19225.1.plus.bw
+    jobid: 254
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19225.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19225.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19225.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:50 2024]
+Finished job 345.
+163 of 185 steps (88%) done
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18852.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18852.1.plus.bw
+    jobid: 218
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18852.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18852.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18852.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:50 2024]
+Finished job 364.
+164 of 185 steps (89%) done
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19184.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19184.1.plus.bw
+    jobid: 255
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19184.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19184.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19184.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:50 2024]
+Finished job 264.
+165 of 185 steps (89%) done
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19247.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19247.1.plus.bw
+    jobid: 263
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19247.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19247.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19247.1.plus.bw chr2:74,491,012-74,494,552
+        
+[Wed May  1 10:04:50 2024]
+Finished job 342.
+166 of 185 steps (90%) done
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18870.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18870.1.minus.bw
+    jobid: 360
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18870.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18870.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18870.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:50 2024]
+Finished job 255.
+167 of 185 steps (90%) done
+[Wed May  1 10:04:50 2024]
+Finished job 254.
+168 of 185 steps (91%) done
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19153.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19153.1.plus.bw
+    jobid: 286
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19153.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19153.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19153.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19140.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19140.1.minus.bw
+    jobid: 373
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19140.1.minus.bw
+[Wed May  1 10:04:50 2024]
+
+Finished job 218.
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19140.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19140.1.minus.bw chr22:46,289,343-46,294,094
+        
+169 of 185 steps (91%) done
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18505.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18505.1.minus.bw
+    jobid: 390
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18505.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18505.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18505.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:50 2024]
+Finished job 263.
+170 of 185 steps (92%) done
+
+[Wed May  1 10:04:50 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18497.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18497.1.minus.bw
+    jobid: 333
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18497.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18497.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18497.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:51 2024]
+Finished job 333.
+171 of 185 steps (92%) done
+
+[Wed May  1 10:04:51 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18855.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18855.1.minus.bw
+    jobid: 356
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18855.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18855.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18855.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:51 2024]
+Finished job 390.
+172 of 185 steps (93%) done
+
+[Wed May  1 10:04:51 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18852.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18852.1.minus.bw
+    jobid: 310
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18852.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18852.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18852.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:51 2024]
+Finished job 286.
+173 of 185 steps (94%) done
+
+[Wed May  1 10:04:51 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19247.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19247.1.minus.bw
+    jobid: 355
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19247.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19247.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19247.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:51 2024]
+Finished job 373.
+174 of 185 steps (94%) done
+
+[Wed May  1 10:04:51 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18519.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18519.1.minus.bw
+    jobid: 377
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18519.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18519.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA18519.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:51 2024]
+Finished job 360.
+175 of 185 steps (95%) done
+
+[Wed May  1 10:04:51 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19184.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19184.1.minus.bw
+    jobid: 347
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19184.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19184.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19184.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:51 2024]
+Finished job 310.
+176 of 185 steps (95%) done
+
+[Wed May  1 10:04:51 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19225.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19225.1.minus.bw
+    jobid: 346
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19225.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19225.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19225.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:51 2024]
+Finished job 356.
+177 of 185 steps (96%) done
+
+[Wed May  1 10:04:51 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19153.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19153.1.minus.bw
+    jobid: 378
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19153.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19153.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19153.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:51 2024]
+Finished job 355.
+178 of 185 steps (96%) done
+[Wed May  1 10:04:51 2024]
+Finished job 347.
+179 of 185 steps (97%) done
+
+[Wed May  1 10:04:51 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19130.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19130.1.plus.bw
+    jobid: 230
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19130.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19130.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19130.1.plus.bw chr2:74,491,012-74,494,552
+        
+
+[Wed May  1 10:04:51 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19130.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19130.1.minus.bw
+    jobid: 322
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19130.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19130.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19130.1.minus.bw chr22:46,289,343-46,294,094
+        
+[Wed May  1 10:04:51 2024]
+Finished job 377.
+180 of 185 steps (97%) done
+[Wed May  1 10:04:52 2024]
+Finished job 378.
+181 of 185 steps (98%) done
+[Wed May  1 10:04:52 2024]
+Finished job 230.
+182 of 185 steps (98%) done
+[Wed May  1 10:04:52 2024]
+Finished job 346.
+183 of 185 steps (99%) done
+[Wed May  1 10:04:52 2024]
+Finished job 322.
+184 of 185 steps (99%) done
+
+[Wed May  1 10:04:52 2024]
+localrule all:
+    input: Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_1.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_2.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_3.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_1.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_2.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_3.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_1.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_2.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_3.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_1.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_2.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_3.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_1.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_2.bw, Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_3.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1000_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_100_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_10_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3.16_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_31.6_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3160_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_316_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_0.316_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1000_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_10_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_3.16_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_316_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_2.bw, Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_3.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_1000_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3.16_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_31.6_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw, Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_316_1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18486.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18487.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18488.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18489.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18498.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18499.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18502.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18505.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18508.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18510.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18511.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18517.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18519.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18520.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18858.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18861.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18867.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18868.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18870.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18873.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18907.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18908.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18909.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18910.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18912.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18916.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18917.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18923.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18933.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18934.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19092.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19093.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19095.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19096.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19098.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19099.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19102.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19107.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19108.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19113.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19114.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19116.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19117.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19118.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19119.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19121.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19129.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19130.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19131.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19137.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19138.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19141.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19143.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19144.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19146.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19147.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19149.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19150.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19152.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19153.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19159.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19160.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19171.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19172.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19175.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19184.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19185.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19189.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19190.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19197.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19198.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19200.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19201.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19204.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19206.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19207.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19209.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19210.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19213.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19214.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19222.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19223.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19225.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19235.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19236.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19247.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19248.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19256.1.bw, Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19257.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19206.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19140.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19101.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18852.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18859.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19092.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19128.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18913.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18855.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19127.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19141.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19203.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18862.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18505.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18519.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19225.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18516.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19102.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19207.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18853.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18507.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19137.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19190.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18520.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18523.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19160.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19152.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18912.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19116.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18517.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19119.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19114.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19209.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19171.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.2.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18504.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18870.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.2.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18861.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18522.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19098.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19204.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18511.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19257.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19222.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.2.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19130.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19200.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19108.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18508.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19172.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18909.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19138.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.2.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18510.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18916.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.2.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.2.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19093.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18856.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19099.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18907.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19131.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18858.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19223.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18871.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19201.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19153.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19159.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19144.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19143.1.bw, Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19210.1.bw, Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19122.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18523.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18499.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18511.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19150.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19098.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19141.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18852.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19210.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19101.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19093.2.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18915.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19102.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19114.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18504.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19190.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19147.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19131.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19138.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19130.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19099.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19239.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19200.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18862.2.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18881.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19257.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18486.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19137.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18879.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18497.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18923.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19153.2.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19117.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19214.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18520.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18507.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19127.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19152.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18864.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18867.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19119.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18510.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19225.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19184.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19236.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18868.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19213.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19107.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18877.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18516.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19247.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18855.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19206.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19160.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18913.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18870.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19095.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19203.2.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19093.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18858.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19092.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18522.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18917.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18862.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19198.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19171.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19201.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19096.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19140.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19121.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18508.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19108.2.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18519.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19153.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18910.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19118.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18934.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19209.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18498.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19207.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19146.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18876.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18909.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19108.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18505.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18502.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19203.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA19128.1.plus.bw, Example_TTC38_data/bigwigs/naRNA_NA18853.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19122.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18523.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18499.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18511.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19150.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19098.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19141.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18852.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19210.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19101.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19093.2.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18915.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19102.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19114.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18504.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19190.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19147.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19131.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19138.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19130.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19099.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19239.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19200.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18862.2.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19238.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18881.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19257.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18486.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19137.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18879.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18497.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18923.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19153.2.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19117.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19214.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18520.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18507.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19127.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19152.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18864.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18867.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19119.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18510.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19225.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19184.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18924.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19236.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18868.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19213.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19107.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18877.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18516.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19247.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18855.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19206.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19160.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18913.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18870.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19095.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19203.2.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19093.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18858.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19092.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18522.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18917.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18862.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19198.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19171.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19201.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19096.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19140.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19121.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18508.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19108.2.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18519.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19153.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18910.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19143.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19118.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18934.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19209.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18498.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19207.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19146.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18876.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18909.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19108.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18505.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA18502.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19203.1.minus.bw, Example_TTC38_data/bigwigs/naRNA_NA19128.1.minus.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18486.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18487.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18488.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18489.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18498.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18499.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18502.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18505.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18508.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18510.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18511.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18517.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18519.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18520.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18858.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18861.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18867.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18868.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18870.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18873.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18907.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18908.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18909.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18910.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18912.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18916.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18917.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18923.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18933.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA18934.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19092.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19093.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19095.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19096.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19098.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19099.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19102.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19107.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19108.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19113.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19114.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19116.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19117.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19118.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19119.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19121.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19129.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19130.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19131.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19137.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19138.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19141.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19143.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19144.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19146.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19147.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19149.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19150.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19152.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19153.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19159.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19160.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19171.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19172.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19175.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19184.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19185.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19189.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19190.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19197.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19198.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19200.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19201.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19204.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19206.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19207.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19209.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19210.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19213.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19214.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19222.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19223.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19225.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19235.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19236.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19247.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19248.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19256.1.bw, Example_TTC38_data/bigwigs/GeuvadisYRI_NA19257.1.bw, SNPs.vcf.gz.tbi
+    jobid: 0
+
+[Wed May  1 10:04:52 2024]
+Finished job 0.
+185 of 185 steps (100%) done
+Complete log: /project2/yangili1/bjf79/GenometracksByGenotype/test_data/.snakemake/log/2024-05-01T100423.262432.snakemake.log

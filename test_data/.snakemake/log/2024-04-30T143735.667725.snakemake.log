@@ -1,0 +1,10 @@
+FileNotFoundError in line 3 of /project2/yangili1/bjf79/GenometracksByGenotype/test_data/Snakefile:
+[Errno 2] No such file or directory: 'test_data/bigwigsToSubset.tsv'
+  File "/project2/yangili1/bjf79/GenometracksByGenotype/test_data/Snakefile", line 3, in <module>
+  File "/home/bjf79/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 610, in read_csv
+  File "/home/bjf79/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 462, in _read
+  File "/home/bjf79/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 819, in __init__
+  File "/home/bjf79/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 1050, in _make_engine
+  File "/home/bjf79/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 1867, in __init__
+  File "/home/bjf79/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 1368, in _open_handles
+  File "/home/bjf79/miniconda3/lib/python3.7/site-packages/pandas/io/common.py", line 647, in get_handle

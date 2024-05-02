@@ -1,0 +1,1984 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 5
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	131	SubsetBigwig
+	1	all
+	132
+
+[Tue Apr 30 15:05:14 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19160.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19160.1.H3K27AC.bw
+    jobid: 123
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19160.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19160.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19160.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:14 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19147.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.1.H3K27AC.bw
+    jobid: 137
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19147.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:14 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19101.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19101.1.H3K27AC.bw
+    jobid: 98
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19101.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19101.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19101.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:14 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19147.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19147.1.H3K27AC.bw
+    jobid: 77
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19147.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19147.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19147.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:14 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19203.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19203.1.H3K27AC.bw
+    jobid: 107
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19203.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19203.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19203.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:17 2024]
+Finished job 98.
+1 of 132 steps (0.76%) done
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19160.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19160.1.H3K27AC.bw
+    jobid: 81
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19160.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19160.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19160.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:17 2024]
+Finished job 123.
+2 of 132 steps (2%) done
+[Tue Apr 30 15:05:17 2024]
+Finished job 77.
+3 of 132 steps (2%) done
+[Tue Apr 30 15:05:17 2024]
+Finished job 107.
+4 of 132 steps (3%) done
+[Tue Apr 30 15:05:17 2024]
+Finished job 137.
+5 of 132 steps (4%) done
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18853.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18853.1.H3K27AC.bw
+    jobid: 115
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18853.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18853.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18853.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19222.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19222.1.H3K27AC.bw
+    jobid: 145
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19222.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19222.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19222.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18499.2.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.2.H3K27AC.bw
+    jobid: 132
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.2.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18499.2.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.2.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18501.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.1.H3K27AC.bw
+    jobid: 119
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18501.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:17 2024]
+Finished job 81.
+6 of 132 steps (5%) done
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19222.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19222.1.H3K27AC.bw
+    jobid: 92
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19222.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19222.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19222.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:17 2024]
+Finished job 115.
+7 of 132 steps (5%) done
+[Tue Apr 30 15:05:17 2024]
+Finished job 145.
+8 of 132 steps (6%) done
+[Tue Apr 30 15:05:17 2024]
+Finished job 119.
+9 of 132 steps (7%) done
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19114.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19114.1.H3K27AC.bw
+    jobid: 67
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19114.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19114.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19114.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18507.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18507.1.H3K27AC.bw
+    jobid: 116
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18507.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18507.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18507.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19114.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19114.1.H3K27AC.bw
+    jobid: 129
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19114.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19114.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19114.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:17 2024]
+Finished job 132.
+10 of 132 steps (8%) done
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19190.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19190.1.H3K27AC.bw
+    jobid: 118
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19190.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19190.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19190.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:17 2024]
+Finished job 67.
+11 of 132 steps (8%) done
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19190.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19190.1.H3K27AC.bw
+    jobid: 84
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19190.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19190.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19190.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:17 2024]
+Finished job 92.
+12 of 132 steps (9%) done
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19131.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19131.1.H3K27AC.bw
+    jobid: 164
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19131.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19131.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19131.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:17 2024]
+Finished job 129.
+13 of 132 steps (10%) done
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19131.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19131.1.H3K27AC.bw
+    jobid: 71
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19131.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19131.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19131.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:17 2024]
+Finished job 116.
+14 of 132 steps (11%) done
+
+[Tue Apr 30 15:05:17 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19098.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19098.1.H3K27AC.bw
+    jobid: 63
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19098.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19098.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19098.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:18 2024]
+Finished job 118.
+15 of 132 steps (11%) done
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19098.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19098.1.H3K27AC.bw
+    jobid: 139
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19098.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19098.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19098.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:18 2024]
+Finished job 63.
+16 of 132 steps (12%) done
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19093.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19093.1.H3K27AC.bw
+    jobid: 62
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19093.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19093.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19093.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:18 2024]
+Finished job 71.
+17 of 132 steps (13%) done
+[Tue Apr 30 15:05:18 2024]
+Finished job 84.
+18 of 132 steps (14%) done
+[Tue Apr 30 15:05:18 2024]
+Finished job 164.
+19 of 132 steps (14%) done
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19093.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19093.1.H3K27AC.bw
+    jobid: 160
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19093.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19093.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19093.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18907.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18907.1.H3K27AC.bw
+    jobid: 163
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18907.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18907.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18907.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18907.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18907.1.H3K27AC.bw
+    jobid: 57
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18907.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18907.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18907.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:18 2024]
+Finished job 139.
+20 of 132 steps (15%) done
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18501.2.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.2.H3K27AC.bw
+    jobid: 135
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.2.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18501.2.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.2.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:18 2024]
+Finished job 160.
+21 of 132 steps (16%) done
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19102.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19102.1.H3K27AC.bw
+    jobid: 113
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19102.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19102.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19102.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:18 2024]
+Finished job 62.
+22 of 132 steps (17%) done
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19102.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19102.1.H3K27AC.bw
+    jobid: 65
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19102.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19102.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19102.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:18 2024]
+Finished job 163.
+23 of 132 steps (17%) done
+[Tue Apr 30 15:05:18 2024]
+Finished job 57.
+24 of 132 steps (18%) done
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18856.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18856.1.H3K27AC.bw
+    jobid: 161
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18856.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18856.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18856.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18520.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18520.1.H3K27AC.bw
+    jobid: 120
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18520.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18520.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18520.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:18 2024]
+Finished job 135.
+25 of 132 steps (19%) done
+
+[Tue Apr 30 15:05:18 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18520.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18520.1.H3K27AC.bw
+    jobid: 53
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18520.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18520.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18520.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 113.
+26 of 132 steps (20%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19159.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19159.1.H3K27AC.bw
+    jobid: 170
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19159.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19159.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19159.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 65.
+27 of 132 steps (20%) done
+[Tue Apr 30 15:05:19 2024]
+Finished job 161.
+28 of 132 steps (21%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19159.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19159.1.H3K27AC.bw
+    jobid: 80
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19159.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19159.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19159.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19108.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19108.1.H3K27AC.bw
+    jobid: 66
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19108.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19108.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19108.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 53.
+29 of 132 steps (22%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19108.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19108.1.H3K27AC.bw
+    jobid: 149
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19108.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19108.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19108.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 120.
+30 of 132 steps (23%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19225.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19225.1.H3K27AC.bw
+    jobid: 94
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19225.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19225.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19225.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 170.
+31 of 132 steps (23%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19225.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19225.1.H3K27AC.bw
+    jobid: 111
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19225.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19225.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19225.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 80.
+32 of 132 steps (24%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19141.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19141.1.H3K27AC.bw
+    jobid: 74
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19141.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19141.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19141.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 149.
+33 of 132 steps (25%) done
+[Tue Apr 30 15:05:19 2024]
+Finished job 66.
+34 of 132 steps (26%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19141.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19141.1.H3K27AC.bw
+    jobid: 106
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19141.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19141.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19141.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18510.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18510.1.H3K27AC.bw
+    jobid: 155
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18510.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18510.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18510.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 94.
+35 of 132 steps (27%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18510.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18510.1.H3K27AC.bw
+    jobid: 49
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18510.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18510.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18510.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 111.
+36 of 132 steps (27%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19147.2.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.2.H3K27AC.bw
+    jobid: 146
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.2.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19147.2.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.2.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 74.
+37 of 132 steps (28%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18852.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18852.1.H3K27AC.bw
+    jobid: 99
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18852.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18852.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18852.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:19 2024]
+Finished job 106.
+38 of 132 steps (29%) done
+[Tue Apr 30 15:05:19 2024]
+Finished job 155.
+39 of 132 steps (30%) done
+
+[Tue Apr 30 15:05:19 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18498.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.1.H3K27AC.bw
+    jobid: 157
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18498.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18498.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18498.1.H3K27AC.bw
+    jobid: 44
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18498.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18498.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18498.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 49.
+40 of 132 steps (30%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18909.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18909.1.H3K27AC.bw
+    jobid: 58
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18909.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18909.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18909.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 146.
+41 of 132 steps (31%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18909.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18909.1.H3K27AC.bw
+    jobid: 152
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18909.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18909.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18909.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 99.
+42 of 132 steps (32%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19144.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19144.1.H3K27AC.bw
+    jobid: 171
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19144.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19144.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19144.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 44.
+43 of 132 steps (33%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19144.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19144.1.H3K27AC.bw
+    jobid: 76
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19144.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19144.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19144.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 157.
+44 of 132 steps (33%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19119.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19119.1.H3K27AC.bw
+    jobid: 69
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19119.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19119.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19119.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 58.
+45 of 132 steps (34%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19119.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19119.1.H3K27AC.bw
+    jobid: 128
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19119.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19119.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19119.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 152.
+46 of 132 steps (35%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18516.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18516.1.H3K27AC.bw
+    jobid: 112
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18516.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18516.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18516.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 76.
+47 of 132 steps (36%) done
+[Tue Apr 30 15:05:20 2024]
+Finished job 171.
+48 of 132 steps (36%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19128.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19128.1.H3K27AC.bw
+    jobid: 102
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19128.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19128.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19128.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19127.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19127.1.H3K27AC.bw
+    jobid: 105
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19127.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19127.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19127.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 69.
+49 of 132 steps (37%) done
+[Tue Apr 30 15:05:20 2024]
+Finished job 128.
+50 of 132 steps (38%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19201.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19201.1.H3K27AC.bw
+    jobid: 168
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19201.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19201.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19201.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19201.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19201.1.H3K27AC.bw
+    jobid: 86
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19201.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19201.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19201.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:20 2024]
+Finished job 112.
+51 of 132 steps (39%) done
+
+[Tue Apr 30 15:05:20 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19130.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19130.1.H3K27AC.bw
+    jobid: 70
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19130.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19130.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19130.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 102.
+52 of 132 steps (39%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19130.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19130.1.H3K27AC.bw
+    jobid: 147
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19130.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19130.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19130.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 105.
+53 of 132 steps (40%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19204.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19204.1.H3K27AC.bw
+    jobid: 142
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19204.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19204.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19204.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 168.
+54 of 132 steps (41%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19204.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19204.1.H3K27AC.bw
+    jobid: 87
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19204.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19204.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19204.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 86.
+55 of 132 steps (42%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18504.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18504.1.H3K27AC.bw
+    jobid: 133
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18504.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18504.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18504.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 70.
+56 of 132 steps (42%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18498.2.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.2.H3K27AC.bw
+    jobid: 158
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.2.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18498.2.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.2.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 147.
+57 of 132 steps (43%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19206.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19206.1.H3K27AC.bw
+    jobid: 88
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19206.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19206.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19206.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 142.
+58 of 132 steps (44%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19206.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19206.1.H3K27AC.bw
+    jobid: 96
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19206.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19206.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19206.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 87.
+59 of 132 steps (45%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18913.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18913.1.H3K27AC.bw
+    jobid: 103
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18913.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18913.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18913.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 133.
+60 of 132 steps (45%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18871.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18871.1.H3K27AC.bw
+    jobid: 167
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18871.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18871.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18871.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 158.
+61 of 132 steps (46%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18505.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18505.1.H3K27AC.bw
+    jobid: 109
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18505.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18505.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18505.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 88.
+62 of 132 steps (47%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18505.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18505.1.H3K27AC.bw
+    jobid: 47
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18505.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18505.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18505.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:21 2024]
+Finished job 96.
+63 of 132 steps (48%) done
+
+[Tue Apr 30 15:05:21 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18859.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18859.1.H3K27AC.bw
+    jobid: 100
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18859.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18859.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18859.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 103.
+64 of 132 steps (48%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18855.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18855.1.H3K27AC.bw
+    jobid: 104
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18855.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18855.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18855.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 167.
+65 of 132 steps (49%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19116.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19116.1.H3K27AC.bw
+    jobid: 126
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19116.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19116.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19116.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 109.
+66 of 132 steps (50%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19116.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19116.1.H3K27AC.bw
+    jobid: 68
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19116.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19116.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19116.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 100.
+67 of 132 steps (51%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19099.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19099.1.H3K27AC.bw
+    jobid: 64
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19099.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19099.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19099.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 47.
+68 of 132 steps (52%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19099.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19099.1.H3K27AC.bw
+    jobid: 162
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19099.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19099.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19099.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 104.
+69 of 132 steps (52%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18862.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18862.1.H3K27AC.bw
+    jobid: 108
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18862.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18862.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18862.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 126.
+70 of 132 steps (53%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18858.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18858.1.H3K27AC.bw
+    jobid: 165
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18858.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18858.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18858.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 68.
+71 of 132 steps (54%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18858.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18858.1.H3K27AC.bw
+    jobid: 54
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18858.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18858.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18858.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 64.
+72 of 132 steps (55%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18502.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.1.H3K27AC.bw
+    jobid: 140
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18502.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 162.
+73 of 132 steps (55%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18502.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18502.1.H3K27AC.bw
+    jobid: 46
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18502.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18502.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18502.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 108.
+74 of 132 steps (56%) done
+[Tue Apr 30 15:05:22 2024]
+Finished job 165.
+75 of 132 steps (57%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19143.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19143.1.H3K27AC.bw
+    jobid: 172
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19143.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19143.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19143.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19143.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19143.1.H3K27AC.bw
+    jobid: 75
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19143.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19143.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19143.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:22 2024]
+Finished job 54.
+76 of 132 steps (58%) done
+
+[Tue Apr 30 15:05:22 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18511.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18511.1.H3K27AC.bw
+    jobid: 50
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18511.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18511.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18511.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 46.
+77 of 132 steps (58%) done
+[Tue Apr 30 15:05:23 2024]
+Finished job 140.
+78 of 132 steps (59%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19138.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19138.1.H3K27AC.bw
+    jobid: 73
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19138.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19138.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19138.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18511.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18511.1.H3K27AC.bw
+    jobid: 143
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18511.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18511.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18511.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 172.
+79 of 132 steps (60%) done
+[Tue Apr 30 15:05:23 2024]
+Finished job 75.
+80 of 132 steps (61%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19209.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19209.1.H3K27AC.bw
+    jobid: 130
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19209.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19209.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19209.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:23 2024]
+[Tue Apr 30 15:05:23 2024]
+Finished job 50.
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19138.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19138.1.H3K27AC.bw
+    jobid: 153
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19138.1.H3K27AC.bw
+81 of 132 steps (61%) done
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19138.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19138.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19209.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19209.1.H3K27AC.bw
+    jobid: 90
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19209.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19209.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19209.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 73.
+82 of 132 steps (62%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19140.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19140.1.H3K27AC.bw
+    jobid: 97
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19140.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19140.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19140.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 143.
+83 of 132 steps (63%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18870.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18870.1.H3K27AC.bw
+    jobid: 56
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18870.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18870.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18870.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 130.
+84 of 132 steps (64%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18870.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18870.1.H3K27AC.bw
+    jobid: 134
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18870.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18870.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18870.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 90.
+85 of 132 steps (64%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19171.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19171.1.H3K27AC.bw
+    jobid: 82
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19171.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19171.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19171.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 153.
+86 of 132 steps (65%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19171.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19171.1.H3K27AC.bw
+    jobid: 131
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19171.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19171.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19171.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 97.
+87 of 132 steps (66%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18523.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18523.1.H3K27AC.bw
+    jobid: 122
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18523.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18523.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18523.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 56.
+88 of 132 steps (67%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18861.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18861.1.H3K27AC.bw
+    jobid: 136
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18861.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18861.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18861.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:23 2024]
+Finished job 134.
+89 of 132 steps (67%) done
+
+[Tue Apr 30 15:05:23 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18861.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18861.1.H3K27AC.bw
+    jobid: 55
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18861.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18861.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18861.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 82.
+90 of 132 steps (68%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18502.2.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.2.H3K27AC.bw
+    jobid: 159
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.2.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18502.2.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.2.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 131.
+91 of 132 steps (69%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19257.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19257.1.H3K27AC.bw
+    jobid: 95
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19257.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19257.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19257.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 122.
+92 of 132 steps (70%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19257.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19257.1.H3K27AC.bw
+    jobid: 144
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19257.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19257.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19257.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 136.
+93 of 132 steps (70%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19200.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19200.1.H3K27AC.bw
+    jobid: 148
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19200.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19200.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19200.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 55.
+94 of 132 steps (71%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19200.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19200.1.H3K27AC.bw
+    jobid: 85
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19200.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19200.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19200.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 159.
+95 of 132 steps (72%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19092.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19092.1.H3K27AC.bw
+    jobid: 101
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19092.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19092.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19092.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 95.
+96 of 132 steps (73%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19092.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19092.1.H3K27AC.bw
+    jobid: 61
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19092.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19092.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19092.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 144.
+97 of 132 steps (73%) done
+[Tue Apr 30 15:05:24 2024]
+Finished job 148.
+98 of 132 steps (74%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19172.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19172.1.H3K27AC.bw
+    jobid: 151
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19172.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19172.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19172.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19172.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19172.1.H3K27AC.bw
+    jobid: 83
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19172.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19172.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19172.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 85.
+99 of 132 steps (75%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19153.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19153.1.H3K27AC.bw
+    jobid: 169
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19153.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19153.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19153.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 61.
+100 of 132 steps (76%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19153.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19153.1.H3K27AC.bw
+    jobid: 79
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19153.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19153.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19153.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:24 2024]
+Finished job 101.
+101 of 132 steps (77%) done
+
+[Tue Apr 30 15:05:24 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18517.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18517.1.H3K27AC.bw
+    jobid: 127
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18517.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18517.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18517.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 83.
+102 of 132 steps (77%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18517.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18517.1.H3K27AC.bw
+    jobid: 51
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18517.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18517.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18517.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 151.
+103 of 132 steps (78%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19207.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19207.1.H3K27AC.bw
+    jobid: 114
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19207.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19207.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19207.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 169.
+104 of 132 steps (79%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19207.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19207.1.H3K27AC.bw
+    jobid: 89
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19207.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19207.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19207.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 79.
+105 of 132 steps (80%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19152.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19152.1.H3K27AC.bw
+    jobid: 78
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19152.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19152.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19152.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 127.
+106 of 132 steps (80%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19152.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19152.1.H3K27AC.bw
+    jobid: 124
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19152.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19152.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19152.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 51.
+107 of 132 steps (81%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18499.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.1.H3K27AC.bw
+    jobid: 121
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18499.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 114.
+108 of 132 steps (82%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18499.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18499.1.H3K27AC.bw
+    jobid: 45
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18499.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18499.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18499.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 89.
+109 of 132 steps (83%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19210.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19210.1.H3K27AC.bw
+    jobid: 173
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19210.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19210.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19210.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 78.
+110 of 132 steps (83%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19210.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19210.1.H3K27AC.bw
+    jobid: 91
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19210.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19210.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19210.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 124.
+111 of 132 steps (84%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18489.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18489.1.H3K27AC.bw
+    jobid: 43
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18489.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18489.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18489.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 121.
+112 of 132 steps (85%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18489.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.1.H3K27AC.bw
+    jobid: 141
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18489.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:25 2024]
+Finished job 45.
+113 of 132 steps (86%) done
+
+[Tue Apr 30 15:05:25 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19137.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19137.1.H3K27AC.bw
+    jobid: 72
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19137.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19137.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19137.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 173.
+114 of 132 steps (86%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19137.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19137.1.H3K27AC.bw
+    jobid: 117
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19137.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19137.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19137.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 91.
+115 of 132 steps (87%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18912.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18912.1.H3K27AC.bw
+    jobid: 125
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18912.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18912.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18912.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 43.
+116 of 132 steps (88%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18912.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18912.1.H3K27AC.bw
+    jobid: 59
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18912.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18912.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18912.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 141.
+117 of 132 steps (89%) done
+[Tue Apr 30 15:05:26 2024]
+Finished job 72.
+118 of 132 steps (89%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18508.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18508.1.H3K27AC.bw
+    jobid: 48
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18508.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18508.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18508.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18508.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18508.1.H3K27AC.bw
+    jobid: 150
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18508.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18508.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18508.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 125.
+119 of 132 steps (90%) done
+[Tue Apr 30 15:05:26 2024]
+Finished job 117.
+120 of 132 steps (91%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19223.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19223.1.H3K27AC.bw
+    jobid: 166
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19223.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19223.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19223.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18489.2.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.2.H3K27AC.bw
+    jobid: 154
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.2.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18489.2.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.2.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 59.
+121 of 132 steps (92%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19223.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19223.1.H3K27AC.bw
+    jobid: 93
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19223.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA19223.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19223.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 150.
+122 of 132 steps (92%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18916.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18916.1.H3K27AC.bw
+    jobid: 156
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18916.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18916.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18916.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 48.
+123 of 132 steps (93%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18916.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18916.1.H3K27AC.bw
+    jobid: 60
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18916.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18916.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18916.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 166.
+124 of 132 steps (94%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18522.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18522.1.H3K27AC.bw
+    jobid: 138
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18522.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18522.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18522.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 154.
+125 of 132 steps (95%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18519.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18519.1.H3K27AC.bw
+    jobid: 110
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18519.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18519.1.bw test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18519.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:26 2024]
+Finished job 93.
+126 of 132 steps (95%) done
+
+[Tue Apr 30 15:05:26 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18519.1.bw
+    output: test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18519.1.H3K27AC.bw
+    jobid: 52
+    wildcards: bw_out=test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18519.1.H3K27AC.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18519.1.bw test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18519.1.H3K27AC.bw chr4:123,137-127,511
+
+        
+[Tue Apr 30 15:05:27 2024]
+Finished job 156.
+127 of 132 steps (96%) done
+[Tue Apr 30 15:05:27 2024]
+Finished job 60.
+128 of 132 steps (97%) done
+[Tue Apr 30 15:05:27 2024]
+Finished job 138.
+129 of 132 steps (98%) done
+[Tue Apr 30 15:05:27 2024]
+Finished job 110.
+130 of 132 steps (98%) done
+[Tue Apr 30 15:05:27 2024]
+Finished job 52.
+131 of 132 steps (99%) done
+
+[Tue Apr 30 15:05:27 2024]
+localrule all:
+    input: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_3.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_3.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_3.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_3.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_3.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1000_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_100_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_10_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3.16_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_31.6_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3160_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_316_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_0.316_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1000_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_10_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_3.16_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_316_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_2.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_3.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_1000_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3.16_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_31.6_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_316_1.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18489.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18498.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18499.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18502.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18505.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18508.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18510.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18511.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18517.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18519.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18520.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18858.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18861.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18870.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18907.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18909.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18912.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA18916.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19092.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19093.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19098.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19099.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19102.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19108.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19114.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19116.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19119.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19130.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19131.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19137.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19138.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19141.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19143.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19144.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19147.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19152.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19153.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19159.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19160.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19171.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19172.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19190.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19200.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19201.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19204.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19206.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19207.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19209.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19210.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19222.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19223.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19225.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/GeuvadisYRI_RNAseq_NA19257.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19206.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19140.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19101.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18852.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18859.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19092.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19128.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18913.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18855.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19127.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19141.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19203.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18862.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18505.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18519.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19225.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18516.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19102.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19207.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18853.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18507.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19137.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19190.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18520.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18523.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19160.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19152.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18912.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19116.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18517.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19119.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19114.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19209.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19171.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18499.2.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18504.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18870.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18501.2.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18861.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18522.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19098.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19204.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18511.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19257.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19222.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19147.2.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19130.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19200.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19108.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18508.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19172.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18909.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19138.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18489.2.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18510.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18916.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18498.2.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18502.2.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19093.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18856.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19099.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18907.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19131.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18858.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19223.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA18871.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19201.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19153.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19159.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19144.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19143.1.H3K27AC.bw, test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_NA19210.1.H3K27AC.bw
+    jobid: 0
+
+[Tue Apr 30 15:05:27 2024]
+Finished job 0.
+132 of 132 steps (100%) done
+Complete log: /project2/yangili1/bjf79/GenometracksByGenotype/test_data/.snakemake/log/2024-04-30T150513.422387.snakemake.log

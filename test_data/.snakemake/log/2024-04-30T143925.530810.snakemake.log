@@ -1,0 +1,137 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 5
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	42	SubsetBigwig
+	1	all
+	43
+
+[Tue Apr 30 14:39:27 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_3160_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw
+    jobid: 41
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_3160_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw 40    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+
+[Tue Apr 30 14:39:27 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_31.6_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw
+    jobid: 30
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_31.6_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw 29    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+
+[Tue Apr 30 14:39:27 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_100_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw
+    jobid: 26
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_100_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw 25    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+
+[Tue Apr 30 14:39:27 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_10000_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw
+    jobid: 35
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_10000_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw 34    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+
+[Tue Apr 30 14:39:27 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_100_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw
+    jobid: 37
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_100_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw 36    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+[Tue Apr 30 14:39:30 2024]
+[Tue Apr 30 14:39:30 2024]
+[Tue Apr 30 14:39:30 2024]
+Error in rule SubsetBigwig:
+[Tue Apr 30 14:39:30 2024]
+Error in rule SubsetBigwig:
+[Tue Apr 30 14:39:30 2024]
+Error in rule SubsetBigwig:
+    jobid: 37
+Error in rule SubsetBigwig:
+    jobid: 30
+Error in rule SubsetBigwig:
+    jobid: 26
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw
+    jobid: 35
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw
+    jobid: 41
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw
+    shell:
+        
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_100_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw 36    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw
+    shell:
+        
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_31.6_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw 29    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw
+    shell:
+        
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_100_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw 25    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+    shell:
+        
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_10000_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw 34    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+    shell:
+        
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_3160_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw 40    chr4:3,211,727-3,215,527
+Name: ROI, dtype: object
+
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /project2/yangili1/bjf79/GenometracksByGenotype/test_data/.snakemake/log/2024-04-30T143925.530810.snakemake.log

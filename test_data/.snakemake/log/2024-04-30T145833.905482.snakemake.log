@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 23 of /project2/yangili1/bjf79/GenometracksByGenotype/test_data/Snakefile:
+Missing input files for rule SubsetBigwig:
+/project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/H3K27AC/NA18486.1.bw

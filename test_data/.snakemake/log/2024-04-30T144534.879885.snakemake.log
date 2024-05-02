@@ -1,0 +1,649 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 5
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	42	SubsetBigwig
+	1	all
+	43
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_3160_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw
+    jobid: 41
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_3160_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw chr4:3,211,727-3,215,527
+
+        
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_31.6_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw
+    jobid: 30
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_31.6_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw chr4:3,211,727-3,215,527
+
+        
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_100_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw
+    jobid: 26
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_100_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw chr4:3,211,727-3,215,527
+
+        
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_10000_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw
+    jobid: 35
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_10000_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw chr4:3,211,727-3,215,527
+
+        
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_100_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw
+    jobid: 37
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_100_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:36 2024]
+Finished job 35.
+1 of 43 steps (2%) done
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_10_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_10_1.bw
+    jobid: 18
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_10_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_10_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_10_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:36 2024]
+Finished job 41.
+2 of 43 steps (5%) done
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_SM2_NA_1.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_1.bw
+    jobid: 13
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_SM2_NA_1.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:36 2024]
+Finished job 26.
+3 of 43 steps (7%) done
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_3.16_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3.16_1.bw
+    jobid: 39
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3.16_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_3.16_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3.16_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:36 2024]
+Finished job 37.
+4 of 43 steps (9%) done
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_316_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_316_1.bw
+    jobid: 31
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_316_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_316_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_316_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:36 2024]
+Finished job 30.
+5 of 43 steps (12%) done
+
+[Tue Apr 30 14:45:36 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_316_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_316_1.bw
+    jobid: 42
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_316_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_316_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_316_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 18.
+6 of 43 steps (14%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_SM2_NA_2.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_2.bw
+    jobid: 14
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_2.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_SM2_NA_2.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_2.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 13.
+7 of 43 steps (16%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_100_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_100_1.bw
+    jobid: 17
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_100_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_100_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_100_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 31.
+8 of 43 steps (19%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_DMSO_NA_3.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_3.bw
+    jobid: 12
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_3.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_DMSO_NA_3.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_3.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 42.
+9 of 43 steps (21%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_1000_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1000_1.bw
+    jobid: 25
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1000_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_1000_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1000_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 39.
+10 of 43 steps (23%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_3.16_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3.16_1.bw
+    jobid: 20
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3.16_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_3.16_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3.16_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 17.
+11 of 43 steps (26%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_1_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1_1.bw
+    jobid: 19
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_1_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 14.
+12 of 43 steps (28%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_CUOME_NA_2.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_2.bw
+    jobid: 8
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_2.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_CUOME_NA_2.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_2.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 12.
+13 of 43 steps (30%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_DMSO_NA_2.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_2.bw
+    jobid: 33
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_2.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_DMSO_NA_2.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_2.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 25.
+14 of 43 steps (33%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_3160_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3160_1.bw
+    jobid: 22
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3160_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_3160_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3160_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:37 2024]
+Finished job 20.
+15 of 43 steps (35%) done
+
+[Tue Apr 30 14:45:37 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_SM2_NA_3.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_3.bw
+    jobid: 15
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_3.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_SM2_NA_3.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_3.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:38 2024]
+Finished job 8.
+16 of 43 steps (37%) done
+
+[Tue Apr 30 14:45:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_DMSO_NA_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_1.bw
+    jobid: 32
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_DMSO_NA_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:38 2024]
+Finished job 33.
+17 of 43 steps (40%) done
+
+[Tue Apr 30 14:45:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_31.6_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_31.6_1.bw
+    jobid: 21
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_31.6_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_31.6_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_31.6_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:38 2024]
+Finished job 19.
+18 of 43 steps (42%) done
+
+[Tue Apr 30 14:45:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_31.6_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_31.6_1.bw
+    jobid: 40
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_31.6_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_31.6_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_31.6_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:38 2024]
+Finished job 22.
+19 of 43 steps (44%) done
+
+[Tue Apr 30 14:45:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_C2_NA_1.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_1.bw
+    jobid: 4
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_C2_NA_1.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:38 2024]
+Finished job 15.
+20 of 43 steps (47%) done
+
+[Tue Apr 30 14:45:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_10_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10_1.bw
+    jobid: 38
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_10_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:38 2024]
+Finished job 21.
+21 of 43 steps (49%) done
+[Tue Apr 30 14:45:38 2024]
+Finished job 32.
+22 of 43 steps (51%) done
+[Tue Apr 30 14:45:38 2024]
+Finished job 40.
+23 of 43 steps (53%) done
+
+[Tue Apr 30 14:45:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_DMSO_NA_3.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_3.bw
+    jobid: 34
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_3.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_DMSO_NA_3.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_3.bw chr4:3,211,727-3,215,527
+
+        
+
+[Tue Apr 30 14:45:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_CUOME_NA_1.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_1.bw
+    jobid: 7
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_CUOME_NA_1.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_1.bw chr4:3,211,727-3,215,527
+
+        
+
+[Tue Apr 30 14:45:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_1_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1_1.bw
+    jobid: 28
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_1_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:38 2024]
+Finished job 4.
+24 of 43 steps (56%) done
+
+[Tue Apr 30 14:45:38 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_A10_NA_1.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_1.bw
+    jobid: 1
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_A10_NA_1.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:39 2024]
+Finished job 38.
+25 of 43 steps (58%) done
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_CUOME_NA_3.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_3.bw
+    jobid: 9
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_3.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_CUOME_NA_3.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_3.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:39 2024]
+Finished job 34.
+26 of 43 steps (60%) done
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_A10_NA_3.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_3.bw
+    jobid: 3
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_3.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_A10_NA_3.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_3.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:39 2024]
+Finished job 7.
+27 of 43 steps (63%) done
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_C2_NA_2.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_2.bw
+    jobid: 5
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_2.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_C2_NA_2.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_2.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:39 2024]
+Finished job 28.
+28 of 43 steps (65%) done
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_1000_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1000_1.bw
+    jobid: 16
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1000_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_1000_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1000_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:39 2024]
+Finished job 1.
+29 of 43 steps (67%) done
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_10_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_10_1.bw
+    jobid: 27
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_10_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_10_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_10_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:39 2024]
+Finished job 5.
+30 of 43 steps (70%) done
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_316_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_316_1.bw
+    jobid: 23
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_316_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Branaplam_316_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_316_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:39 2024]
+Finished job 16.
+31 of 43 steps (72%) done
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_A10_NA_2.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_2.bw
+    jobid: 2
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_2.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_A10_NA_2.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_2.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:39 2024]
+Finished job 9.
+32 of 43 steps (74%) done
+[Tue Apr 30 14:45:39 2024]
+Finished job 3.
+33 of 43 steps (77%) done
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_C2_NA_3.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_3.bw
+    jobid: 6
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_3.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_C2_NA_3.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_3.bw chr4:3,211,727-3,215,527
+
+        
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_0.316_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_0.316_1.bw
+    jobid: 24
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_0.316_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_0.316_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_0.316_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:39 2024]
+Finished job 27.
+34 of 43 steps (79%) done
+
+[Tue Apr 30 14:45:39 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_DMSO_NA_2.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_2.bw
+    jobid: 11
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_2.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_DMSO_NA_2.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_2.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:40 2024]
+Finished job 2.
+35 of 43 steps (81%) done
+
+[Tue Apr 30 14:45:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_1000_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_1000_1.bw
+    jobid: 36
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_1000_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_Risdiplam_1000_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_1000_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:40 2024]
+Finished job 23.
+36 of 43 steps (84%) done
+
+[Tue Apr 30 14:45:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_DMSO_NA_1.bw
+    output: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_1.bw
+    jobid: 10
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/1_Fibroblast_polyA_DMSO_NA_1.bw test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:40 2024]
+Finished job 24.
+37 of 43 steps (86%) done
+
+[Tue Apr 30 14:45:40 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_3.16_1.bw
+    output: test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_3.16_1.bw
+    jobid: 29
+    wildcards: bw_out=test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_3.16_1.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/sm_splicingmodulators/code/rna-seq/bigwigs/unstranded/2_LCL_polyA_C2C5_3.16_1.bw test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_3.16_1.bw chr4:3,211,727-3,215,527
+
+        
+[Tue Apr 30 14:45:40 2024]
+Finished job 6.
+38 of 43 steps (88%) done
+[Tue Apr 30 14:45:40 2024]
+Finished job 11.
+39 of 43 steps (91%) done
+[Tue Apr 30 14:45:40 2024]
+Finished job 36.
+40 of 43 steps (93%) done
+[Tue Apr 30 14:45:40 2024]
+Finished job 29.
+41 of 43 steps (95%) done
+[Tue Apr 30 14:45:40 2024]
+Finished job 10.
+42 of 43 steps (98%) done
+
+[Tue Apr 30 14:45:40 2024]
+localrule all:
+    input: test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_A10_NA_3.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_C2_NA_3.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_CUOME_NA_3.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_DMSO_NA_3.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_1.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_2.bw, test_data/Example_HTT_data/bigwigs/1_Fibroblast_polyA_SM2_NA_3.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1000_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_100_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_10_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_1_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3.16_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_31.6_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_3160_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Branaplam_316_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_0.316_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1000_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_100_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_10_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_1_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_3.16_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_31.6_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_C2C5_316_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_2.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_DMSO_NA_3.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10000_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_1000_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_100_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_10_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3.16_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_31.6_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_3160_1.bw, test_data/Example_HTT_data/bigwigs/2_LCL_polyA_Risdiplam_316_1.bw
+    jobid: 0
+
+[Tue Apr 30 14:45:40 2024]
+Finished job 0.
+43 of 43 steps (100%) done
+Complete log: /project2/yangili1/bjf79/GenometracksByGenotype/test_data/.snakemake/log/2024-04-30T144534.879885.snakemake.log

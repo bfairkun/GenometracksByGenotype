@@ -1,11 +1,12 @@
-test_results/
-*.vim
-scratch/
-logs/
-tmp/
 *
+!*.sh
+!.yml
 !images/
+!images/**
 !PremadeTracks/
+!PremadeTracks/**
 !test_data/
+!test_data/**
 !tracks_templates/
+!tracks_templates/**
 !*.py

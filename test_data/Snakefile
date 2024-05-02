@@ -1,0 +1,75 @@
+import pandas as pd
+
+bws_to_subset = pd.read_csv("bigwigsToSubset.tsv", sep="\t")
+
+# I want to make an example to demonstrate:
+# 1. An example of averaging groups (default, HTT).
+# 1.5  An example of averaging groups (default, HTT), with colors, sashimi, groups file.
+# 2. an example hQTL with the averaged ini (chr4 H3K27ac data, use glob pattern.)
+# 3. an example hQTL with the averaged ini with individual lines too (chr4 H3K27ac data).
+# 4. an example sQTL with links (TTC31 example, chr2:74,489,259-74,495,385)
+# 5. an example splicing effect (no genotype effect), and making an IGV session from it (HTT example, chr4:3,211,389-3,216,407).
+
+# test data to prep:
+# bigwigs of fibroblast data at HTT (chr4:3,211,727-3,215,527), with splicing data for same
+# ZNF718 (chr4:121,786-166,238) bigwigs for H3K27Ac and polyAseq
+# TTC31 (chr2:74,490,737-74,494,210) and splicing data for same region. polyAseq and naRNA
+# same HTT example, but with titration series data.
+
+
+rule all:
+    input:
+        bws_to_subset['bigwig_out'],
+        "SNPs.vcf.gz.tbi",
+
+rule SubsetBigwig:
+    input:
+        lambda wildcards: bws_to_subset.loc[bws_to_subset['bigwig_out']==wildcards.bw_out]['bigwig']
+    output:
+        "{bw_out}"
+    params:
+        ROI = lambda wildcards: bws_to_subset.loc[bws_to_subset['bigwig_out']==wildcards.bw_out]['ROI'].unique()[0]
+    wildcard_constraints:
+        bw_out = "|".join(bws_to_subset['bigwig_out'])
+    shell:
+        """
+        python ../SubsetBigwig.py {input} {output} {params.ROI}
+        """
+
+rule SubsetVcf:
+    input:
+        vcf = "/project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38_SubsetYRI/WholeGenome.vcf.gz",
+        tbi = "/project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38_SubsetYRI/WholeGenome.vcf.gz"
+    output:
+        vcf = "SNPs.vcf.gz",
+        tbi = "SNPs.vcf.gz.tbi",
+    shell:
+        """
+        bcftools view {input.vcf} -O z -r chr22:46291323-46291323,chr4:173806-173807 > {output.vcf}
+        tabix -p vcf {output.vcf}
+        """
+
+### Still need to add gene track to example2+
+#Example1
+python AggregateBigwigsForPlotting.py --BigwigList test_data/bigwig.list.OnlyFirstExample.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp   --Region chr4:3,211,727-3,215,527  -v 
+pyGenomeTracks  --region chr4:3,211,727-3,215,527 --tracks tmp/tmptracks.ini -o images/example_01.png
+#Example2
+python AggregateBigwigsForPlotting.py --BigwigList test_data/bigwig.list.OnlyFirstExample.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp   --Region chr4:3,211,727-3,215,527  --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.A.tsv --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --BedfileForSashimiLinks test_data/Example_HTT_data/SplicingTable.bed.gz
+pyGenomeTracks  --region chr4:3,211,727-3,215,527 --tracks tmp/tmptracks.ini -o images/example_02.png
+#Example3. Also include the igv session flag
+ python AggregateBigwigsForPlotting.py --BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp   --Region chr4:3,211,727-3,215,527  --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.B.tsv --NoSashimi --TracksTemplate tracks_templates/GeneralPurposeColoredByGenotypeWithSupergroups.ini --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --JinjaDfOutput --IGVSessionOutput --IGVSessionTemplate tracks_templates/GeneralPurpose.xml
+pyGenomeTracks  --region chr4:3,211,727-3,215,527 --tracks tmp/tmptracks.ini -o images/example_03.png
+#Example. HTT_Normalization
+ python AggregateBigwigsForPlotting.py --BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp   --Region chr4:3,211,727-3,215,527  --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.B.tsv --NoSashimi --TracksTemplate tracks_templates/GeneralPurposeColoredByGenotypeWithSupergroups.ini --Normalization PlotWindowCoverage  --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz
+pyGenomeTracks  --region chr4:3,211,727-3,215,527 --tracks tmp/tmptracks.ini -o images/example_03.5.png
+#Example4.
+ python AggregateBigwigsForPlotting.py --BigwigList "test_data/Example_ZNF718_data/bigwigs/H3K27AC_ChIPseq_*.bw" --BigwigListType GlobPattern --VCF test_data/SNPs.vcf.gz --SnpPos chr4:173807 --OutputPrefix tmp/tmp   --Region chr4:123,137-127,511 --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz
+ pyGenomeTracks  --region chr4:123,137-127,511 --tracks tmp/tmptracks.ini -o images/example_04.png
+#Example5.
+ python AggregateBigwigsForPlotting.py --BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --VCF test_data/SNPs.vcf.gz --SnpPos chr4:173807 --OutputPrefix tmp/tmp   --Region chr4:123,137-127,511  --GroupSettingsFile test_data/Example_ZNF718_data/GroupsFile.A.tsv --OutputNormalizedBigwigsPerSample --TracksTemplate tracks_templates/GeneralPurposeColoredByGenotypeWithPerIndCoverage.ini  --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --NoSashimi --GenotypeCustomPalette "#1b9e77,#d95f02,#7570b3,#636363"
+  pyGenomeTracks  --region chr4:123,137-127,511 --tracks tmp/tmptracks.ini -o images/example_05.png
+ # Example6
+ python AggregateBigwigsForPlotting.py --BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --VCF test_data/SNPs.vcf.gz --SnpPos chr22:46291323  --OutputPrefix tmp/tmp   --Region chr22:46,289,343-46,294,094  --GroupSettingsFile test_data/Example_TTC38_data/GroupsFile.A.tsv --Bed12GenesToIni PremadeTracks/Reference.Transcripts.colored.bed.gz --GenotypeBrewerPalettes 'Reds' --FilterJuncsByBed test_data/Example_TTC38_data/JuncsToInclude.bed
+ pyGenomeTracks  --region chr22:46,289,343-46,294,094 --tracks tmp/tmptracks.ini -o images/example_06.png
+
+

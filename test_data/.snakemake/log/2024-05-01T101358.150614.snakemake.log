@@ -1,0 +1,118 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 5
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	181	SubsetBigwig
+	1	all
+	182
+
+[Wed May  1 10:14:00 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19238.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw
+    jobid: 235
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19238.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw chr22:46,289,343-46,294,09
+        
+
+[Wed May  1 10:14:00 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18853.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw
+    jobid: 210
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18853.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw chr22:46,289,343-46,294,09
+        
+
+[Wed May  1 10:14:00 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18924.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw
+    jobid: 256
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18924.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw chr22:46,289,343-46,294,09
+        
+
+[Wed May  1 10:14:00 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19146.1.plus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19146.1.minus.bw
+    jobid: 386
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19146.1.minus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19146.1.plus.bw Example_TTC38_data/bigwigs/naRNA_NA19146.1.minus.bw chr22:46,289,343-46,294,094
+        
+
+[Wed May  1 10:14:00 2024]
+rule SubsetBigwig:
+    input: /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19143.1.minus.bw
+    output: Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw
+    jobid: 288
+    wildcards: bw_out=Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw
+
+
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19143.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw chr22:46,289,343-46,294,09
+        
+[Wed May  1 10:14:00 2024]
+Error in rule SubsetBigwig:
+    jobid: 210
+    output: Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw
+    shell:
+        
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18853.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw chr22:46,289,343-46,294,09
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job SubsetBigwig since they might be corrupted:
+Example_TTC38_data/bigwigs/naRNA_NA18853.1.plus.bw
+[Wed May  1 10:14:00 2024]
+Error in rule SubsetBigwig:
+    jobid: 235
+    output: Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw
+    shell:
+        
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19238.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw chr22:46,289,343-46,294,09
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job SubsetBigwig since they might be corrupted:
+Example_TTC38_data/bigwigs/naRNA_NA19238.1.plus.bw
+[Wed May  1 10:14:00 2024]
+Error in rule SubsetBigwig:
+    jobid: 256
+    output: Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw
+    shell:
+        
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA18924.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw chr22:46,289,343-46,294,09
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job SubsetBigwig since they might be corrupted:
+Example_TTC38_data/bigwigs/naRNA_NA18924.1.plus.bw
+[Wed May  1 10:14:01 2024]
+Error in rule SubsetBigwig:
+    jobid: 288
+    output: Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw
+    shell:
+        
+        python ../SubsetBigwig.py /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/bigwigs/chRNA.Expression.Splicing_stranded/NA19143.1.minus.bw Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw chr22:46,289,343-46,294,09
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job SubsetBigwig since they might be corrupted:
+Example_TTC38_data/bigwigs/naRNA_NA19143.1.plus.bw
+[Wed May  1 10:14:01 2024]
+Finished job 386.
+1 of 182 steps (0.55%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /project2/yangili1/bjf79/GenometracksByGenotype/test_data/.snakemake/log/2024-05-01T101358.150614.snakemake.log
