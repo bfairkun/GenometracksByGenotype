@@ -10,3 +10,4 @@
 !tracks_templates/
 !tracks_templates/**
 !*.py
+!*.sh
