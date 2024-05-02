@@ -109,7 +109,7 @@ def AddExtraColumnsPerGroup(
             sep="\t",
         )
     else:
-        GroupToBed_df = pd.DataFrame({'Group_label': df['Group_label'].unique(), {'Group_color'}:'', 'BedgzFilepath':'', 'Supergroup':''})
+        GroupToBed_df = pd.DataFrame({'Group_label': df['Group_label'].unique(), 'Group_color':'', 'BedgzFilepath':'', 'Supergroup':''})
     GroupToBed_df['Supergroup'].fillna(df['Group_label'], inplace=True)
     GroupToBed_df['PlotOrder'] = numpy.arange(len(GroupToBed_df))
     if BedfileForAll:
@@ -526,7 +526,7 @@ def NormalizeAverageAndWriteOutLinks(
             df_out["psi"] = df_out.drop(["#Chr", "start", "end", "pid"], axis=1).mean(
                 axis=1, skipna=True
             )
-            # df_out = df_out[df_out["psi"] >= float(MinPSI)]
+            df_out = df_out[df_out["psi"] >= float(MinPSI)]
             df_out["psi"] = df_out["psi"].apply(lambda x: OutputStringFormat.format(x))
             if len(df_out) > 0:
                 df.loc[i, "ContainsNonEmptyBedgzFile"] = "1"
@@ -650,6 +650,12 @@ def parse_args(Args=None):
         "--IGVSessionOutput",
         action="store_true",
         help="Flag to create a tracks.xml IGV session file (see https://software.broadinstitute.org/software/igv/Sessions) output to easily browse aggregated bigwigs with IGV.",
+        default=False,
+    )
+    p.add_argument(
+        "--JinjaDfOutput",
+        action="store_true",
+        help="Flag to create a DF.tsv file to see the dataframe object (accessible in jinja template as variable named 'DF') used to create the ini file",
         default=False,
     )
     p.add_argument(
@@ -889,6 +895,8 @@ def main(**kwargs):
         _ = f.write(template.render(DF=DF, OutputPrefix=kwargs["OutputPrefix"], Bed12GenesFile=kwargs["Bed12GenesToIni"]))
     # write IGV xml
     # import pdb; pdb.set_trace()
+    if kwargs["JinjaDfOutput"]:
+        DF.to_csv(kwargs["OutputPrefix"] + "DF.tsv", sep="\t")
     if kwargs["IGVSessionOutput"]:
         if kwargs["IGVSessionTemplate"]:
             with open(kwargs["IGVSessionTemplate"], "r") as fh:
