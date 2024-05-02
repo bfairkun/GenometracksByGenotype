@@ -266,11 +266,11 @@ Now let's open that xml file in IGV.
 mv tmp/tmptracks.xml ./
 ```
 
-Now opening that file as a session in IGV I see this:
+Now opening that file as a session in IGV I see this.
 
-![IGV_Example](images/example_03.png)
+![IGV_Example](images/igvsession.png)
 
-...One day, if I find a need for it in my own work, I might make more useful xml templates.
+...I think this xml template might be kind of buggy. If one day, if I find a need for it in my own work, I might fix it and/or make more useful xml templates.
 
 #### Example4: HTT after renormalizing coverage
 
