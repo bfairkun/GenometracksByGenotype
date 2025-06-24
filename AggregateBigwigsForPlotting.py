@@ -14,9 +14,8 @@ import sys
 import os
 import argparse
 import pandas as pd
-import vcf
+import pysam  # Already imported, but now used for VCF
 import pyBigWig
-import pysam
 import numpy
 import glob
 import re
@@ -128,11 +127,11 @@ def ConstructSamplesTsvFromGlobPattern(GlobPatternString, vcf_fn, fn_out=None):
     """
     BigwigFile_VcfSample_Matchlist = []
     BigwigGlobmatchs = glob.glob(GlobPatternString)
-    vcf_reader = vcf.Reader(filename=vcf_fn)
-    vcf_samples = vcf_reader.samples
+    vcf_reader = pysam.VariantFile(vcf_fn)
+    vcf_samples = list(vcf_reader.header.samples)
     for bigwig_fn in BigwigGlobmatchs:
         # Get query to search amongst vcf samples
-        Match = re.findall("\d{5}", bigwig_fn)
+        Match = re.findall(r"\d{5}", bigwig_fn)
         if len(Match) == 1:
             query = Match[0]
         else:
@@ -163,23 +162,19 @@ def label_genotype(row, homo_alts, hets, homo_refs):
     else:
         return "3"
 
-def get_vcf_record(vcf_reader, SnpPos, SnpName=None):    
+def get_vcf_record(vcf_reader, SnpPos, SnpName=None):
     SnpChr, SnpCoord = SnpPos.split(":")
     SnpList = []
-    
-    # Ugly solution to incomplete ref in some SNPs. Unsure what causes the problem.
     len_records = 0
-    for record in vcf_reader.fetch(
-        chrom=SnpChr, start=(str_to_int(SnpCoord) - 1), end=str_to_int(SnpCoord)
-    ):
+    # pysam uses 0-based coordinates
+    fetch_start = str_to_int(SnpCoord) - 1
+    fetch_end = str_to_int(SnpCoord)
+    for record in vcf_reader.fetch(SnpChr, fetch_start, fetch_end):
         len_records += 1
-    
-    for record in vcf_reader.fetch(
-        chrom=SnpChr, start=(str_to_int(SnpCoord) - 1), end=str_to_int(SnpCoord)
-    ):
+    for record in vcf_reader.fetch(SnpChr, fetch_start, fetch_end):
         if SnpName and (len_records > 1):
-            SnpChr, SnpCoord, SnpRef, SnpAlt = SnpName.split(':')
-            if (record.REF == SnpRef) and (record.ALT[0] == SnpAlt):
+            SnpChr2, SnpCoord2, SnpRef, SnpAlt = SnpName.split(':')
+            if (record.ref == SnpRef) and (str(record.alts[0]) == SnpAlt):
                 SnpList.append(record)
             else:
                 continue
@@ -200,18 +195,13 @@ def AppendGenotypeColumnToDf(df, vcf_fn=None, SnpPos=None, SnpName=None):
         df["Alt"] = ""
         df["ID"] = ""
         return df
-    vcf_reader = vcf.Reader(filename=vcf_fn)
+    vcf_reader = pysam.VariantFile(vcf_fn)
     SnpChr, SnpCoord = SnpPos.split(":")
     SnpList = []
     hets = []
     homo_refs = []
     homo_alts = []
-    hets = []
     SnpList = get_vcf_record(vcf_reader, SnpPos, SnpName)
-#     for record in vcf_reader.fetch(
-#         chrom=SnpChr, start=(str_to_int(SnpCoord) - 1), end=str_to_int(SnpCoord)
-#     ):
-#         SnpList.append(record)
     if len(SnpList) < 1:
         logging.warning("No SNP found at SnpPos")
         Ref, Alt, snpID = ["NA", "NA", "NA"]
@@ -221,12 +211,26 @@ def AppendGenotypeColumnToDf(df, vcf_fn=None, SnpPos=None, SnpName=None):
         )
         Ref, Alt, snpID = ["NA", "Ambiguous", "NA"]
     else:
-        Ref = SnpList[0].REF
-        Alt = str(SnpList[0].ALT[0])
-        snpID = str(SnpList[0].ID)
-        hets = [call.sample for call in SnpList[0].get_hets()]
-        homo_refs = [call.sample for call in SnpList[0].get_hom_refs()]
-        homo_alts = [call.sample for call in SnpList[0].get_hom_alts()]
+        record = SnpList[0]
+        Ref = record.ref
+        Alt = str(record.alts[0])
+        snpID = str(record.id)
+        # Get sample genotypes
+        hets = []
+        homo_refs = []
+        homo_alts = []
+        for sample in record.samples:
+            gt = record.samples[sample]['GT']
+            # GT is a tuple, e.g. (0, 0), (0, 1), (1, 1)
+            if gt is None or None in gt:
+                continue
+            if gt[0] == gt[1]:
+                if gt[0] == 0:
+                    homo_refs.append(sample)
+                elif gt[0] == 1:
+                    homo_alts.append(sample)
+            else:
+                hets.append(sample)
     df["genotype"] = df.apply(
         lambda row: label_genotype(row, homo_alts, hets, homo_refs), axis=1
     )
