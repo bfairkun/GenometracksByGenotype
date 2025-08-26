@@ -351,26 +351,30 @@ def NormalizeAverageAndWriteOutBigwigs(
                     NormFactor = GetNormalizationFactorBasedOnRegionList(
                         bigwig, NormalizationRegions
                     )
-            except:
-                NormFactor = 1
-            logging.debug(f"opening {bigwig}")
-            bw = pyBigWig.open(bigwig)
-            NormalizedValues = (
-                bw.values(RegionChr, RegionStart, RegionStop, numpy=True) / NormFactor
-            )
-            Array.append(NormalizedValues)
-            if (not dryrun) and BigwigFilesOutPerSampleColumnName:
-                try:
-                    bwOut = pyBigWig.open(
-                        row[BigwigFilesOutPerSampleColumnName][j], "w"
-                    )
-                    bwOut.addHeader(list(bw.chroms().items()))
-                    bwOut.addEntries(
-                        RegionChr, RegionStart, values=NormalizedValues, span=1, step=1
-                    )
-                    bwOut.close()
-                except:
-                    pass
+                logging.debug(f"opening {bigwig}")
+                bw = pyBigWig.open(bigwig)
+                NormalizedValues = (
+                    bw.values(RegionChr, RegionStart, RegionStop, numpy=True) / NormFactor
+                )
+                Array.append(NormalizedValues)
+                if (not dryrun) and BigwigFilesOutPerSampleColumnName:
+                    try:
+                        bwOut = pyBigWig.open(
+                            row[BigwigFilesOutPerSampleColumnName][j], "w"
+                        )
+                        bwOut.addHeader(list(bw.chroms().items()))
+                        bwOut.addEntries(
+                            RegionChr, RegionStart, values=NormalizedValues, span=1, step=1
+                        )
+                        bwOut.close()
+                    except Exception as e:
+                        logging.warning(f"Failed to write normalized bigwig for {bigwig}: {e}")
+            except RuntimeError as e:
+                logging.warning(f"Skipping bigwig {bigwig} due to error: {e}")
+                continue
+            except Exception as e:
+                logging.warning(f"Skipping bigwig {bigwig} due to unexpected error: {e}")
+                continue
         if method == "mean":
             ArrayAveraged = numpy.mean(numpy.array(Array), axis=0)
         elif method == "median":
@@ -576,6 +580,11 @@ def GetGenotypeLabel(RefString, AltString, GenotypeInt, LimitLength=5):
         return ""
 
 
+def get_default_output_prefix():
+    tmpdir = os.environ.get("TMPDIR", "/tmp")
+    return os.path.join(tmpdir, "genometracks_tmp.")
+
+
 def parse_args(Args=None):
     p = argparse.ArgumentParser(
         conflict_handler="resolve",
@@ -626,8 +635,8 @@ def parse_args(Args=None):
     )
     p.add_argument(
         "--OutputPrefix",
-        help="Prefix for all output files (default: %(default)s)",
-        default="./",
+        default=get_default_output_prefix(),
+        help="Prefix for output files (default: a temp directory, usually $TMPDIR or /tmp)."
     )
     p.add_argument(
         "--BedfileForSashimiLinks",
@@ -703,6 +712,15 @@ def parse_args(Args=None):
         metavar="<path>",
         help="An optional path to set as workdir before executing main script function. Could be useful, for example, if bigwig file list uses relative file paths from a different directory",
         default="./",
+    )
+    p.add_argument(
+        "--pyGenomeTracks_args",
+        nargs=argparse.REMAINDER,
+        help=(
+            "Arguments to pass directly to pyGenomeTracks after ini file is generated. "
+            "By default, '--region <Region>' will be appended unless you specify a --region argument here. "
+            "Usage: --pyGenomeTracks_args <args for pyGenomeTracks>"
+        ),
     )
     p.add_argument(
         "-v",
@@ -915,6 +933,21 @@ def main(**kwargs):
         )
         with open(kwargs["OutputPrefix"] + "tracks.xml", "w") as f:
             _ = f.write(template.render(DF=DF, Region=args.Region, OutputPrefix=kwargs["OutputPrefix"], Bed12GenesFile=kwargs["Bed12GenesToIni"]))
+    if kwargs.get("pyGenomeTracks_args"):
+        import subprocess
+        ini_file = kwargs["OutputPrefix"] + "tracks.ini"
+        pygt_args = kwargs["pyGenomeTracks_args"]
+        # Check if '--region' is already in the args
+        if not any(arg == "--region" or arg.startswith("--region=") for arg in pygt_args):
+            pygt_args = ["--region", kwargs["Region"]] + pygt_args
+        cmd = ["pyGenomeTracks", "--tracks", ini_file] + pygt_args
+        print("Running:", " ".join(cmd))
+        try:
+            result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+            logging.info(result.stdout)
+        except subprocess.CalledProcessError as e:
+            logging.error(f"pyGenomeTracks failed: {e.stderr}")
+            raise
     return DF
 
 
@@ -928,11 +961,11 @@ if __name__ == "__main__":
             # Args = '--VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38_SubsetYRI/2.vcf.gz --SnpPos chr2:74482972  --Normalization None --BigwigListType KeyFile --OutputPrefix test_results/ -vvvv --BigwigList test_data/sample_list.tsv --Region chr2:74,480,713-74,505,757'.split(' ')
             # Test splicing by genotype
             ### NOTE that glob pattern should be quoted to prevent bash expansion when args parsed from command line. When args parsed from python, do not quote
-            # Args = '--VCF test_data/sQTL.vcf.gz --SnpPos chr4:39054234 --FilterJuncsByBed test_data/JuncsToFilter.empty.bed --BedfileForSashimiLinks test_data/Splicing_test.PSI.bed.gz --Normalization None --BigwigListType GlobPattern --OutputPrefix test_results/ -vvvv --BigwigList test_data/RNASeqSubset_bigwigs/*.bw --Region chr4:39,058,957-39,083,297'.split(' ')
             # Args = '--Normalization None --BigwigListType KeyFile --OutputPrefix test_results/ -vv --BigwigList test_data/sample_list.tsv --Region chr2:74,480,713-74,505,757'.split(' ')
-            Args = "--Workdir /project2/yangili1/bjf79/ChromatinSplicingQTLs/code --Region chr1:209745471-209812326 --SnpPos chr1:209806682 --VCF Genotypes/1KG_GRCh38/1.vcf.gz --BigwigListType KeyFile --GroupSettingsFile PlotQTLs/bwList.Groups.tsv --BigwigList PlotQTLs/bwList.tsv --OutputPrefix scratch/testplot.chunk1. --TracksTemplate /project2/yangili1/bjf79/GenometracksByGenotype/tracks_templates/GeneralPurposeColoredByGenotype.ini -q".split(
-                " "
-            )
+            # Args = "--Workdir /project2/yangili1/bjf79/ChromatinSplicingQTLs/code --Region chr1:209745471-209812326 --SnpPos chr1:209806682 --VCF Genotypes/1KG_GRCh38/1.vcf.gz --BigwigListType KeyFile --GroupSettingsFile PlotQTLs/bwList.Groups.tsv --BigwigList PlotQTLs/bwList.tsv --OutputPrefix scratch/testplot.chunk1. --TracksTemplate /project2/yangili1/bjf79/GenometracksByGenotype/tracks_templates/GeneralPurposeColoredByGenotype.ini -q".split(" ")
+            # Test bug for Luna
+            Args = "--BigwigList test_data/bigwig.list.OnlyFirstExample.tsv --BigwigListType KeyFile --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.A.tsv --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --BedfileForSashimiLinks test_data/Example_HTT_data/SplicingTable.bed.gz --pyGenomeTracks_args -o test.pdf".split(" ")
+            Args = "--BigwigList /project2/yangili1/zeqingj/files/sashimi/bwList.fixed.tsv --BigwigListType KeyFile --VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38/Autosomes.vcf.gz --SnpPos chr7:128675737 --Region chr7:128573791-128676737 --GroupSettingsFile /project2/yangili1/zeqingj/files/sashimi/bwList.Groups.4col.tsv --NoSashimi --pyGenomeTracks_args -o test.pdf".split(" ")
             args = parse_args(Args=Args)
     except:
         args = parse_args()
