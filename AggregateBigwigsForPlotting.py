@@ -24,6 +24,8 @@ import logging
 from jinja2 import Template
 from collections import defaultdict
 from io import StringIO
+import pybedtools
+
 
 pd.options.mode.chained_assignment = None
 
