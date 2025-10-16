@@ -115,7 +115,9 @@ def AddExtraColumnsPerGroup(
         )
     else:
         GroupToBed_df = pd.DataFrame({'Group_label': df['Group_label'].unique(), 'Group_color':'', 'BedgzFilepath':'', 'Supergroup':''})
-    GroupToBed_df['Supergroup'].fillna(df['Group_label'], inplace=True)
+    # Set Supergroup to Group_label where Supergroup is empty or NaN
+    mask = GroupToBed_df['Supergroup'].isna() | (GroupToBed_df['Supergroup'] == '')
+    GroupToBed_df.loc[mask, 'Supergroup'] = GroupToBed_df.loc[mask, 'Group_label']
     GroupToBed_df['PlotOrder'] = numpy.arange(len(GroupToBed_df))
     if BedfileForAll:
         GroupToBed_df.fillna(BedfileForAll, inplace=True)
@@ -702,7 +704,7 @@ def ExtractCondensedExonCoverage(
             # Find intersecting original bed6 exons
             merged_interval_bt = pybedtools.BedTool(f"{merged_chrom}\t{merged_start}\t{merged_end}", from_string=True)
             intersecting_exons = bed6_bt.intersect(merged_interval_bt, wa=True)
-            
+
             for exon in intersecting_exons:
                 intervals_data.append({
                     'interval_name': merged_name,
@@ -821,8 +823,7 @@ def ExtractCondensedExonCoverage(
     
     return coverage_file, intervals_file
 
-
-def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, figsize=(16, 10), dpi=300):
+def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reverse_xaxis=False, figsize=(16, 10), dpi=300):
     """
     Create a condensed exon coverage plot similar to the R ggplot2 version.
     
@@ -834,6 +835,8 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, figs
         Path to condensed_exon_intervals.tsv.gz file
     output_pdf : str
         Output PDF file path
+    reverse_xaxis : bool
+        Whether to reverse the x-axis and facet column order.
     figsize : tuple
         Figure size (width, height) in inches
     dpi : int
@@ -841,12 +844,27 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, figs
     """
     from matplotlib.backends.backend_pdf import PdfPages
     
-    # Read the data
+    # Clear any matplotlib state
+    plt.close('all')
+    
+    # Read the data - force fresh read
     logging.info(f"Reading coverage data from {coverage_file}")
     dat = pd.read_csv(coverage_file, sep='\t', compression='gzip')
+    dat = dat.copy()  # Force a fresh copy
     
     logging.info(f"Reading intervals data from {intervals_file}")
     exons = pd.read_csv(intervals_file, sep='\t', compression='gzip')
+    exons = exons.copy()  # Force a fresh copy
+    
+    # Transform coverage values: make negative for minus strand
+    dat['coverage_transformed'] = dat['coverage'].copy()
+    dat.loc[dat['Strand'] == '-', 'coverage_transformed'] = -dat.loc[dat['Strand'] == '-', 'coverage']
+    
+    # Debug: Print what we actually read
+    logging.debug(f"Coverage data columns: {list(dat.columns)}")
+    logging.debug(f"Unique Supergroups in data: {sorted(dat['Supergroup'].unique())}")
+    logging.debug(f"Unique Strands in data: {sorted(dat['Strand'].unique())}")
+    logging.debug(f"Data shape: {dat.shape}")
     
     # Sort FullLabel by PlotOrder for correct plotting order
     plot_order = dat.drop_duplicates(['FullLabel', 'PlotOrder']).sort_values('PlotOrder')
@@ -856,10 +874,34 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, figs
     # Create color mapping
     colors_dict = dat.drop_duplicates(['FullLabel', 'color']).set_index('FullLabel')['color'].to_dict()
     
-    # Get unique combinations for faceting
-    supergroups = sorted(dat['SupergroupLabel'].unique())
-    intervals = sorted(dat['interval_name'].unique())
-        
+    # Get unique combinations for faceting - use Supergroup instead of SupergroupLabel
+    supergroups = sorted(dat['Supergroup'].unique())
+    
+    # Debug: Confirm what we're using
+    logging.info(f"Using supergroups: {supergroups}")
+    
+    # Sort intervals based on reverse_xaxis flag
+    if reverse_xaxis:
+        intervals = exons.sort_values('interval_start', ascending=False)['interval_name'].unique()
+    else:
+        intervals = sorted(dat['interval_name'].unique())
+    
+    logging.info(f"Using intervals: {list(intervals)}")
+    
+    # Calculate y-axis limits for each supergroup (row)
+    supergroup_ylims = {}
+    for supergroup in supergroups:
+        supergroup_data = dat[dat['Supergroup'] == supergroup]
+        if len(supergroup_data) > 0:
+            y_min = supergroup_data['coverage_transformed'].min()
+            y_max = supergroup_data['coverage_transformed'].max()
+            # Add some padding
+            y_range = y_max - y_min
+            y_padding = y_range * 0.1 if y_range > 0 else 1
+            supergroup_ylims[supergroup] = (y_min - y_padding, y_max + y_padding)
+        else:
+            supergroup_ylims[supergroup] = (0, 1)
+    
     # Create the plot with even more space for legend
     fig = plt.figure(figsize=(figsize[0] + 4, figsize[1]), dpi=dpi)
     
@@ -867,43 +909,61 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, figs
     n_supergroups = len(supergroups)
     n_intervals = len(intervals)
     
-    # Create subplots with tighter spacing between columns
+    logging.info(f"Creating plot with {n_supergroups} supergroups and {n_intervals} intervals")
+    
+    # Create subplots with more space for legend and left margin for row labels
     gs = fig.add_gridspec(n_supergroups, n_intervals, 
-                         hspace=0.4, wspace=0.1,  # Reduced wspace for tighter columns
-                         left=0.08, right=0.7, top=0.95, bottom=0.15)
+                         hspace=0.4, wspace=0.3,
+                         left=0.15, right=0.7, top=0.95, bottom=0.15)
     
     # Track which axes have data for legend creation
     axes_with_data = []
     
     # Plot for each combination of supergroup and interval
     for i, supergroup in enumerate(supergroups):
+        logging.debug(f"Processing supergroup {i}: {supergroup}")
         for j, interval in enumerate(intervals):
             ax = fig.add_subplot(gs[i, j])
             
-            # Filter data for this facet
-            facet_data = dat[(dat['SupergroupLabel'] == supergroup) & 
+            # Filter data for this facet - use Supergroup instead of SupergroupLabel
+            facet_data = dat[(dat['Supergroup'] == supergroup) & 
                            (dat['interval_name'] == interval)]
             
+            logging.debug(f"Facet [{i},{j}] ({supergroup}, {interval}): {len(facet_data)} data points")
+            
             if len(facet_data) > 0:
-                # Plot lines for each FullLabel
+                # Plot lines for each FullLabel using transformed coverage values
                 for full_label in facet_data['FullLabel'].unique():
                     label_data = facet_data[facet_data['FullLabel'] == full_label]
                     if len(label_data) > 0:
-                        ax.plot(label_data['position'], label_data['coverage'], 
+                        ax.plot(label_data['position'], label_data['coverage_transformed'], 
                                color=colors_dict.get(full_label, '#000000'),
                                label=full_label, linewidth=1.5)
                 
-                # Add gene span and exon segments ONLY to bottom row
+                # Set x-axis limits with some padding
+                x_min, x_max = facet_data['position'].min(), facet_data['position'].max()
+                x_padding = (x_max - x_min) * 0.02
+                ax.set_xlim(x_min - x_padding, x_max + x_padding)
+                
+                # Set y-axis limits to match all facets in this row (supergroup)
+                y_min_row, y_max_row = supergroup_ylims[supergroup]
+                ax.set_ylim(y_min_row, y_max_row)
+                
+                # Add exon segments ONLY to bottom row
                 if i == n_supergroups - 1:  # Only bottom row
                     facet_exons = exons[exons['interval_name'] == interval]
                     if len(facet_exons) > 0:
-                        y_min, y_max = ax.get_ylim()
-                        y_bottom = y_min - (y_max - y_min) * 0.05  # Position slightly below bottom
+                        # Position exon segments at the bottom of the plot, but within the visible area
+                        y_min_row, y_max_row = supergroup_ylims[supergroup]
+                        y_range = y_max_row - y_min_row
+                        y_bottom = y_min_row + (y_range * 0.02)  # Position just above the bottom edge
                         
-                        # Draw exon segments (thicker, black, on top of gene line)
                         for _, exon_row in facet_exons.iterrows():
                             ax.hlines(y=y_bottom, xmin=exon_row['exon_start'], xmax=exon_row['exon_end'],
-                                     colors='black', linewidth=4)
+                                     colors='black', linewidth=3)
+                
+                # Add horizontal line at y=0 to separate positive and negative values
+                ax.axhline(y=0, color='gray', linestyle='-', linewidth=0.5, alpha=0.7)
                 
                 # Formatting - equivalent to theme_classic()
                 ax.spines['top'].set_visible(False)
@@ -911,10 +971,9 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, figs
                 ax.spines['left'].set_linewidth(0.5)
                 ax.spines['bottom'].set_linewidth(0.5)
                 
-                # Set x-axis limits with some padding
-                x_min, x_max = facet_data['position'].min(), facet_data['position'].max()
-                x_padding = (x_max - x_min) * 0.02
-                ax.set_xlim(x_min - x_padding, x_max + x_padding)
+                # Reverse x-axis if the flag is set
+                if reverse_xaxis:
+                    ax.invert_xaxis()
                 
                 # Only show x-axis labels and ticks on BOTTOM ROW
                 if i == n_supergroups - 1:  # Bottom row
@@ -946,12 +1005,26 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, figs
                     axes_with_data.append(ax)
                 
             else:
-                # Empty facet - hide it
+                # Empty facet - set same y-limits as other facets in this row and hide it
+                y_min_row, y_max_row = supergroup_ylims[supergroup]
+                ax.set_ylim(y_min_row, y_max_row)
                 ax.set_visible(False)
+            
+            # Add Supergroup text on the leftmost column
+            if j == 0:  # Leftmost column
+                # Calculate the position for the text (middle of the subplot)
+                bbox = ax.get_position()
+                y_center = bbox.y0 + bbox.height / 2
+                
+                # Add text closer to the axis (between axis and Coverage label)
+                logging.debug(f"Adding supergroup label '{supergroup}' at position {y_center}")
+                fig.text(0.10, y_center, supergroup, 
+                        rotation=90, va='center', ha='center', 
+                        fontsize=10, weight='bold')
     
     # Add overall labels
     fig.text(0.5, 0.05, 'Genomic Position', ha='center', fontsize=12, weight='bold')
-    fig.text(0.02, 0.5, 'Coverage', va='center', rotation='vertical', fontsize=12, weight='bold')
+    fig.text(0.04, 0.5, 'Coverage', va='center', rotation='vertical', fontsize=12, weight='bold')
     
     # Create legend using the first subplot that has data, ordered by PlotOrder
     if axes_with_data:
@@ -1127,6 +1200,12 @@ def parse_args(Args=None):
         metavar="<FILE>",
         help="A bed12 file containing blocked entries (genes/transcripts with exons). If provided, will output a condensed coverage matrix (tsv.gz) containing bigwig values only over exonic regions plus flanking sequence for compact visualization.",
         default=None,
+    )
+    p.add_argument(
+        "--CondensedExonView_DecreasingXAxis",
+        action="store_true",
+        help="If provided, reverse the x-axis and facet column order for minus strand genes in the condensed exon view plot.",
+        default=False,
     )
     p.add_argument(
         "--ExonFlankingBp",
@@ -1408,7 +1487,7 @@ def main(**kwargs):
         if condensed_file and intervals_file:
             plot_output = kwargs["OutputPrefix"] + "condensed_exon_coverage.pdf"
             try:
-                plot_condensed_exon_coverage(condensed_file, intervals_file, plot_output)
+                plot_condensed_exon_coverage(condensed_file, intervals_file, plot_output, reverse_xaxis=kwargs.get("CondensedExonView_DecreasingXAxis", False))
                 logging.info(f"Condensed exon coverage plot saved to: {plot_output}")
             except Exception as e:
                 logging.warning(f"Could not generate condensed exon coverage plot: {e}")
@@ -1429,11 +1508,16 @@ if __name__ == "__main__":
             # Test bug for Luna
             Args = "--BigwigList test_data/bigwig.list.OnlyFirstExample.tsv --BigwigListType KeyFile --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.A.tsv --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --BedfileForSashimiLinks test_data/Example_HTT_data/SplicingTable.bed.gz --pyGenomeTracks_args -o test.pdf".split(" ")
             Args = "--BigwigList /project2/yangili1/zeqingj/files/sashimi/bwList.fixed.tsv --BigwigListType KeyFile --VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38/Autosomes.vcf.gz --SnpPos chr7:128675737 --Region chr7:128573791-128676737 --GroupSettingsFile /project2/yangili1/zeqingj/files/sashimi/bwList.Groups.4col.tsv --NoSashimi --pyGenomeTracks_args -o test.pdf".split(" ")
-            Args = "--BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.B.tsv --NoSashimi --TracksTemplate tracks_templates/GeneralPurposeColoredByGenotypeWithSupergroups.ini --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --CondensedExonViewBed scratch/HTT.bed --OutputPrefix scratch/ --ExonFlankingBp 150".split(" ")
-            Args = "--BigwigList test_data/bigwig.list.OnlyFirstExample.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.A.tsv --CondensedExonViewBed scratch/HTT.bed --OutputPrefix scratch/ --ExonFlankingBp 150".split(" ")
-
+            Args = "--BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.B.tsv --NoSashimi --TracksTemplate tracks_templates/GeneralPurposeColoredByGenotypeWithSupergroups.ini --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --CondensedExonViewBed scratch/HTT.bed --OutputPrefix scratch/ --ExonFlankingBp 150 --CondensedExonView_DecreasingXAxis".split(" ")
+            # test the TTC38 example with supergroups and condensed exon view
+            Args = "--BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --VCF test_data/SNPs.vcf.gz --SnpPos chr22:46291323 --Region chr22:46,289,343-46,294,094 --GroupSettingsFile test_data/Example_TTC38_data/GroupsFile.A.tsv --Bed12GenesToIni PremadeTracks/Reference.Transcripts.colored.bed.gz --FilterJuncsByBed test_data/Example_TTC38_data/JuncsToInclude.bed --ExonFlankingBp 150 --CondensedExonViewBed scratch/TTC38.bed --OutputPrefix scratch/ --GenotypeBrewerPalettes Reds".split(" ")
             args = parse_args(Args=Args)
     except:
         args = parse_args()
     setup_logging(args.verbosity)
     DF = main(**vars(args))
+    DF.to_csv(args.OutputPrefix + "DF.final.tsv", sep="\t", index=False)
+
+
+
+
