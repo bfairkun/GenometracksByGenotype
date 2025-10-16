@@ -14,7 +14,7 @@ import sys
 import os
 import argparse
 import pandas as pd
-import pysam  # Already imported, but now used for VCF
+import pysam
 import pyBigWig
 import numpy
 import glob
@@ -25,6 +25,10 @@ from jinja2 import Template
 from collections import defaultdict
 from io import StringIO
 import pybedtools
+import gzip
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from matplotlib.backends.backend_pdf import PdfPages
 
 
 pd.options.mode.chained_assignment = None
@@ -586,6 +590,400 @@ def get_default_output_prefix():
     tmpdir = os.environ.get("TMPDIR", "/tmp")
     return os.path.join(tmpdir, "genometracks_tmp.")
 
+def ExtractCondensedExonCoverage(
+    df,
+    bed12_file,
+    flanking_bp=25,
+    output_prefix="",
+    Region=None
+):
+    """
+    Extract bigwig values over exon regions (plus flanking) defined in a bed12 file.
+    Creates a condensed coverage matrix saved as tsv.gz for plotting.
+    
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        DataFrame containing bigwig file paths and metadata
+    bed12_file : str
+        Path to bed12 file with blocked entries (exons)
+    flanking_bp : int
+        Number of base pairs to include flanking each exon (default: 25)
+    output_prefix : str
+        Prefix for output file
+    Region : str
+        Optional region filter (chr:start-stop format)
+    
+    Returns:
+    --------
+    tuple : (coverage_file_path, intervals_file_path)
+    """
+    logging.info(f"Extracting condensed exon coverage from {bed12_file}")
+    
+    try:
+        # Get genome info from the first available bigwig
+        genome_info = None
+        for idx, row in df.iterrows():
+            bigwig_path = row.get('bw_out', row.get('GroupsSummarisedBigwigOut', ''))
+            if bigwig_path and os.path.exists(bigwig_path):
+                try:
+                    bw = pyBigWig.open(bigwig_path)
+                    genome_info = bw.chroms()
+                    bw.close()
+                    logging.debug(f"Got genome info from {bigwig_path}")
+                    break
+                except Exception as e:
+                    logging.warning(f"Could not read genome info from {bigwig_path}: {e}")
+                    continue
+        
+        if not genome_info:
+            logging.error("Could not extract genome information from any bigwig files")
+            return None, None
+
+        # Read bed12 file into pandas
+        bed12_df = pd.read_csv(
+            bed12_file, 
+            sep='\t', 
+            header=None,
+            usecols=range(12),  # Ensure we only read 12 columns
+            names=['chrom', 'start', 'end', 'name', 'score', 'strand', 
+                   'thickStart', 'thickEnd', 'itemRgb', 'blockCount', 
+                   'blockSizes', 'blockStarts']
+        )
+        
+        if bed12_df.empty:
+            logging.warning("No bed12 entries found intersecting the specified region")
+            return None, None
+        
+        # Create BedTool from dataframe
+        bed12_bt = pybedtools.BedTool.from_dataframe(bed12_df)
+        
+        # Filter to region
+        region_chr, region_coords = Region.split(":")
+        region_start, region_stop = [str_to_int(i) for i in region_coords.split("-")]
+        region_bt = pybedtools.BedTool(f"{region_chr}\t{region_start}\t{region_stop}", from_string=True)
+        bed12_bt = bed12_bt.intersect(region_bt, wa=True)
+        
+        # Convert bed12 to bed6 (expands blocks to individual exons)
+        bed6_bt = bed12_bt.bed12tobed6()
+        bed6_bt = bed6_bt.intersect(region_bt)
+        
+        # Check if any exons remain after filtering
+        if len(bed6_bt) == 0:
+            logging.warning("No exons found intersecting the specified region")
+            return None, None
+        
+        # Create temporary genome file
+        import tempfile
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.genome', delete=False) as genome_file:
+            for chrom, size in genome_info.items():
+                genome_file.write(f"{chrom}\t{size}\n")
+            genome_file_path = genome_file.name
+        
+        # Add flanking regions with slop using the temporary genome file
+        bed6_flanked_bt = bed6_bt.slop(b=flanking_bp, g=genome_file_path)
+        
+        # Clean up temporary genome file
+        os.unlink(genome_file_path)
+        
+        # Merge overlapping intervals
+        merged_bt = bed6_flanked_bt.sort().merge()
+        
+        # Create intervals dataframe for plotting exons
+        intervals_data = []
+        
+        # For each merged interval, find which original exons intersect
+        for merged_interval in merged_bt:
+            merged_chrom = merged_interval.chrom
+            merged_start = int(merged_interval.start)
+            merged_end = int(merged_interval.end)
+            merged_name = f"{merged_chrom}:{merged_start}-{merged_end}"
+            
+            # Find intersecting original bed6 exons
+            merged_interval_bt = pybedtools.BedTool(f"{merged_chrom}\t{merged_start}\t{merged_end}", from_string=True)
+            intersecting_exons = bed6_bt.intersect(merged_interval_bt, wa=True)
+            
+            for exon in intersecting_exons:
+                intervals_data.append({
+                    'interval_name': merged_name,
+                    'interval_start': merged_start,
+                    'interval_end': merged_end,
+                    'exon_chrom': exon.chrom,
+                    'exon_start': int(exon.start),
+                    'exon_end': int(exon.end),
+                    'exon_name': exon.name if hasattr(exon, 'name') and exon.name else '',
+                    'exon_strand': exon.strand if len(exon.fields) >= 6 else '.'
+                })
+        
+        # Create intervals dataframe and save
+        if intervals_data:
+            intervals_df = pd.DataFrame(intervals_data)
+            intervals_df = intervals_df.drop_duplicates()  # Remove any duplicates
+            intervals_df = intervals_df.sort_values(['interval_start', 'exon_start'])
+            
+            intervals_file = f"{output_prefix}condensed_exon_intervals.tsv.gz"
+            with gzip.open(intervals_file, 'wt') as f:
+                intervals_df.to_csv(f, sep='\t', index=False)
+            
+            logging.info(f"Exon intervals written to: {intervals_file}")
+        else:
+            intervals_file = None
+        logging.info(f"Processed {len(bed12_df)} bed12 entries into {len(merged_bt)} merged intervals")
+        
+    except Exception as e:
+        logging.error(f"Error processing bed12 file {bed12_file}: {e}")
+        return None, None
+    
+    # Initialize data collection
+    coverage_data = []
+    
+    # Process each bigwig file
+    for idx, row in df.iterrows():
+        bigwig_path = row.get('bw_out', row.get('GroupsSummarisedBigwigOut', ''))
+        if not bigwig_path or not os.path.exists(bigwig_path):
+            logging.warning(f"Bigwig file not found: {bigwig_path}")
+            continue
+            
+        logging.debug(f"Processing bigwig: {bigwig_path}")
+        
+        try:
+            bw = pyBigWig.open(bigwig_path)
+            
+            for interval in merged_bt:
+                chrom = interval.chrom
+                start = int(interval.start)
+                end = int(interval.end)
+                interval_name = f"{chrom}:{start}-{end}"
+                
+                # Extract values
+                try:
+                    values = bw.values(chrom, start, end, numpy=True)
+                    if values is not None and len(values) > 0:
+                        # Create position array
+                        positions = numpy.arange(start, end)
+                        
+                        # Store data for each position
+                        for pos, val in zip(positions, values):
+                            if not numpy.isnan(val):  # Skip NaN values
+                                # Start with the basic coverage info
+                                data_row = {
+                                    'chrom': chrom,
+                                    'position': pos,
+                                    'interval_name': interval_name,
+                                    'interval_start': start,
+                                    'interval_end': end,
+                                    'position_in_interval': pos - start,
+                                    'coverage': val,
+                                    'bigwig_file': os.path.basename(bigwig_path),
+                                }
+                                
+                                # Add ALL columns from the DF row (except list columns which need special handling)
+                                for col in df.columns:
+                                    if col not in ['BigwigFilepath', 'bw_out_PerInd', 'SampleID']:  # Skip list columns
+                                        data_row[col] = row[col]
+                                    elif col == 'SampleID':
+                                        # Convert SampleID list to comma-separated string
+                                        data_row['sample_ids'] = ','.join(row['SampleID']) if isinstance(row['SampleID'], list) else str(row['SampleID'])
+                                
+                                coverage_data.append(data_row)
+                                
+                except Exception as e:
+                    logging.warning(f"Error extracting values from {chrom}:{start}-{end}: {e}")
+                    continue
+                    
+            bw.close()
+            
+        except Exception as e:
+            logging.warning(f"Error processing bigwig {bigwig_path}: {e}")
+            continue
+    
+    # Convert to DataFrame and save
+    coverage_file = None
+    if coverage_data:
+        coverage_df = pd.DataFrame(coverage_data)
+        
+        # Sort by genomic position
+        coverage_df = coverage_df.sort_values(['chrom', 'position', 'Group_label', 'genotype'])
+        
+        # Output file
+        coverage_file = f"{output_prefix}condensed_exon_coverage.tsv.gz"
+        
+        # Write compressed TSV
+        with gzip.open(coverage_file, 'wt') as f:
+            coverage_df.to_csv(f, sep='\t', index=False)
+            
+        logging.info(f"Condensed exon coverage written to: {coverage_file}")
+        logging.info(f"Coverage data shape: {coverage_df.shape}")
+        logging.info(f"Intervals covered: {len(coverage_df['interval_name'].unique())}")
+        logging.info(f"Columns in output: {list(coverage_df.columns)}")
+    else:
+        logging.warning("No coverage data extracted")
+    
+    return coverage_file, intervals_file
+
+
+def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, figsize=(16, 10), dpi=300):
+    """
+    Create a condensed exon coverage plot similar to the R ggplot2 version.
+    
+    Parameters:
+    -----------
+    coverage_file : str
+        Path to condensed_exon_coverage.tsv.gz file
+    intervals_file : str
+        Path to condensed_exon_intervals.tsv.gz file
+    output_pdf : str
+        Output PDF file path
+    figsize : tuple
+        Figure size (width, height) in inches
+    dpi : int
+        Resolution for the output
+    """
+    from matplotlib.backends.backend_pdf import PdfPages
+    
+    # Read the data
+    logging.info(f"Reading coverage data from {coverage_file}")
+    dat = pd.read_csv(coverage_file, sep='\t', compression='gzip')
+    
+    logging.info(f"Reading intervals data from {intervals_file}")
+    exons = pd.read_csv(intervals_file, sep='\t', compression='gzip')
+    
+    # Sort FullLabel by PlotOrder for correct plotting order
+    plot_order = dat.drop_duplicates(['FullLabel', 'PlotOrder']).sort_values('PlotOrder')
+    fulllabel_order = plot_order['FullLabel'].tolist()
+    dat['FullLabel'] = pd.Categorical(dat['FullLabel'], categories=fulllabel_order, ordered=True)
+    
+    # Create color mapping
+    colors_dict = dat.drop_duplicates(['FullLabel', 'color']).set_index('FullLabel')['color'].to_dict()
+    
+    # Get unique combinations for faceting
+    supergroups = sorted(dat['SupergroupLabel'].unique())
+    intervals = sorted(dat['interval_name'].unique())
+        
+    # Create the plot with even more space for legend
+    fig = plt.figure(figsize=(figsize[0] + 4, figsize[1]), dpi=dpi)
+    
+    # Calculate subplot layout
+    n_supergroups = len(supergroups)
+    n_intervals = len(intervals)
+    
+    # Create subplots with tighter spacing between columns
+    gs = fig.add_gridspec(n_supergroups, n_intervals, 
+                         hspace=0.4, wspace=0.1,  # Reduced wspace for tighter columns
+                         left=0.08, right=0.7, top=0.95, bottom=0.15)
+    
+    # Track which axes have data for legend creation
+    axes_with_data = []
+    
+    # Plot for each combination of supergroup and interval
+    for i, supergroup in enumerate(supergroups):
+        for j, interval in enumerate(intervals):
+            ax = fig.add_subplot(gs[i, j])
+            
+            # Filter data for this facet
+            facet_data = dat[(dat['SupergroupLabel'] == supergroup) & 
+                           (dat['interval_name'] == interval)]
+            
+            if len(facet_data) > 0:
+                # Plot lines for each FullLabel
+                for full_label in facet_data['FullLabel'].unique():
+                    label_data = facet_data[facet_data['FullLabel'] == full_label]
+                    if len(label_data) > 0:
+                        ax.plot(label_data['position'], label_data['coverage'], 
+                               color=colors_dict.get(full_label, '#000000'),
+                               label=full_label, linewidth=1.5)
+                
+                # Add gene span and exon segments ONLY to bottom row
+                if i == n_supergroups - 1:  # Only bottom row
+                    facet_exons = exons[exons['interval_name'] == interval]
+                    if len(facet_exons) > 0:
+                        y_min, y_max = ax.get_ylim()
+                        y_bottom = y_min - (y_max - y_min) * 0.05  # Position slightly below bottom
+                        
+                        # Draw exon segments (thicker, black, on top of gene line)
+                        for _, exon_row in facet_exons.iterrows():
+                            ax.hlines(y=y_bottom, xmin=exon_row['exon_start'], xmax=exon_row['exon_end'],
+                                     colors='black', linewidth=4)
+                
+                # Formatting - equivalent to theme_classic()
+                ax.spines['top'].set_visible(False)
+                ax.spines['right'].set_visible(False)
+                ax.spines['left'].set_linewidth(0.5)
+                ax.spines['bottom'].set_linewidth(0.5)
+                
+                # Set x-axis limits with some padding
+                x_min, x_max = facet_data['position'].min(), facet_data['position'].max()
+                x_padding = (x_max - x_min) * 0.02
+                ax.set_xlim(x_min - x_padding, x_max + x_padding)
+                
+                # Only show x-axis labels and ticks on BOTTOM ROW
+                if i == n_supergroups - 1:  # Bottom row
+                    x_ticks = numpy.linspace(x_min, x_max, 3)
+                    ax.set_xticks(x_ticks)
+                    ax.set_xticklabels([f'{int(tick):,}' for tick in x_ticks], 
+                                      rotation=45, ha='right')
+                else:  # Not bottom row - remove x-axis labels
+                    ax.set_xticks([])
+                    ax.set_xticklabels([])
+                    ax.spines['bottom'].set_visible(False)
+                
+                # Only show y-axis labels and ticks on LEFTMOST COLUMN
+                if j == 0:  # Leftmost column
+                    # Keep default y-axis labels
+                    pass
+                else:  # Not leftmost column - remove y-axis labels
+                    ax.set_yticks([])
+                    ax.set_yticklabels([])
+                    ax.spines['left'].set_visible(False)
+                
+                # Remove axis labels and titles
+                ax.set_xlabel('')
+                ax.set_ylabel('')
+                ax.set_title('')
+                
+                # Store axis for legend if it has data
+                if ax.get_lines():
+                    axes_with_data.append(ax)
+                
+            else:
+                # Empty facet - hide it
+                ax.set_visible(False)
+    
+    # Add overall labels
+    fig.text(0.5, 0.05, 'Genomic Position', ha='center', fontsize=12, weight='bold')
+    fig.text(0.02, 0.5, 'Coverage', va='center', rotation='vertical', fontsize=12, weight='bold')
+    
+    # Create legend using the first subplot that has data, ordered by PlotOrder
+    if axes_with_data:
+        # Get all unique labels from the plot and sort by PlotOrder
+        all_labels_from_plot = set()
+        for ax in axes_with_data:
+            handles, labels = ax.get_legend_handles_labels()
+            all_labels_from_plot.update(labels)
+        
+        # Create ordered legend based on PlotOrder
+        ordered_handles = []
+        ordered_labels = []
+        
+        for full_label in fulllabel_order:
+            if full_label in all_labels_from_plot:
+                # Create a dummy line with the right color for the legend
+                dummy_line = plt.Line2D([0], [0], color=colors_dict.get(full_label, '#000000'), linewidth=1.5)
+                ordered_handles.append(dummy_line)
+                ordered_labels.append(full_label)
+        
+        # Place legend in the dedicated space on the right with more room
+        fig.legend(ordered_handles, ordered_labels, 
+                  loc='center left', bbox_to_anchor=(0.72, 0.5),
+                  frameon=False, fontsize=10)
+    
+    # Save to PDF
+    with PdfPages(output_pdf) as pdf:
+        pdf.savefig(fig, bbox_inches='tight', dpi=dpi)
+        logging.info(f"Plot saved to {output_pdf}")
+    
+    plt.close(fig)
+    return output_pdf
 
 def parse_args(Args=None):
     p = argparse.ArgumentParser(
@@ -725,6 +1123,18 @@ def parse_args(Args=None):
         ),
     )
     p.add_argument(
+        "--CondensedExonViewBed",
+        metavar="<FILE>",
+        help="A bed12 file containing blocked entries (genes/transcripts with exons). If provided, will output a condensed coverage matrix (tsv.gz) containing bigwig values only over exonic regions plus flanking sequence for compact visualization.",
+        default=None,
+    )
+    p.add_argument(
+        "--ExonFlankingBp",
+        type=int,
+        default=25,
+        help="Number of base pairs of flanking intronic sequence to include around each exon for condensed view (default: %(default)s)",
+    )
+    p.add_argument(
         "-v",
         "--verbose",
         action="count",
@@ -828,14 +1238,45 @@ def main(**kwargs):
     DF["ContainsBedgzFile"] = "0"
     DF["ContainsNonEmptyBedgzFile"] = "0"
     if not kwargs["NoSashimi"]:
-        logging.info("Writing and averaged links")
-        DF = NormalizeAverageAndWriteOutLinks(
-            DF,
-            kwargs["Region"],
-            dryrun=False,
-            FilterForJuncsBed=kwargs["FilterJuncsByBed"],
-            MinPSI=1,
-        )
+        # Check if any bed files are available for sashimi plotting
+        has_bedfiles = False
+        
+        # Check if BedfileForSashimiLinks is provided
+        if kwargs["BedfileForSashimiLinks"]:
+            has_bedfiles = True
+        
+        # Check if any groups have bedgz files in the BedgzFilepath column
+        if not has_bedfiles and 'BedgzFilepath' in DF.columns:
+            # Check for non-empty bedgz file paths
+            non_empty_bedgz = DF['BedgzFilepath'].fillna('').str.strip()
+            if (non_empty_bedgz != '').any():
+                has_bedfiles = True
+        
+        if has_bedfiles:
+            logging.info("Writing and averaged links")
+            DF = NormalizeAverageAndWriteOutLinks(
+                DF,
+                kwargs["Region"],
+                dryrun=False,
+                FilterForJuncsBed=kwargs["FilterJuncsByBed"],
+                MinPSI=1,
+            )
+        else:
+            logging.warning(
+                "No bed files provided for sashimi links. Either provide --BedfileForSashimiLinks, "
+                "add BedgzFilepath entries to your GroupSettingsFile, or use --NoSashimi to disable "
+                "sashimi plotting entirely."
+            )
+            # Set default values for sashimi-related columns to prevent downstream errors
+            DF["MaxAveragedPSI"] = 0.0
+            DF["ContainsBedgzFile"] = "0"
+            DF["ContainsNonEmptyBedgzFile"] = "0"
+    else:
+        logging.info("Sashimi plotting disabled by --NoSashimi flag")
+        # Set default values for sashimi-related columns
+        DF["MaxAveragedPSI"] = 0.0
+        DF["ContainsBedgzFile"] = "0" 
+        DF["ContainsNonEmptyBedgzFile"] = "0"
     # Add some more columns that could be useful for ini template
     DF["PerGroupMaxMean"] = DF.groupby(["Group_label"])["MaxAveragedValue"].transform(
         max
@@ -950,8 +1391,28 @@ def main(**kwargs):
         except subprocess.CalledProcessError as e:
             logging.error(f"pyGenomeTracks failed: {e.stderr}")
             raise
-    return DF
 
+    if kwargs.get("CondensedExonViewBed"):
+        logging.info("Generating condensed exon coverage matrix")
+        condensed_file, intervals_file = ExtractCondensedExonCoverage(
+            DF,
+            kwargs["CondensedExonViewBed"],
+            flanking_bp=kwargs.get("ExonFlankingBp", 25),
+            output_prefix=kwargs["OutputPrefix"],
+            Region=kwargs.get("Region"))
+        if condensed_file:
+            logging.info(f"Condensed coverage matrix saved to: {condensed_file}")
+        if intervals_file:
+            logging.info(f"Exon intervals saved to: {intervals_file}")
+        # Generate the plot
+        if condensed_file and intervals_file:
+            plot_output = kwargs["OutputPrefix"] + "condensed_exon_coverage.pdf"
+            try:
+                plot_condensed_exon_coverage(condensed_file, intervals_file, plot_output)
+                logging.info(f"Condensed exon coverage plot saved to: {plot_output}")
+            except Exception as e:
+                logging.warning(f"Could not generate condensed exon coverage plot: {e}")
+    return DF
 
 if __name__ == "__main__":
     # I like to script and debug with an interactive interpreter in the same
@@ -968,6 +1429,9 @@ if __name__ == "__main__":
             # Test bug for Luna
             Args = "--BigwigList test_data/bigwig.list.OnlyFirstExample.tsv --BigwigListType KeyFile --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.A.tsv --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --BedfileForSashimiLinks test_data/Example_HTT_data/SplicingTable.bed.gz --pyGenomeTracks_args -o test.pdf".split(" ")
             Args = "--BigwigList /project2/yangili1/zeqingj/files/sashimi/bwList.fixed.tsv --BigwigListType KeyFile --VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38/Autosomes.vcf.gz --SnpPos chr7:128675737 --Region chr7:128573791-128676737 --GroupSettingsFile /project2/yangili1/zeqingj/files/sashimi/bwList.Groups.4col.tsv --NoSashimi --pyGenomeTracks_args -o test.pdf".split(" ")
+            Args = "--BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.B.tsv --NoSashimi --TracksTemplate tracks_templates/GeneralPurposeColoredByGenotypeWithSupergroups.ini --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --CondensedExonViewBed scratch/HTT.bed --OutputPrefix scratch/ --ExonFlankingBp 150".split(" ")
+            Args = "--BigwigList test_data/bigwig.list.OnlyFirstExample.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.A.tsv --CondensedExonViewBed scratch/HTT.bed --OutputPrefix scratch/ --ExonFlankingBp 150".split(" ")
+
             args = parse_args(Args=Args)
     except:
         args = parse_args()
