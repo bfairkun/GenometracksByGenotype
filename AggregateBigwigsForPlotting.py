@@ -592,6 +592,49 @@ def get_default_output_prefix():
     tmpdir = os.environ.get("TMPDIR", "/tmp")
     return os.path.join(tmpdir, "genometracks_tmp.")
 
+def parse_color(color_str):
+    """Parse color from bed12 itemRgb field - can be RGB or hex"""
+    if pd.isna(color_str) or color_str == '0' or color_str == '.':
+        return '#000000'  # Default black
+    
+    color_str = str(color_str).strip()
+    
+    # Check if it's already hex
+    if color_str.startswith('#'):
+        return color_str
+    
+    # Check if it's RGB format (comma-separated)
+    if ',' in color_str:
+        try:
+            r, g, b = [int(x.strip()) for x in color_str.split(',')]
+            return f'#{r:02x}{g:02x}{b:02x}'
+        except:
+            return '#000000'
+    
+    # Try to convert single integer to RGB (assuming it's a packed RGB value)
+    try:
+        rgb_int = int(color_str)
+        r = (rgb_int >> 16) & 0xFF
+        g = (rgb_int >> 8) & 0xFF
+        b = rgb_int & 0xFF
+        return f'#{r:02x}{g:02x}{b:02x}'
+    except:
+        return '#000000'
+
+
+def number_exons_by_strand(group):
+    """Number exons for each transcript group based on strand orientation"""
+    if group['strand'].iloc[0] == '-':
+        # For minus strand, sort by start descending (3' to 5')
+        group = group.sort_values('start', ascending=False)
+    else:
+        # For plus strand, sort by start ascending (5' to 3')
+        group = group.sort_values('start', ascending=True)
+    
+    group['exon_number'] = range(1, len(group) + 1)
+    return group
+
+
 def ExtractCondensedExonCoverage(
     df,
     bed12_file,
@@ -602,23 +645,6 @@ def ExtractCondensedExonCoverage(
     """
     Extract bigwig values over exon regions (plus flanking) defined in a bed12 file.
     Creates a condensed coverage matrix saved as tsv.gz for plotting.
-    
-    Parameters:
-    -----------
-    df : pandas.DataFrame
-        DataFrame containing bigwig file paths and metadata
-    bed12_file : str
-        Path to bed12 file with blocked entries (exons)
-    flanking_bp : int
-        Number of base pairs to include flanking each exon (default: 25)
-    output_prefix : str
-        Prefix for output file
-    Region : str
-        Optional region filter (chr:start-stop format)
-    
-    Returns:
-    --------
-    tuple : (coverage_file_path, intervals_file_path)
     """
     logging.info(f"Extracting condensed exon coverage from {bed12_file}")
     
@@ -668,12 +694,42 @@ def ExtractCondensedExonCoverage(
         
         # Convert bed12 to bed6 (expands blocks to individual exons)
         bed6_bt = bed12_bt.bed12tobed6()
-        bed6_bt = bed6_bt.intersect(region_bt)
+        
+        # Convert bed6 BedTool to pandas DataFrame for easier manipulation
+        bed6_data = []
+        for exon in bed6_bt:
+            bed6_data.append({
+                'chrom': exon.chrom,
+                'start': int(exon.start),
+                'end': int(exon.end),
+                'name': exon.name,
+                'score': exon.score,
+                'strand': exon.strand
+            })
+        
+        if not bed6_data:
+            logging.warning("No exons found after bed12 to bed6 conversion")
+            return None, None
+        
+        bed6_df = pd.DataFrame(bed6_data)
+        
+        # Number exons for each transcript using the module-level function
+        bed6_df = bed6_df.groupby('name').apply(number_exons_by_strand).reset_index(drop=True)
+        
+        # Filter to region again after conversion
+        bed6_df = bed6_df[
+            (bed6_df['chrom'] == region_chr) & 
+            (bed6_df['start'] < region_stop) & 
+            (bed6_df['end'] > region_start)
+        ]
         
         # Check if any exons remain after filtering
-        if len(bed6_bt) == 0:
+        if bed6_df.empty:
             logging.warning("No exons found intersecting the specified region")
             return None, None
+        
+        # Convert back to BedTool for further processing
+        bed6_bt = pybedtools.BedTool.from_dataframe(bed6_df[['chrom', 'start', 'end', 'name', 'score', 'strand']])
         
         # Create temporary genome file
         import tempfile
@@ -706,6 +762,22 @@ def ExtractCondensedExonCoverage(
             intersecting_exons = bed6_bt.intersect(merged_interval_bt, wa=True)
 
             for exon in intersecting_exons:
+                # Get exon number from our numbered dataframe
+                exon_info = bed6_df[
+                    (bed6_df['chrom'] == exon.chrom) & 
+                    (bed6_df['start'] == int(exon.start)) & 
+                    (bed6_df['end'] == int(exon.end)) & 
+                    (bed6_df['name'] == exon.name)
+                ]
+                
+                exon_number = exon_info['exon_number'].iloc[0] if len(exon_info) > 0 else 0
+                
+                # Get color from original bed12 entry using the module-level function
+                bed12_info = bed12_df[bed12_df['name'] == exon.name]
+                exon_color = '#000000'  # default
+                if len(bed12_info) > 0:
+                    exon_color = parse_color(bed12_info['itemRgb'].iloc[0])
+                
                 intervals_data.append({
                     'interval_name': merged_name,
                     'interval_start': merged_start,
@@ -714,7 +786,10 @@ def ExtractCondensedExonCoverage(
                     'exon_start': int(exon.start),
                     'exon_end': int(exon.end),
                     'exon_name': exon.name if hasattr(exon, 'name') and exon.name else '',
-                    'exon_strand': exon.strand if len(exon.fields) >= 6 else '.'
+                    'exon_strand': exon.strand if len(exon.fields) >= 6 else '.',
+                    'exon_number': exon_number,
+                    'exon_midpoint': int((int(exon.start) + int(exon.end)) / 2),
+                    'exon_color': exon_color
                 })
         
         # Create intervals dataframe and save
@@ -735,7 +810,7 @@ def ExtractCondensedExonCoverage(
     except Exception as e:
         logging.error(f"Error processing bed12 file {bed12_file}: {e}")
         return None, None
-    
+        
     # Initialize data collection
     coverage_data = []
     
@@ -913,7 +988,7 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
     
     # Create subplots with more space for legend and left margin for row labels
     gs = fig.add_gridspec(n_supergroups, n_intervals, 
-                         hspace=0.4, wspace=0.3,
+                         hspace=0.2, wspace=0.06,  # Changed from 0.3 to 0.06 (5x smaller)
                          left=0.15, right=0.7, top=0.95, bottom=0.15)
     
     # Track which axes have data for legend creation
@@ -959,8 +1034,10 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
                         y_bottom = y_min_row + (y_range * 0.02)  # Position just above the bottom edge
                         
                         for _, exon_row in facet_exons.iterrows():
+                            # Use the exon's color if available, otherwise default to black
+                            exon_color = exon_row.get('exon_color', '#000000')
                             ax.hlines(y=y_bottom, xmin=exon_row['exon_start'], xmax=exon_row['exon_end'],
-                                     colors='black', linewidth=3)
+                                     colors=exon_color, linewidth=3)
                 
                 # Add horizontal line at y=0 to separate positive and negative values
                 ax.axhline(y=0, color='gray', linestyle='-', linewidth=0.5, alpha=0.7)
@@ -977,10 +1054,21 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
                 
                 # Only show x-axis labels and ticks on BOTTOM ROW
                 if i == n_supergroups - 1:  # Bottom row
-                    x_ticks = numpy.linspace(x_min, x_max, 3)
-                    ax.set_xticks(x_ticks)
-                    ax.set_xticklabels([f'{int(tick):,}' for tick in x_ticks], 
-                                      rotation=45, ha='right')
+                    # Use exon-based ticks and labels
+                    facet_exons = exons[exons['interval_name'] == interval]
+                    if len(facet_exons) > 0:
+                        # Get exon midpoints and numbers for ticks
+                        exon_ticks = facet_exons['exon_midpoint'].tolist()
+                        exon_labels = [f"E{int(num)}" for num in facet_exons['exon_number'].tolist()]
+                        
+                        ax.set_xticks(exon_ticks)
+                        ax.set_xticklabels(exon_labels, rotation=0, ha='center')
+                    else:
+                        # Fallback to coordinate-based ticks if no exon info
+                        x_ticks = numpy.linspace(x_min, x_max, 3)
+                        ax.set_xticks(x_ticks)
+                        ax.set_xticklabels([f'{int(tick):,}' for tick in x_ticks], 
+                                          rotation=45, ha='right')
                 else:  # Not bottom row - remove x-axis labels
                     ax.set_xticks([])
                     ax.set_xticklabels([])
@@ -1023,7 +1111,7 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
                         fontsize=10, weight='bold')
     
     # Add overall labels
-    fig.text(0.5, 0.05, 'Genomic Position', ha='center', fontsize=12, weight='bold')
+    fig.text(0.5, 0.05, 'Exon Number', ha='center', fontsize=12, weight='bold')  # Changed from 'Genomic Position'
     fig.text(0.04, 0.5, 'Coverage', va='center', rotation='vertical', fontsize=12, weight='bold')
     
     # Create legend using the first subplot that has data, ordered by PlotOrder
@@ -1508,9 +1596,6 @@ if __name__ == "__main__":
             # Test bug for Luna
             Args = "--BigwigList test_data/bigwig.list.OnlyFirstExample.tsv --BigwigListType KeyFile --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.A.tsv --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --BedfileForSashimiLinks test_data/Example_HTT_data/SplicingTable.bed.gz --pyGenomeTracks_args -o test.pdf".split(" ")
             Args = "--BigwigList /project2/yangili1/zeqingj/files/sashimi/bwList.fixed.tsv --BigwigListType KeyFile --VCF /project2/yangili1/bjf79/ChromatinSplicingQTLs/code/Genotypes/1KG_GRCh38/Autosomes.vcf.gz --SnpPos chr7:128675737 --Region chr7:128573791-128676737 --GroupSettingsFile /project2/yangili1/zeqingj/files/sashimi/bwList.Groups.4col.tsv --NoSashimi --pyGenomeTracks_args -o test.pdf".split(" ")
-            Args = "--BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --OutputPrefix tmp/tmp --Region chr4:3,211,727-3,215,527 --GroupSettingsFile test_data/Example_HTT_data/GroupsFile.B.tsv --NoSashimi --TracksTemplate tracks_templates/GeneralPurposeColoredByGenotypeWithSupergroups.ini --Bed12GenesToIni PremadeTracks/gencode.v26.FromGTEx.genes.bed12.gz --CondensedExonViewBed scratch/HTT.bed --OutputPrefix scratch/ --ExonFlankingBp 150 --CondensedExonView_DecreasingXAxis".split(" ")
-            # test the TTC38 example with supergroups and condensed exon view
-            Args = "--BigwigList test_data/bigwig.list.tsv --BigwigListType KeyFile --VCF test_data/SNPs.vcf.gz --SnpPos chr22:46291323 --Region chr22:46,289,343-46,294,094 --GroupSettingsFile test_data/Example_TTC38_data/GroupsFile.A.tsv --Bed12GenesToIni PremadeTracks/Reference.Transcripts.colored.bed.gz --FilterJuncsByBed test_data/Example_TTC38_data/JuncsToInclude.bed --ExonFlankingBp 150 --CondensedExonViewBed scratch/TTC38.bed --OutputPrefix scratch/ --GenotypeBrewerPalettes Reds".split(" ")
             args = parse_args(Args=Args)
     except:
         args = parse_args()
