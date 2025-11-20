@@ -963,6 +963,28 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
     
     logging.info(f"Using intervals: {list(intervals)}")
     
+    # Calculate widths for each interval based on genomic coordinates
+    interval_widths = []
+    interval_info = {}
+    for interval in intervals:
+        interval_data = dat[dat['interval_name'] == interval]
+        if len(interval_data) > 0:
+            x_min = interval_data['position'].min()
+            x_max = interval_data['position'].max()
+            width = x_max - x_min
+            interval_widths.append(width)
+            interval_info[interval] = {'start': x_min, 'end': x_max, 'width': width}
+        else:
+            interval_widths.append(1)  # Default width for empty intervals
+            interval_info[interval] = {'start': 0, 'end': 1, 'width': 1}
+    
+    # Normalize widths to sum to 1 for GridSpec width_ratios
+    total_width = sum(interval_widths)
+    width_ratios = [w / total_width for w in interval_widths]
+    
+    logging.info(f"Interval widths: {dict(zip(intervals, interval_widths))}")
+    logging.info(f"Width ratios: {dict(zip(intervals, width_ratios))}")
+    
     # Calculate y-axis limits for each supergroup (row)
     supergroup_ylims = {}
     for supergroup in supergroups:
@@ -986,9 +1008,10 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
     
     logging.info(f"Creating plot with {n_supergroups} supergroups and {n_intervals} intervals")
     
-    # Create subplots with more space for legend and left margin for row labels
+    # Create subplots with width_ratios for proportional spacing
     gs = fig.add_gridspec(n_supergroups, n_intervals, 
-                         hspace=0.2, wspace=0.06,  # Changed from 0.3 to 0.06 (5x smaller)
+                         width_ratios=width_ratios,  # This is the key addition!
+                         hspace=0.2, wspace=0.06,
                          left=0.15, right=0.7, top=0.95, bottom=0.15)
     
     # Track which axes have data for legend creation
@@ -1111,7 +1134,7 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
                         fontsize=10, weight='bold')
     
     # Add overall labels
-    fig.text(0.5, 0.05, 'Exon Number', ha='center', fontsize=12, weight='bold')  # Changed from 'Genomic Position'
+    fig.text(0.5, 0.05, 'Exon Number', ha='center', fontsize=12, weight='bold')
     fig.text(0.04, 0.5, 'Coverage', va='center', rotation='vertical', fontsize=12, weight='bold')
     
     # Create legend using the first subplot that has data, ordered by PlotOrder
