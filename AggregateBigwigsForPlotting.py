@@ -1319,6 +1319,14 @@ def parse_args(Args=None):
         default=False,
     )
     p.add_argument(
+        "--CondensedExonView_FigSize",
+        nargs=2,
+        type=float,
+        default=[16.0, 10.0],
+        metavar=('WIDTH', 'HEIGHT'),
+        help="Figure size (width, height) in inches for condensed exon view plot (default: %(default)s)",
+    )
+    p.add_argument(
         "--ExonFlankingBp",
         type=int,
         default=25,
@@ -1598,7 +1606,14 @@ def main(**kwargs):
         if condensed_file and intervals_file:
             plot_output = kwargs["OutputPrefix"] + "condensed_exon_coverage.pdf"
             try:
-                plot_condensed_exon_coverage(condensed_file, intervals_file, plot_output, reverse_xaxis=kwargs.get("CondensedExonView_DecreasingXAxis", False))
+                figsize = tuple(kwargs.get("CondensedExonView_FigSize", [16.0, 10.0]))
+                plot_condensed_exon_coverage(
+                    condensed_file, 
+                    intervals_file, 
+                    plot_output, 
+                    reverse_xaxis=kwargs.get("CondensedExonView_DecreasingXAxis", False),
+                    figsize=figsize
+                )
                 logging.info(f"Condensed exon coverage plot saved to: {plot_output}")
             except Exception as e:
                 logging.warning(f"Could not generate condensed exon coverage plot: {e}")
