@@ -536,7 +536,7 @@ def NormalizeAverageAndWriteOutLinks(
                 bed_df = bed_df[bed_df["junc"].isin(JuncsToFilter_set)]
             df_out = bed_df[
                 bed_df.columns.intersection(
-                    row[SampleIDColumnName] + ["#Chr", "start", "end", "pid"]
+                    [str(x) for x in row[SampleIDColumnName]] + ["#Chr", "start", "end", "pid"]
                 )
             ]
             df_out["psi"] = df_out.drop(["#Chr", "start", "end", "pid"], axis=1).mean(
@@ -1373,7 +1373,7 @@ def main(**kwargs):
     logging.info("Adding column for individual output bigwigs filepaths to DF")
     DF["bw_out_PerInd"] = (
         kwargs["OutputPrefix"]
-        + DF[["SampleID", "Group_label", "genotype", "Strand"]].agg("-".join, axis=1)
+        + DF[["SampleID", "Group_label", "genotype", "Strand"]].astype(str).agg("-".join, axis=1)
         + ".bw"
     )
     # groubpy
