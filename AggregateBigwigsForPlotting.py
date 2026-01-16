@@ -1080,18 +1080,17 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
                     # Use exon-based ticks and labels
                     facet_exons = exons[exons['interval_name'] == interval]
                     if len(facet_exons) > 0:
-                        # Get exon midpoints and numbers for ticks
                         exon_ticks = facet_exons['exon_midpoint'].tolist()
                         exon_labels = [f"E{int(num)}" for num in facet_exons['exon_number'].tolist()]
-                        
                         ax.set_xticks(exon_ticks)
-                        ax.set_xticklabels(exon_labels, rotation=0, ha='center')
+                        ax.set_xticklabels(exon_labels, rotation=90, ha='right', va='center', rotation_mode='anchor')
+                        # Revert tick label padding to default (no extra padding)
+                        ax.tick_params(axis='x', pad=0)
                     else:
                         # Fallback to coordinate-based ticks if no exon info
                         x_ticks = numpy.linspace(x_min, x_max, 3)
                         ax.set_xticks(x_ticks)
-                        ax.set_xticklabels([f'{int(tick):,}' for tick in x_ticks], 
-                                          rotation=45, ha='right')
+                        ax.set_xticklabels([f'{int(tick):,}' for tick in x_ticks], rotation=45, ha='right')
                 else:  # Not bottom row - remove x-axis labels
                     ax.set_xticks([])
                     ax.set_xticklabels([])
