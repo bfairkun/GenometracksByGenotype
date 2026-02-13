@@ -14,6 +14,7 @@
 
 import sys
 import numpy
+import pandas as pd
 import pyBigWig
 import argparse
 import logging
@@ -79,6 +80,34 @@ def parse_args(Args=None):
         type=int,
         default=5,
         help='Number of decimal places to round output values to conserve file size (default: 5)'
+    )
+    
+    parser.add_argument(
+        '--smooth-window',
+        type=int,
+        default=0,
+        help='Window size in bp for smoothing the output (default: 0, no smoothing)'
+    )
+    
+    parser.add_argument(
+        '--smooth-function',
+        choices=['sum', 'mean', 'median'],
+        default='mean',
+        help='Function to use for smoothing (default: mean)'
+    )
+    
+    parser.add_argument(
+        '--smooth-step',
+        type=int,
+        default=None,
+        help='Step size in bp for smoothing windows (default: same as smooth-window for non-overlapping windows)'
+    )
+    
+    parser.add_argument(
+        '--smooth-output-format',
+        choices=['one_per_window', 'all_bases'],
+        default='all_bases',
+        help='Output format for smoothed data: one_per_window (one value per window, uses span) or all_bases (smoothed value for every bp, span=1) (default: all_bases)'
     )
     
     parser.add_argument(
@@ -217,16 +246,174 @@ def SummariseBigwigsInWindow(bigwig_out_fn, bigwigs_in_fn_list, window=None, fun
     logging.info(f"Finished writing {bigwig_out_fn}")
 
 
+def smooth_bigwig(input_bw_fn, output_bw_fn, window_size, step_size, function='mean', output_format='all_bases', precision=5, region=None):
+    """
+    Smooth a bigwig file using sliding windows.
+    
+    Parameters:
+    -----------
+    input_bw_fn : str
+        Input bigwig file path
+    output_bw_fn : str
+        Output bigwig file path
+    window_size : int
+        Window size in bp for smoothing
+    step_size : int
+        Step size in bp between windows
+    function : str
+        Function to use for smoothing ('sum', 'mean', 'median')
+    output_format : str
+        'one_per_window' or 'all_bases'
+    precision : int
+        Number of decimal places to round output values
+    region : str or None
+        Genomic region to smooth. If None, processes whole genome.
+    """
+    logging.info(f"Smoothing bigwig with window={window_size}, step={step_size}, function={function}, format={output_format}")
+    
+    # Open input bigwig
+    bw_in = pyBigWig.open(input_bw_fn)
+    chroms = bw_in.chroms()
+    
+    # Initialize output file
+    bw_out = pyBigWig.open(output_bw_fn, "w")
+    bw_out.addHeader(list(chroms.items()))
+    
+    # Determine regions to process
+    if region:
+        chrom, coords = region.split(':')
+        coords_float = [int(i.replace(',', '')) for i in coords.split('-')]
+        start, end = coords_float
+        regions = [(chrom, start, end)]
+        logging.info(f"Smoothing region {chrom}:{start:,}-{end:,}")
+    else:
+        regions = [(chrom, 0, size) for chrom, size in chroms.items()]
+        logging.info(f"Smoothing whole genome: {len(regions)} chromosomes")
+    
+    # Process each region
+    for region_i, (chrom, start, end) in enumerate(regions):
+        logging.info(f"Smoothing region {region_i+1}/{len(regions)}: {chrom}:{start:,}-{end:,}")
+        
+        try:
+            # Read values for entire region
+            values = bw_in.values(chrom, start, end, numpy=True)
+            
+            if values is None or len(values) == 0:
+                logging.debug(f"No data in region {chrom}:{start:,}-{end:,}")
+                continue
+            
+            # Convert to pandas Series for efficient rolling window operations
+            series = pd.Series(values)
+            
+            # Apply rolling window with specified function
+            # center=False means window is backwards-looking (includes current position)
+            # min_periods=1 ensures we get values even at edges
+            if function == 'mean':
+                smoothed = series.rolling(window=window_size, min_periods=1, center=False).mean()
+            elif function == 'sum':
+                smoothed = series.rolling(window=window_size, min_periods=1, center=False).sum()
+            elif function == 'median':
+                smoothed = series.rolling(window=window_size, min_periods=1, center=False).median()
+            else:
+                raise ValueError(f"Unknown smoothing function: {function}")
+            
+            # Convert back to numpy array
+            smoothed_values = smoothed.to_numpy()
+            
+            # Handle NaN values
+            smoothed_values = numpy.nan_to_num(smoothed_values, nan=0.0)
+            
+            # Round to specified precision
+            smoothed_values = numpy.round(smoothed_values, decimals=precision)
+            
+            # Write output based on format choice
+            if output_format == 'one_per_window':
+                # Write one value per window
+                for window_start in range(0, len(smoothed_values), step_size):
+                    window_end = min(window_start + step_size, len(smoothed_values))
+                    value = smoothed_values[window_start]
+                    genomic_pos = start + window_start
+                    bw_out.addEntries(chrom, genomic_pos, values=[value], span=step_size, step=0)
+            else:  # all_bases
+                # Write value for every base, but only at step intervals
+                if step_size == 1:
+                    # Most efficient: write all values at once
+                    bw_out.addEntries(chrom, start, values=smoothed_values, span=1, step=1)
+                else:
+                    # Write sampled values at step intervals
+                    positions = list(range(0, len(smoothed_values), step_size))
+                    sampled_values = smoothed_values[positions]
+                    genomic_positions = [start + pos for pos in positions]
+                    
+                    # Write in batches for efficiency
+                    for pos, val in zip(genomic_positions, sampled_values):
+                        bw_out.addEntries(chrom, pos, values=[val], span=1, step=0)
+            
+            logging.debug(f"Finished smoothing {chrom}:{start:,}-{end:,}")
+            
+        except Exception as e:
+            logging.warning(f"Error smoothing region {chrom}:{start:,}-{end:,}: {e}")
+            continue
+    
+    # Close files
+    bw_in.close()
+    bw_out.close()
+    
+    logging.info(f"Finished writing smoothed bigwig to {output_bw_fn}")
+
+
 def main(**kwargs):
     """Main function to execute bigwig summarisation."""
+    # First, summarise across input bigwigs
+    summarised_output = kwargs['output']
+    
+    # If smoothing is requested, write to temporary file first
+    if kwargs.get('smooth_window', 0) > 0:
+        import tempfile
+        import os
+        
+        # Create temporary file for summarised (un-smoothed) output
+        temp_fd, temp_path = tempfile.mkstemp(suffix='.bw', prefix='summarised_')
+        os.close(temp_fd)  # Close file descriptor, we'll open with pyBigWig
+        
+        logging.info("Smoothing requested - writing summarised data to temporary file")
+        summarised_output = temp_path
+    
+    # Perform summarisation
     SummariseBigwigsInWindow(
-        bigwig_out_fn=kwargs['output'],  # Changed from 'output_bigwig'
-        bigwigs_in_fn_list=kwargs['input'],  # Changed from 'input_bigwigs'
+        bigwig_out_fn=summarised_output,
+        bigwigs_in_fn_list=kwargs['input'],
         window=kwargs['region'],
         function=kwargs['function'],
         chunk_size=kwargs['chunk_size'],
         precision=kwargs['precision']
     )
+    
+    # If smoothing is requested, apply it as a second pass
+    if kwargs.get('smooth_window', 0) > 0:
+        smooth_step = kwargs.get('smooth_step')
+        if smooth_step is None:
+            smooth_step = kwargs['smooth_window']
+        
+        logging.info(f"Applying smoothing (window={kwargs['smooth_window']}, step={smooth_step}, function={kwargs['smooth_function']})")
+        
+        smooth_bigwig(
+            input_bw_fn=summarised_output,
+            output_bw_fn=kwargs['output'],
+            window_size=kwargs['smooth_window'],
+            step_size=smooth_step,
+            function=kwargs['smooth_function'],
+            output_format=kwargs['smooth_output_format'],
+            precision=kwargs['precision'],
+            region=kwargs['region']
+        )
+        
+        # Clean up temporary file
+        import os
+        os.unlink(summarised_output)
+        logging.info("Removed temporary summarised file")
+    else:
+        logging.info("No smoothing requested - output is final")
 
 
 if __name__ == "__main__":

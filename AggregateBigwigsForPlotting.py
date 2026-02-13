@@ -510,11 +510,21 @@ def NormalizeAverageAndWriteOutLinks(
                 )
                 JuncsToFilter_set = set()
     for i, row in df.iterrows():
+        # Check if BedgzFilepath exists and is not empty/NaN
+        bedgz_path = row.get(BedgzFilesInColumnName, '')
+        if pd.isna(bedgz_path) or not bedgz_path or str(bedgz_path).strip() == '':
+            logging.debug(f"Skipping row {i}: No BedgzFilepath provided")
+            continue
+            
         if row["BedgzFilepath"]:
             df.loc[i, "ContainsBedgzFile"] = "1"
-            bed_df = PysamTabixToPandas_df(
-                row[BedgzFilesInColumnName], RegionChr, RegionStart, RegionStop
-            )
+            try:
+                bed_df = PysamTabixToPandas_df(
+                    row[BedgzFilesInColumnName], RegionChr, RegionStart, RegionStop
+                )
+            except (OSError, TypeError) as e:
+                logging.warning(f"Could not read bed file {bedgz_path}: {e}")
+                continue
             bed_df = bed_df.rename(
                 columns={
                     bed_df.columns[0]: "#Chr",
@@ -918,6 +928,7 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
         Resolution for the output
     """
     from matplotlib.backends.backend_pdf import PdfPages
+    import textwrap
     
     # Clear any matplotlib state
     plt.close('all')
@@ -1122,15 +1133,15 @@ def plot_condensed_exon_coverage(coverage_file, intervals_file, output_pdf, reve
             
             # Add Supergroup text on the leftmost column
             if j == 0:  # Leftmost column
-                # Calculate the position for the text (middle of the subplot)
                 bbox = ax.get_position()
                 y_center = bbox.y0 + bbox.height / 2
-                
-                # Add text closer to the axis (between axis and Coverage label)
-                logging.debug(f"Adding supergroup label '{supergroup}' at position {y_center}")
-                fig.text(0.10, y_center, supergroup, 
-                        rotation=90, va='center', ha='center', 
-                        fontsize=10, weight='bold')
+                # Wrap label to a reasonable character width to prevent overflow
+                # You can adjust max_chars if needed based on figure size
+                max_chars = 14
+                wrapped_label = textwrap.fill(str(supergroup), width=max_chars)
+                fig.text(0.10, y_center, wrapped_label,
+                         rotation=90, va='center', ha='center',
+                         fontsize=10, weight='bold')
     
     # Add overall labels
     fig.text(0.5, 0.05, 'Exon Number', ha='center', fontsize=12, weight='bold')
